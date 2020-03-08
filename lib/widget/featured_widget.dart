@@ -1,7 +1,10 @@
+import 'dart:convert';
+
 import 'package:alnahda/api/api_service.dart';
 import 'package:flutter/material.dart';
 import 'package:alnahda/model/home_page_model.dart' show Featured ;
 import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:http/http.dart' as http;
 
 class FeaturedWidget extends StatefulWidget {
   
@@ -27,6 +30,54 @@ class _FeaturedState extends State<FeaturedWidget> {
       child: _buildFeatured(),
     );
   }
+
+
+
+
+
+
+  Future<Map> getWeather() async {
+    String myUrl =
+        'https://alnahdanews.com/api/v1/home';
+    http.Response response = await http.get(myUrl);
+    return json.decode(response.body);
+  }
+  myWeatherFinal() {
+    return FutureBuilder(
+      future: getWeather(),
+      builder: (BuildContext context, AsyncSnapshot snapshot) {
+        if (snapshot.hasData) {
+          Map content = snapshot.data;
+          
+          //var image = "assets/images/${content['weather'][0]['icon']}\.png";
+          return Container(
+            width: 400,
+            height: 1100,
+            child: ListView.builder(
+              itemCount: 5,
+              itemBuilder: (BuildContext context, int index) {
+              return Text(
+                  content['data']['featured'][index]['title'].toString(),
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 15),
+                      textAlign: TextAlign.center,
+                );
+             },
+            ),
+          );
+        } else {
+          return Text('');
+        }
+      },
+    );
+
+
+
+
+
+
 
 // builder
 Widget _buildFeatured() {

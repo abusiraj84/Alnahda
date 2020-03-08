@@ -1,18 +1,23 @@
 
-import 'package:alnahda/model/home_page_model.dart';
-import 'package:http/http.dart' show Client;
+import 'dart:convert';
 
+import 'package:http/http.dart' show Client;
+import 'package:http/http.dart' as http;
 
 class ApiService {
   final String baseUrl = "https://alnahdanews.com/api/v1";
   Client client = Client();
 
 
-  Future<List<Featured>> getLastFiveNews() async {
-    final response = await client.get("$baseUrl/home");
+
+
+  Future<Map> getLastFiveNews() async {
+     String myUrl =
+        'https://alnahdanews.com/api/v1/home';
+    http.Response response = await http.get(myUrl);
+
     if (response.statusCode == 200) {
-   print(response.body);
-      return null;
+      return json.decode(response.body);
     } else {
       return null;
     }
