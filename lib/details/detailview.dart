@@ -111,7 +111,7 @@ class _DetailViewState extends State<DetailView> {
                       fontSize: 10,
                       height: 1.3),
                 textAlign: TextAlign.right,),
-                SizedBox(height:20),
+                SizedBox(height:10),
 
                  Text("شهد سعر الدولار في سوريا مقابل الليرة السورية في السوق السوداء انخفاضا طفيفا اليوم الأحد 8 3 2020 وسجل سعر صرف الليرة السورية مقابل الدولار 1060 1068 ليرة سورية في دمشق ووصل سعر اليورو مقابل الليرة",style: TextStyle(
                       fontFamily: "sst-roman",
@@ -135,12 +135,6 @@ class _DetailViewState extends State<DetailView> {
 
                               Footer(),
 
-
-                 Text("شهد سعر الدولار في سوريا مقابل الليرة السورية في السوق السوداء انخفاضا طفيفا اليوم الأحد 8 3 2020 وسجل سعر صرف الليرة السورية مقابل الدولار 1060 1068 ليرة سورية في دمشق ووصل سعر اليورو مقابل الليرة",style: TextStyle(
-                      fontFamily: "sst-roman",
-                      fontSize: 18,
-                      height: 1.7,),
-                textAlign: TextAlign.right, textDirection: TextDirection.rtl,),
 
 
 
@@ -179,6 +173,7 @@ class Footer extends StatelessWidget {
                                       ),
           ),
         ),
+           SizedBox(height:20),
       ],
     );
   }
