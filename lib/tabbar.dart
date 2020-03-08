@@ -1,3 +1,4 @@
+import 'package:alnahda/breaknews.dart';
 import 'package:alnahda/more.dart';
 
 import 'home/Home.dart';
@@ -15,7 +16,7 @@ class _MyTabBarState extends State<MyTabBar> {
   int _currentIndex = 0;
   final tabs = [
     HomeView(),
-    Center(child: Text("عاجل")),
+    BreakNews(),
     Center(child: Text("الرأي")),
     Center(child: Text("فيديو")),
     More(),
