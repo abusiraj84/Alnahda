@@ -74,6 +74,7 @@ class _FeaturedState extends State<FeaturedWidget> {
                                   fontSize: 23,
                                   height: 1.3),
                               textAlign: TextAlign.right,
+                              maxLines: 2,
                             ),
                           )
                         ],
@@ -96,7 +97,8 @@ class _FeaturedState extends State<FeaturedWidget> {
           
           return Container(
             height:370,
-             child: Center(child:Image.asset('assets/images/logo.png', width: 100.0, height: 100.0)
+            color: Colors.grey,
+             child: Center( child:Image.asset('assets/images/logo.png', width: 163.0, height: 67.0)
 
 ),
           );
