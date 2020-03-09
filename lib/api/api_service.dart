@@ -31,4 +31,16 @@ class ApiService {
       return null;
     }
   }
+
+      Future<Map> getOpinon() async {
+     String myUrl =
+        'https://alnahdanews.com/api/v1/category/2';
+    http.Response response = await http.get(myUrl);
+
+    if (response.statusCode == 200) {
+      return json.decode(response.body);
+    } else {
+      return null;
+    }
+  }
 }

@@ -32,7 +32,7 @@ class _LebanonNewsState extends State<LebanonNews> {
         if (snapshot.hasData) {
           Map content = snapshot.data;
           return ListView.builder(
-            itemCount: 4,
+            itemCount: content['data']['widget_1']['posts'].length,
             scrollDirection: Axis.horizontal,
             itemBuilder: (BuildContext context, int index) {
               String imgurl = "https://alnahdanews.com/" +

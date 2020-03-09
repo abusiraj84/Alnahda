@@ -1,3 +1,4 @@
+import 'package:alnahda/widget/opinion_widget.dart';
 import 'package:flutter/material.dart';
 
 class Alray extends StatelessWidget {
@@ -6,17 +7,19 @@ class Alray extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text('الرأي'),
-        ),
-        body: Column(
-          children: <Widget>[
-            SingleAlray(),
-            SingleAlray(),
-            SingleAlray(),
-            SingleAlray(),
-          ],
-        ));
+      appBar: AppBar(
+        title: Text('الرأي'),
+      ),
+      body: OpinionWidget(),
+      // Column(
+      //   children: <Widget>[
+      //     SingleAlray(),
+      //     SingleAlray(),
+      //     SingleAlray(),
+      //     SingleAlray(),
+      //   ],
+      // ),
+    );
   }
 }
 
@@ -38,7 +41,7 @@ class SingleAlray extends StatelessWidget {
             children: <Widget>[
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   CircleAvatar(
                     radius: 30,
@@ -63,7 +66,9 @@ class SingleAlray extends StatelessWidget {
                               height: 1.3),
                           textAlign: TextAlign.right,
                         ),
-                        SizedBox(height: 10,),
+                        SizedBox(
+                          height: 10,
+                        ),
                         Text(
                           "حسام نصرالله",
                           style: TextStyle(
