@@ -35,7 +35,9 @@ dependencies:
   json_annotation: ^2.4.0
   paging: ^0.1.0
   flutter_html: ^0.11.1
-  
+  loadmore: ^1.0.4
+
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
