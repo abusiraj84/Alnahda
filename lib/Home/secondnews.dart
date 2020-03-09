@@ -24,7 +24,7 @@ class SecondNews extends StatelessWidget {
                         context,
                         PageTransition(
                             type: PageTransitionType.leftToRight,
-                            child: DetailView()));
+                            child: DetailView(1)));
                   },
                   child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,

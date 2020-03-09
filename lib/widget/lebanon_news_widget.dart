@@ -51,7 +51,7 @@ class _LebanonNewsState extends State<LebanonNews> {
                             context,
                             PageTransition(
                                 type: PageTransitionType.downToUp,
-                                child: DetailView()));
+                                child: DetailView( content['data']['widget_1']['posts'][index]['id'])));
                       },
                       child: Column(
                         children: <Widget>[

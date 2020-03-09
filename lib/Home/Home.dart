@@ -43,7 +43,7 @@ class _HomeViewState extends State<HomeView> {
                             context,
                             PageTransition(
                                 type: PageTransitionType.downToUp,
-                                child: DetailView()));
+                                child: DetailView(1)));
                       },
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.start,

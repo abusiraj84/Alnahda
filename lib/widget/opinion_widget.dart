@@ -32,7 +32,8 @@ class _OpinionWidgetState extends State<OpinionWidget> {
             itemCount: content['data']['posts']['data'].length,
             scrollDirection: Axis.vertical,
             itemBuilder: (BuildContext context, int index) {
-String  imgurl ="https://alnahdanews.com/"+content['data']['posts']['data'][index]['author']['img'];
+              String imgurl = "https://alnahdanews.com/" +
+                  content['data']['posts']['data'][index]['author']['img'];
               return Padding(
                 padding: const EdgeInsets.only(top: 10),
                 child: Container(
@@ -50,8 +51,8 @@ String  imgurl ="https://alnahdanews.com/"+content['data']['posts']['data'][inde
                           children: <Widget>[
                             CircleAvatar(
                               radius: 30,
-                              backgroundImage: NetworkImage(imgurl
-                               ,
+                              backgroundImage: NetworkImage(
+                                imgurl,
                               ),
                             ),
                             SizedBox(
@@ -64,18 +65,22 @@ String  imgurl ="https://alnahdanews.com/"+content['data']['posts']['data'][inde
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
                                   Text(
-                                     content['data']['posts']['data'][index]['title'].toString(),
+                                    content['data']['posts']['data'][index]
+                                            ['title']
+                                        .toString(),
                                     style: TextStyle(
                                         fontFamily: "sst-arabic-bold",
                                         fontSize: 14,
                                         height: 1.3),
                                     textAlign: TextAlign.right,
+                                      maxLines: 2
                                   ),
                                   SizedBox(
                                     height: 10,
                                   ),
                                   Text(
-                                     content['data']['posts']['data'][index]['author']['name'],
+                                    content['data']['posts']['data'][index]
+                                        ['author']['name'],
                                     style: TextStyle(
                                         fontFamily: "sst-roman",
                                         fontSize: 13,
