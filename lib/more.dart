@@ -52,7 +52,7 @@ class _MoreState extends State<More> {
           ),
           CatList(
             img: 'assets/images/misc.png',
-            title: "علوم",
+            title: "منوعات",
           ),
           CatList(
             img: 'assets/images/music.png',
