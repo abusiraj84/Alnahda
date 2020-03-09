@@ -106,7 +106,7 @@ class _FeaturedState extends State<FeaturedWidget> {
             color: Colors.grey,
             child: Center(
                 child: Image.asset('assets/images/logo.png',
-                    width: 163.0, height: 67.0)),
+                    width: 163.0, height: 67.0),),
           );
         }
       },

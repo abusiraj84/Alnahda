@@ -8,54 +8,103 @@ class More extends StatefulWidget {
 }
 
 class _MoreState extends State<More> {
-  bool show ;
+  bool show;
 
   @override
   void initState() {
     super.initState();
     show = false;
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Title'),
-        leading: IconButton(icon: Icon(Icons.offline_bolt), onPressed: (){
-          setState(() {
-            show =!show;
-          });
-          
-          print(show);
-          }),
-      ),
-      body: Transform.translate(
-              child: Transform.scale(
-                child: AnimatedContainer(
-          
-               decoration: BoxDecoration(
-                 
-          color: Colors.white,
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(30),
-            topRight: Radius.circular(30),
+      body: SafeArea(
+          child: Column(
+        children: <Widget>[
+          Container(
+            alignment: Alignment.topRight,
+            padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+            color: Color(0xffEFF4F8),
+            height: 90,
+            child: Image.asset('assets/images/appbarlogo.png',
+                width: 163.0, height: 67.0),
           ),
-                     boxShadow: [
-              BoxShadow(
-                color: Colors.black.withOpacity(0.2),
-                blurRadius:
-                    20.0, // has the effect of softening the shadow
-                spreadRadius:
-                    5.0, // has the effect of extending the shadow
-                offset: Offset(
-                  0.0, // horizontal, move right 10
-                  2.0, // vertical, move down 10
-                ),
+          CatList(
+            img: 'assets/images/file.png',
+            title: "أخبار",
+          ),
+          CatList(
+            img: 'assets/images/leb.png',
+            title: "أخبار لبنان",
+          ),
+          CatList(
+            img: 'assets/images/meeting.png',
+            title: "تقارير وحوارات",
+          ),
+          CatList(
+            img: 'assets/images/jet.png',
+            title: "الرصد العسكري",
+          ),
+          CatList(
+            img: 'assets/images/atom.png',
+            title: "علوم",
+          ),
+          CatList(
+            img: 'assets/images/misc.png',
+            title: "علوم",
+          ),
+          CatList(
+            img: 'assets/images/music.png',
+            title: "فن ومشاهير",
+          ),
+          CatList(
+            img: 'assets/images/sport.png',
+            title: "رياضة",
+          ),
+          CatList(
+            img: 'assets/images/box.png',
+            title: "ثقافة وأدب",
+          ),
+          CatList(
+            img: 'assets/images/smartphone.png',
+            title: "تواصل معنا",
+          ),
+        ],
+      )),
+    );
+  }
+}
+
+class CatList extends StatelessWidget {
+  const CatList({
+    Key key,
+    this.img,
+    this.title,
+  }) : super(key: key);
+  final String img;
+  final String title;
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(10, 10, 20, 0),
+      child: Column(
+        children: <Widget>[
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              Image.asset(img, width: 20.0, height: 20.0),
+              SizedBox(
+                width: 10,
+              ),
+              Text(
+                title,
+                style: TextStyle(fontSize: 18),
               )
             ],
-                    ), duration: Duration(milliseconds: 3000),curve: Curves.bounceInOut,
-              
-            ), scale: show ? 0.8 : 1 ,
-        ), offset: Offset(show ? 60 : 0,0),
+          ),
+          Divider()
+        ],
       ),
     );
   }
