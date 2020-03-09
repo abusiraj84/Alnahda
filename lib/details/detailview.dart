@@ -62,8 +62,8 @@ class _DetailViewState extends State<DetailView> {
             ),
             Positioned(
            
-             left: 0,
-             right: 0,
+             left: 10,
+             right: 10,
              bottom: 0,
              height: MediaQuery.of(context).size.height  - 310,
               child: Container(
@@ -72,8 +72,8 @@ class _DetailViewState extends State<DetailView> {
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(30),
-                      topRight: Radius.circular(30),
+                      topLeft: Radius.circular(8),
+                      topRight: Radius.circular(8),
                     ),
                    boxShadow: [
                         BoxShadow(

@@ -65,7 +65,7 @@ class _LebanonNewsState extends State<LebanonNews> {
                             child: Text(content['data']['widget_1']['posts'][index]['title'].toString(),
                               style: TextStyle(
                                   fontFamily: "SST-Arabic-Medium",
-                                  fontSize: 13,
+                                  fontSize: 15,
                                   height: 1.5,
                                   ),
                               textAlign: TextAlign.right,
