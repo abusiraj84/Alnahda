@@ -9,11 +9,20 @@ class ApiService {
   Client client = Client();
 
 
-
-
   Future<Map> getLastFiveNews() async {
      String myUrl =
         'https://alnahdanews.com/api/v1/home';
+    http.Response response = await http.get(myUrl);
+
+    if (response.statusCode == 200) {
+      return json.decode(response.body);
+    } else {
+      return null;
+    }
+  }
+    Future<Map> getBreakNews() async {
+     String myUrl =
+        'https://alnahdanews.com/api/v1/breaking';
     http.Response response = await http.get(myUrl);
 
     if (response.statusCode == 200) {

@@ -22,10 +22,10 @@ class _LebanonNewsState extends State<LebanonNews> {
 
   @override
   Widget build(BuildContext context) {
-    return featuredBuilder();
+    return lebanonBuilder();
   }
 
-  featuredBuilder() {
+  lebanonBuilder() {
     return FutureBuilder(
       future: _apiService.getLastFiveNews(),
       builder: (BuildContext context, AsyncSnapshot snapshot) {
@@ -55,19 +55,23 @@ class _LebanonNewsState extends State<LebanonNews> {
                       },
                       child: Column(
                         children: <Widget>[
-                          Image.network(imgurl,
+                          Image.network(
+                            imgurl,
                             height: 100,
                             width: 170,
                             fit: BoxFit.fill,
                           ),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: Text(content['data']['widget_1']['posts'][index]['title'].toString(),
+                            child: Text(
+                              content['data']['widget_1']['posts'][index]
+                                      ['title']
+                                  .toString(),
                               style: TextStyle(
-                                  fontFamily: "SST-Arabic-Medium",
-                                  fontSize: 13,
-                                  height: 1.5,
-                                  ),
+                                fontFamily: "SST-Arabic-Medium",
+                                fontSize: 13,
+                                height: 1.5,
+                              ),
                               textAlign: TextAlign.right,
                               maxLines: 3,
                             ),
@@ -78,10 +82,10 @@ class _LebanonNewsState extends State<LebanonNews> {
           );
         } else {
           return Container(
-            height:100,
-             child: Center(child:Image.asset('assets/images/logo.png', width: 100.0, height: 100.0)
-
-));
+              height: 100,
+              child: Center(
+                  child: Image.asset('assets/images/logo.png',
+                      width: 100.0, height: 100.0)));
         }
       },
     );
