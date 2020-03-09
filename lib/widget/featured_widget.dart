@@ -74,6 +74,7 @@ class _FeaturedState extends State<FeaturedWidget> {
                                   fontSize: 23,
                                   height: 1.3),
                               textAlign: TextAlign.right,
+                              maxLines: 2,
                             ),
                           )
                         ],
