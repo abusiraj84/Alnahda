@@ -65,9 +65,11 @@ class _LebanonNewsState extends State<LebanonNews> {
                             child: Text(content['data']['widget_1']['posts'][index]['title'].toString(),
                               style: TextStyle(
                                   fontFamily: "SST-Arabic-Medium",
-                                  fontSize: 15,
-                                  height: 1.5),
+                                  fontSize: 13,
+                                  height: 1.5,
+                                  ),
                               textAlign: TextAlign.right,
+                              maxLines: 3,
                             ),
                           )
                         ],
@@ -76,11 +78,10 @@ class _LebanonNewsState extends State<LebanonNews> {
           );
         } else {
           return Container(
-             width: 170,
-                height: 200,
-            child: Text(
-                "Something wrong with message: ${snapshot.error.toString()}"),
-          );
+            height:100,
+             child: Center(child:Image.asset('assets/images/logo.png', width: 100.0, height: 100.0)
+
+));
         }
       },
     );

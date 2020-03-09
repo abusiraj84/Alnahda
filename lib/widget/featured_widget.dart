@@ -34,7 +34,7 @@ class _FeaturedState extends State<FeaturedWidget> {
 
           return Container(
                 color: Colors.white,
-                height: 350,
+                height: 370,
                 child: Container(
                   width: MediaQuery.of(context).size.width,
                   child: Swiper(
@@ -44,13 +44,14 @@ class _FeaturedState extends State<FeaturedWidget> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Container(
+                            height: 260,
                             decoration: BoxDecoration(
                               image: DecorationImage(
                                   fit: BoxFit.cover,
                                   image: NetworkImage( imgurl)),
                             ),
                             child: Container(
-                                height: 240,
+                               
                                 decoration: BoxDecoration(
                                   gradient: LinearGradient(
                                     begin: Alignment.bottomCenter,
@@ -92,9 +93,12 @@ class _FeaturedState extends State<FeaturedWidget> {
             
           );
         } else {
-          return Center(
-            child: Text(
-                "Something wrong with message: ${snapshot.error.toString()}"),
+          
+          return Container(
+            height:370,
+             child: Center(child:Image.asset('assets/images/logo.png', width: 100.0, height: 100.0)
+
+),
           );
         }
       },
