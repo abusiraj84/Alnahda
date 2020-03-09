@@ -1,9 +1,7 @@
-import 'dart:convert';
 
 import 'package:alnahda/api/api_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
-import 'package:http/http.dart' as http;
 
 class FeaturedWidget extends StatefulWidget {
   @override
