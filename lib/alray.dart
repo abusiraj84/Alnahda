@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_sfsymbols/flutter_sfsymbols.dart';
 
 class Alray extends StatelessWidget {
   const Alray({Key key}) : super(key: key);

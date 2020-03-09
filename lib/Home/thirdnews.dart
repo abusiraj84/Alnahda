@@ -1,7 +1,5 @@
-import 'package:alnahda/details/detailview.dart';
 import 'package:alnahda/widget/lebanon_news_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:page_transition/page_transition.dart';
 
 class ThirdNews extends StatelessWidget {
   const ThirdNews({Key key}) : super(key: key);

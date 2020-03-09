@@ -12,7 +12,6 @@ class _MoreState extends State<More> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     show = false;
   }

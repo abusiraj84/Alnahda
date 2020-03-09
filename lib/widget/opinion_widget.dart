@@ -11,7 +11,7 @@ class _OpinionWidgetState extends State<OpinionWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-       child: child,
+       child: null,
     );
   }
 }

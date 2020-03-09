@@ -68,17 +68,10 @@ class _LebanonNewsState extends State<LebanonNews> {
                                       ['title']
                                   .toString(),
                               style: TextStyle(
-<<<<<<< HEAD
-                                fontFamily: "SST-Arabic-Medium",
-                                fontSize: 13,
-                                height: 1.5,
-                              ),
-=======
                                   fontFamily: "SST-Arabic-Medium",
                                   fontSize: 15,
                                   height: 1.5,
                                   ),
->>>>>>> 04ddcabecc15cbb6629def68491cea3f082aaf03
                               textAlign: TextAlign.right,
                               maxLines: 3,
                             ),
