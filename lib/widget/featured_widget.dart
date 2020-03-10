@@ -26,7 +26,7 @@ class _FeaturedState extends State<FeaturedWidget> {
 
   featuredBuilder() {
     return FutureBuilder(
-      future: _apiService.getLastFiveNews(),
+      future: _apiService.getFeatured(),
       builder: (BuildContext context, AsyncSnapshot snapshot) {
         if (snapshot.hasData) {
           Map content = snapshot.data;

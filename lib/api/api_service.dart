@@ -9,7 +9,7 @@ class ApiService {
   Client client = Client();
 
 
-  Future<Map> getLastFiveNews() async {
+  Future<Map> getFeatured() async {
      String myUrl =
         'https://alnahdanews.com/api/v1/home';
     http.Response response = await http.get(myUrl);
@@ -55,10 +55,9 @@ class ApiService {
       return null;
     }
   }
-
-     Future<Map> getAlray(int id) async {
+ Future<Map> getCats() async {
      String myUrl =
-        'https://alnahdanews.com/api/v1/post/$id';
+        'https://alnahdanews.com/api/v1/nav';
     http.Response response = await http.get(myUrl);
 
     if (response.statusCode == 200) {
@@ -67,4 +66,16 @@ class ApiService {
       return null;
     }
   }
+  Future<Map> getPosts(int id) async {
+     String myUrl =
+        'https://alnahdanews.com/api/v1/category/$id';
+    http.Response response = await http.get(myUrl);
+
+    if (response.statusCode == 200) {
+      return json.decode(response.body);
+    } else {
+      return null;
+    }
+  }
+  
 }

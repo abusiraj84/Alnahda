@@ -43,12 +43,11 @@ class _AlrayState extends State<Alray> {
                   content['data']['posts']['data'][index]['author']['img'];
               return InkWell(
                 onTap: (){
-                  print(content['data']['posts']['data']['id'].toString());
-                    // Navigator.push(
-                    //     context,
-                    //     PageTransition(
-                    //         type: PageTransitionType.downToUp,
-                    //       child: AlrayDetail( content['data']['posts']['data']['id'])));
+                    Navigator.push(
+                        context,
+                        PageTransition(
+                            type: PageTransitionType.downToUp,
+                          child: AlrayDetail(content['data']['posts']['data'][index]['id'],content['data']['posts']['data'][index]['author']['img'].toString())));
                   },
                               child: Padding(
                   padding: const EdgeInsets.only(top: 10),
@@ -119,10 +118,10 @@ class _AlrayState extends State<Alray> {
           );
         } else {
           return Container(
-              height: 100,
+              height: MediaQuery.of(context).size.height,
               child: Center(
                   child: Image.asset('assets/images/logo.png',
-                      width: 100.0, height: 100.0)));
+                      width: 200.0, height: 200.0)));
         }
       },
     );

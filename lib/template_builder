@@ -1,33 +1,7 @@
-import 'package:alnahda/api/api_service.dart';
-import 'package:flutter/material.dart';
-import 'package:page_transition/page_transition.dart';
-
-import '../details/detailview.dart';
-
-class LebanonNews extends StatefulWidget {
-  const LebanonNews({Key key}) : super(key: key);
-
-  @override
-  _LebanonNewsState createState() => _LebanonNewsState();
-}
-
-class _LebanonNewsState extends State<LebanonNews> {
-  ApiService _apiService;
-
-  @override
-  void initState() {
-    super.initState();
-    _apiService = ApiService();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return lebanonBuilder();
-  }
 
   lebanonBuilder() {
     return FutureBuilder(
-      future: _apiService.getFeatured(),
+      future: _apiService.getLastFiveNews(),
       builder: (BuildContext context, AsyncSnapshot snapshot) {
         if (snapshot.hasData) {
           Map content = snapshot.data;
@@ -90,4 +64,3 @@ class _LebanonNewsState extends State<LebanonNews> {
       },
     );
   }
-}

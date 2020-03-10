@@ -1,8 +1,9 @@
-import 'package:alnahda/widget/categories/showcat.dart';
+import 'package:alnahda/categories/showcat.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 
 import 'api/api_service.dart';
+import 'details/detailview.dart';
 
 class More extends StatefulWidget {
   More({Key key}) : super(key: key);
@@ -13,72 +14,115 @@ class More extends StatefulWidget {
 
 class _MoreState extends State<More> {
   bool show;
-    ApiService _apiService;
-
+  ApiService _apiService;
 
   @override
   void initState() {
     super.initState();
-       _apiService = ApiService();
-
+    _apiService = ApiService();
   }
 
   @override
   Widget build(BuildContext context) {
+    // return Scaffold(
+    //     appBar: AppBar(
+    //       title: Text('Title'),
+    //     ),
+    //     body: SafeArea(
+    //       child: lebanonBuilder(),
+    //     ));
     return Scaffold(
       body: SafeArea(
-          child: Column(
-        children: <Widget>[
-          Container(
-            alignment: Alignment.topRight,
-            padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-            color: Color(0xffEFF4F8),
-            height: 90,
-            child: Image.asset('assets/images/appbarlogo.png',
-                width: 163.0, height: 67.0),
-          ),
-          CatList(
-            img: 'assets/images/file.png',
-            title: "أخبار",
-          ),
-          CatList(
-            img: 'assets/images/leb.png',
-            title: "أخبار لبنان",
-          ),
-          CatList(
-            img: 'assets/images/meeting.png',
-            title: "تقارير وحوارات",
-          ),
-          CatList(
-            img: 'assets/images/jet.png',
-            title: "الرصد العسكري",
-          ),
-          CatList(
-            img: 'assets/images/atom.png',
-            title: "علوم",
-          ),
-          CatList(
-            img: 'assets/images/misc.png',
-            title: "منوعات",
-          ),
-          CatList(
-            img: 'assets/images/music.png',
-            title: "فن ومشاهير",
-          ),
-          CatList(
-            img: 'assets/images/sport.png',
-            title: "رياضة",
-          ),
-          CatList(
-            img: 'assets/images/box.png',
-            title: "ثقافة وأدب",
-          ),
-          CatList(
-            img: 'assets/images/smartphone.png',
-            title: "تواصل معنا",
-          ),
-        ],
+          child: SingleChildScrollView(
+        child: Column(
+
+          children: <Widget>[
+            Container(
+              alignment: Alignment.topRight,
+              padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+              color: Color(0xffEFF4F8),
+              height: 90,
+              child: Image.asset('assets/images/appbarlogo.png',
+                  width: 163.0, height: 67.0),
+            ),
+           catsBuilder(),
+         
+            // CatList(
+            //   img: 'assets/images/file.png',
+            //   title: "أخبار",
+            // ),
+            // CatList(
+            //   img: 'assets/images/leb.png',
+            //   title: "أخبار لبنان",
+            // ),
+            // CatList(
+            //   img: 'assets/images/meeting.png',
+            //   title: "تقارير وحوارات",
+            // ),
+            // CatList(
+            //   img: 'assets/images/jet.png',
+            //   title: "الرصد العسكري",
+            // ),
+            // CatList(
+            //   img: 'assets/images/atom.png',
+            //   title: "علوم",
+            // ),
+            // CatList(
+            //   img: 'assets/images/misc.png',
+            //   title: "منوعات",
+            // ),
+            // CatList(
+            //   img: 'assets/images/music.png',
+            //   title: "فن ومشاهير",
+            // ),
+            // CatList(
+            //   img: 'assets/images/sport.png',
+            //   title: "رياضة",
+            // ),
+            // CatList(
+            //   img: 'assets/images/box.png',
+            //   title: "ثقافة وأدب",
+            // ),
+            // CatList(
+            //   img: 'assets/images/smartphone.png',
+            //   title: "تواصل معنا",
+            // ),
+          ],
+        ),
       )),
+    );
+  }
+
+  catsBuilder() {
+    return FutureBuilder(
+      future: _apiService.getCats(),
+      builder: (BuildContext context, AsyncSnapshot snapshot) {
+        if (snapshot.hasData) {
+          Map content = snapshot.data;
+
+          return Container(
+            height: MediaQuery.of(context).size.height-90,
+            child: ListView.builder(
+              itemCount: content['data']['menu'].length,
+              scrollDirection: Axis.vertical,
+              itemBuilder: (BuildContext context, int index) {
+                // print(content['data']['menu'][index]['title']);
+                return CatList(
+                  img: 'assets/images/file.png',
+                  title: content['data']['menu'][index]['title'],
+              catId: content['data']['menu'][index]['id'],
+                );
+              },
+            ),
+          );
+        } else {
+          return Container(
+              height: 100,
+              child: Center(
+                  child: Image.asset('assets/images/logo.png',
+                      width: 100.0, height: 100.0)));
+        }
+      },
     );
   }
 }
@@ -88,20 +132,22 @@ class CatList extends StatelessWidget {
     Key key,
     this.img,
     this.title,
+    this.catId
   }) : super(key: key);
   final String img;
   final String title;
+  final int catId;
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: (){
+      onTap: () {
         Navigator.push(
-                            context,
-                            PageTransition(
-                                type: PageTransitionType.downToUp,
-                                child: ShowCat(title : title)));
+            context,
+            PageTransition(
+                type: PageTransitionType.downToUp,
+                child: ShowCat(title: title,catId: catId)));
       },
-          child: Padding(
+      child: Padding(
         padding: const EdgeInsets.fromLTRB(10, 10, 20, 0),
         child: Column(
           children: <Widget>[

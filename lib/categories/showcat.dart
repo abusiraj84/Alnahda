@@ -1,57 +1,38 @@
-import 'package:alnahda/Home/caresoul.dart';
-import 'package:alnahda/Home/thirdnews.dart';
 import 'package:alnahda/api/api_service.dart';
 import 'package:alnahda/details/detailview.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:page_transition/page_transition.dart';
 
-import 'secondnews.dart';
-
-class HomeView extends StatefulWidget {
-  HomeView({Key key}) : super(key: key);
+class ShowCat extends StatefulWidget {
+  ShowCat({Key key, this.title, this.catId}) : super(key: key);
+  final String title;
+  final int catId;
 
   @override
-  _HomeViewState createState() => _HomeViewState();
+  _ShowCatState createState() => _ShowCatState();
 }
 
-class _HomeViewState extends State<HomeView> {
+class _ShowCatState extends State<ShowCat> {
   ApiService _apiService;
-
   ScrollController _controller;
-  bool istop = false;
-
-  _scrollListener() {
+_scrollListener() {
     if (_controller.offset >= _controller.position.maxScrollExtent &&
         !_controller.position.outOfRange) {
       setState(() {
-        print(istop);
-        istop = !istop;
+        // message = "reach the bottom";
       });
     }
     if (_controller.offset <= _controller.position.minScrollExtent &&
         !_controller.position.outOfRange) {
       setState(() {
-        print(istop);
-
-        istop = !istop;
-        // physics == ScrollPhysics(parent: NeverScrollableScrollPhysics());
+        // message = "reach the top";
       });
-    }    if (_controller.offset <= _controller.position.minScrollExtent&&
-        _controller.position.outOfRange) {
-      setState(() {
-        print(istop);
-
-        istop = false;
-        // physics == ScrollPhysics(parent: NeverScrollableScrollPhysics());
-      });
-    } else {istop =true;}
+    }
   }
-
   @override
   void initState() {
     super.initState();
-    _controller = ScrollController();
+        _controller = ScrollController();
     _controller.addListener(_scrollListener);
 
     _apiService = ApiService();
@@ -59,84 +40,26 @@ class _HomeViewState extends State<HomeView> {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-      statusBarColor: Colors.blue, //or set color with: Color(0xFF0000FF)
-    ));
-
     return Scaffold(
-        backgroundColor: Color(0xffeef4f8),
-        body: SafeArea(
-          top: true,
-          bottom: false,
-          child: SingleChildScrollView(
-            child: Column(
-              children: <Widget>[
-                CaresoulView(),
-                SizedBox(height: 10),
-                // SecondNews(),
-                ThirdNews(),
-                SizedBox(height: 10),
-                // Container(
-                //     height: 360,
-                //     color: Colors.white,
-                //     child: GestureDetector(
-                //       onTap: () {
-                //         Navigator.push(
-                //             context,
-                //             PageTransition(
-                //                 type: PageTransitionType.downToUp,
-                //                 child: DetailView(1)));
-                //       },
-                //       child: Column(
-                //         mainAxisAlignment: MainAxisAlignment.start,
-                //         crossAxisAlignment: CrossAxisAlignment.start,
-                //         children: <Widget>[
-                //           Image.network(
-                //             "https://alnahdanews.com/uploads/images/2020/03/wZKve.jpeg",
-                //             height: 260,
-                //             fit: BoxFit.cover,
-                //           ),
-                //           Padding(
-                //             padding: const EdgeInsets.all(20.0),
-                //             child: Text(
-                //               "النفط يصعد إلى أعلى مستوياته في أشهر بعد الهجوم الإيراني بالعراق",
-                //               style: TextStyle(
-                //                   fontFamily: "sst-arabic-bold",
-                //                   fontSize: 23,
-                //                   height: 1.3),
-                //               textAlign: TextAlign.right,
-                //             ),
-                //           ),
-                //         ],
-                //       ),
-                //     )),
-                SizedBox(height: 10),
-                latestNews(context),
-              ],
-            ),
-          ),
-        ));
+      appBar: AppBar(title: Text(widget.title)),
+      body: latestNews(context),
+    );
   }
 
   latestNews(context) {
     return FutureBuilder(
-        future: _apiService.getFeatured(),
+        future: _apiService.getPosts(widget.catId),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           if (snapshot.hasData) {
             Map content = snapshot.data;
-            return Container(
-              height: MediaQuery.of(context).size.height - 80,
+            return Expanded(
               child: ListView.builder(
-                shrinkWrap: true,
-                // controller: _controller,
-                // physics:PageScrollPhysics(),
-                //  istop
-                //     ? ScrollPhysics(parent: NeverScrollableScrollPhysics())
-                //     : null,
-                itemCount: content['data']['latest']['data'].length - 1,
+                              controller: _controller,
+
+                itemCount: content['data']['posts']['data'].length - 1,
                 itemBuilder: (BuildContext context, int index) {
                   String imgurl = "https://alnahdanews.com/" +
-                      content['data']['latest']['data'][index + 1]['img']
+                      content['data']['posts']['data'][index + 1]['img']
                           .toString();
 
                   if (index == 0) {
@@ -149,7 +72,7 @@ class _HomeViewState extends State<HomeView> {
                                 context,
                                 PageTransition(
                                     type: PageTransitionType.downToUp,
-                                    child: DetailView(content['data']['latest']
+                                    child: DetailView(content['data']['posts']
                                         ['data'][index + 1]['id'])));
                           },
                           child: Column(
@@ -166,7 +89,7 @@ class _HomeViewState extends State<HomeView> {
                                 padding: const EdgeInsets.symmetric(
                                     horizontal: 20, vertical: 10),
                                 child: Text(
-                                  content['data']['latest']['data'][index + 1]
+                                  content['data']['posts']['data'][index + 1]
                                       ['title'],
                                   style: TextStyle(
                                       fontFamily: "sst-arabic-bold",
@@ -192,9 +115,8 @@ class _HomeViewState extends State<HomeView> {
                                   context,
                                   PageTransition(
                                       type: PageTransitionType.downToUp,
-                                      child: DetailView(content['data']
-                                              ['latest']['data'][index + 1]
-                                          ['id'])));
+                                      child: DetailView(content['data']['posts']
+                                          ['data'][index + 1]['id'])));
                             },
                             child: Row(
                                 mainAxisAlignment: MainAxisAlignment.start,
@@ -213,7 +135,7 @@ class _HomeViewState extends State<HomeView> {
                                       width: MediaQuery.of(context).size.width -
                                           200,
                                       child: Text(
-                                        content['data']['latest']['data']
+                                        content['data']['posts']['data']
                                             [index + 1]['title'],
                                         style: TextStyle(
                                             fontFamily: "SST-Arabic-Medium",
@@ -233,6 +155,7 @@ class _HomeViewState extends State<HomeView> {
               ),
             );
           } else {
+            print(widget.catId);
             return Container(
                 height: 100,
                 child: Center(
