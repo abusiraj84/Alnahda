@@ -10,8 +10,8 @@ class SecondNews extends StatelessWidget {
     return Container(
       height: 405,
       child: ListView.builder(
-        itemCount: 3,
-        physics: ScrollPhysics(parent: NeverScrollableScrollPhysics()),
+        itemCount: 1000,
+      //  physics: ScrollPhysics(parent: NeverScrollableScrollPhysics()),
         itemBuilder: (BuildContext context, int index) {
           return Column(
             children: <Widget>[
@@ -23,7 +23,7 @@ class SecondNews extends StatelessWidget {
                     Navigator.push(
                         context,
                         PageTransition(
-                            type: PageTransitionType.leftToRight,
+                            type: PageTransitionType.downToUp,
                             child: DetailView(1)));
                   },
                   child: Row(

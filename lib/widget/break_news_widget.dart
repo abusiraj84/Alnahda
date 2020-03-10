@@ -38,7 +38,7 @@ class _BreakNewsState extends State<BreakNewsWidget> {
                 padding: const EdgeInsets.only(top: 10),
                 child: Container(
                   color: Colors.white,
-                  height: 130,
+                 
                   child: Padding(
                     padding: const EdgeInsets.all(20.0),
                     child: Column(
@@ -52,6 +52,8 @@ class _BreakNewsState extends State<BreakNewsWidget> {
                             Icon(
                               SFSymbols.flame_fill,
                               color: Color(0xffeb4e54),
+                              size: 15,
+                              
                             ),
                             SizedBox(
                               width: 7,
@@ -60,7 +62,7 @@ class _BreakNewsState extends State<BreakNewsWidget> {
                                 style: TextStyle(
                                     color: Color(0xffeb4e54),
                                     fontWeight: FontWeight.bold,
-                                    fontSize: 18)),
+                                    fontSize: 15)),
                           ],
                         ),
                         SizedBox(
@@ -73,7 +75,7 @@ class _BreakNewsState extends State<BreakNewsWidget> {
                             style: TextStyle(
                                 fontFamily: "sst-arabic-bold",
                                 fontSize: 14,
-                                height: 1.3),
+                                height: 1.7),
                             textAlign: TextAlign.right,
                           ),
                         ),

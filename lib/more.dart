@@ -1,4 +1,8 @@
+import 'package:alnahda/widget/categories/showcat.dart';
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
+
+import 'api/api_service.dart';
 
 class More extends StatefulWidget {
   More({Key key}) : super(key: key);
@@ -9,11 +13,14 @@ class More extends StatefulWidget {
 
 class _MoreState extends State<More> {
   bool show;
+    ApiService _apiService;
+
 
   @override
   void initState() {
     super.initState();
-    show = false;
+       _apiService = ApiService();
+
   }
 
   @override
@@ -86,25 +93,34 @@ class CatList extends StatelessWidget {
   final String title;
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(10, 10, 20, 0),
-      child: Column(
-        children: <Widget>[
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              Image.asset(img, width: 20.0, height: 20.0),
-              SizedBox(
-                width: 10,
-              ),
-              Text(
-                title,
-                style: TextStyle(fontSize: 18),
-              )
-            ],
-          ),
-          Divider()
-        ],
+    return InkWell(
+      onTap: (){
+        Navigator.push(
+                            context,
+                            PageTransition(
+                                type: PageTransitionType.downToUp,
+                                child: ShowCat(title : title)));
+      },
+          child: Padding(
+        padding: const EdgeInsets.fromLTRB(10, 10, 20, 0),
+        child: Column(
+          children: <Widget>[
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                Image.asset(img, width: 20.0, height: 20.0),
+                SizedBox(
+                  width: 10,
+                ),
+                Text(
+                  title,
+                  style: TextStyle(fontSize: 18),
+                )
+              ],
+            ),
+            Divider()
+          ],
+        ),
       ),
     );
   }

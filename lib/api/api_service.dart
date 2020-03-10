@@ -55,4 +55,16 @@ class ApiService {
       return null;
     }
   }
+
+     Future<Map> getAlray(int id) async {
+     String myUrl =
+        'https://alnahdanews.com/api/v1/post/$id';
+    http.Response response = await http.get(myUrl);
+
+    if (response.statusCode == 200) {
+      return json.decode(response.body);
+    } else {
+      return null;
+    }
+  }
 }
