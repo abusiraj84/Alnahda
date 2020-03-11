@@ -15,7 +15,7 @@ class ShowVideo extends StatefulWidget {
 class _ShowVideoState extends State<ShowVideo> {
   ApiService _apiService;
   ScrollController _controller;
-_scrollListener() {
+  _scrollListener() {
     if (_controller.offset >= _controller.position.maxScrollExtent &&
         !_controller.position.outOfRange) {
       setState(() {
@@ -29,10 +29,11 @@ _scrollListener() {
       });
     }
   }
+
   @override
   void initState() {
     super.initState();
-        _controller = ScrollController();
+    _controller = ScrollController();
     _controller.addListener(_scrollListener);
 
     _apiService = ApiService();
@@ -41,7 +42,7 @@ _scrollListener() {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(widget.title)),
+      appBar: AppBar(title: Text("فيديو")),
       body: latestNews(context),
     );
   }
@@ -55,54 +56,73 @@ _scrollListener() {
             return Container(
               height: MediaQuery.of(context).size.height,
               child: ListView.builder(
-                              controller: _controller,
-
-                itemCount: content['data']['posts']['data'].length - 1,
+                controller: _controller,
+                itemCount: content['data']['data'].length - 1,
                 itemBuilder: (BuildContext context, int index) {
                   String imgurl = "https://alnahdanews.com/" +
-                      content['data']['posts']['data'][index + 1]['img']
-                          .toString();
+                      content['data']['data'][index + 1]['img'].toString();
 
                   if (index == 0) {
                     return Container(
-                        height: 350,
-                        color: Colors.white,
-                        child: GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                                context,
-                                PageTransition(
-                                    type: PageTransitionType.downToUp,
-                                    child: DetailView(content['data']['posts']
-                                        ['data'][index + 1]['id'])));
-                          },
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Image.network(
-                                imgurl,
-                                height: 260,
-                                width: MediaQuery.of(context).size.width,
-                                fit: BoxFit.fill,
+                      height: 350,
+                      color: Colors.white,
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              PageTransition(
+                                  type: PageTransitionType.downToUp,
+                                  child: DetailView(content['data']['data']
+                                      ['data'][index + 1]['id'])));
+                        },
+                        child: Stack(
+                          children: <Widget>[
+                            Positioned(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  Image.network(
+                                    imgurl,
+                                    height: 260,
+                                    width: MediaQuery.of(context).size.width,
+                                    fit: BoxFit.fill,
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 20, vertical: 10),
+                                    child: Text(
+                                      content['data']['data'][index + 1]
+                                          ['title'],
+                                      style: TextStyle(
+                                          fontFamily: "sst-arabic-bold",
+                                          fontSize: 23,
+                                          height: 1.3),
+                                      textAlign: TextAlign.right,
+                                      maxLines: 2,
+                                    ),
+                                  ),
+                                ],
                               ),
-                              Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 20, vertical: 10),
-                                child: Text(
-                                  content['data']['posts']['data'][index + 1]
-                                      ['title'],
-                                  style: TextStyle(
-                                      fontFamily: "sst-arabic-bold",
-                                      fontSize: 23,
-                                      height: 1.3),
-                                  textAlign: TextAlign.right,
-                                  maxLines: 2,
+                            ),
+                            Positioned(
+                              left: 100,
+                              right: 100,
+                              top: 90,
+                              child: CircleAvatar(
+                                child: Icon(
+                                  Icons.play_arrow,
+                                  size: 55,
+                                  color: Colors.white,
                                 ),
+                                radius: 40,
+                                backgroundColor: Colors.grey.withOpacity(0.9),
                               ),
-                            ],
-                          ),
-                        ));
+                            )
+                          ],
+                        ),
+                      ),
+                    );
                   } else {
                     return Column(
                       children: <Widget>[
@@ -116,18 +136,39 @@ _scrollListener() {
                                   context,
                                   PageTransition(
                                       type: PageTransitionType.downToUp,
-                                      child: DetailView(content['data']['posts']
-                                          ['data'][index + 1]['id'])));
+                                      child: DetailView(content['data']['data']
+                                          [index + 1]['id'])));
                             },
                             child: Row(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
-                                  Image.network(
-                                    imgurl,
-                                    width: 160,
-                                    height: 105,
-                                    fit: BoxFit.cover,
+                                  Stack(
+                                    children: <Widget>[
+                                      Positioned(
+                                                                              child: Image.network(
+                                          imgurl,
+                                          width: 160,
+                                          height: 105,
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                       Positioned(
+                          left: 20,
+                          right: 20,
+                          top:30,
+                        
+                          child: CircleAvatar(
+                            child: Icon(
+                              Icons.play_arrow,
+                              size: 20,
+                              color: Colors.white,
+                            ),
+                            radius: 20,
+                            backgroundColor: Colors.grey.withOpacity(0.9),
+                          ),
+                        )
+                                    ],
                                   ),
                                   Spacer(),
                                   Container(
@@ -136,8 +177,8 @@ _scrollListener() {
                                       width: MediaQuery.of(context).size.width -
                                           200,
                                       child: Text(
-                                        content['data']['posts']['data']
-                                            [index + 1]['title'],
+                                        content['data']['data'][index + 1]
+                                            ['title'],
                                         style: TextStyle(
                                             fontFamily: "SST-Arabic-Medium",
                                             fontSize: 18,
@@ -156,7 +197,7 @@ _scrollListener() {
               ),
             );
           } else {
-            print(widget.catId);
+            //print(widget.catId);
             return Container(
                 height: 100,
                 child: Center(
