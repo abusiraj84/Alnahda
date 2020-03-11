@@ -236,10 +236,14 @@ class _HomeViewState extends State<HomeView> {
             );
           } else {
             return Container(
-                height: 100,
-                child: Center(
-                    child: Image.asset('assets/images/logo.png',
-                        width: 100.0, height: 100.0)));
+              height: MediaQuery.of(context).size.height,
+              child: Center(
+                child: Image.asset('assets/images/2.png',
+                    width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.height,fit: BoxFit.fill,),
+                    
+              ),
+            );
           }
         });
   }

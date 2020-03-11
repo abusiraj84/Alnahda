@@ -71,10 +71,10 @@ class _CaresoulViewState extends State<CaresoulView> {
                 else{
                   //  print(widget.catId);
             return Container(
-                height: 100,
+                height: MediaQuery.of(context).size.height,
                 child: Center(
-                    child: Image.asset('assets/images/logo.png',
-                        width: 100.0, height: 100.0)));
+                    child: Image.asset('assets/images/2.png',
+                        width: MediaQuery.of(context).size.width, height: MediaQuery.of(context).size.height),),);
                 }
               }),
           SizedBox(height: 10),
@@ -152,10 +152,14 @@ class _CaresoulViewState extends State<CaresoulView> {
           } else {
             // print(widget.catId);
             return Container(
-                height: 100,
-                child: Center(
-                    child: Image.asset('assets/images/logo.png',
-                        width: 100.0, height: 100.0)));
+              height: MediaQuery.of(context).size.height,
+              child: Center(
+                child: Image.asset('assets/images/2.png',
+                    width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.height,fit: BoxFit.fill,),
+                    
+              ),
+            );
           }
         });
   }

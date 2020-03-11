@@ -15,7 +15,7 @@ class ShowCat extends StatefulWidget {
 class _ShowCatState extends State<ShowCat> {
   ApiService _apiService;
   ScrollController _controller;
-_scrollListener() {
+  _scrollListener() {
     if (_controller.offset >= _controller.position.maxScrollExtent &&
         !_controller.position.outOfRange) {
       setState(() {
@@ -29,10 +29,11 @@ _scrollListener() {
       });
     }
   }
+
   @override
   void initState() {
     super.initState();
-        _controller = ScrollController();
+    _controller = ScrollController();
     _controller.addListener(_scrollListener);
 
     _apiService = ApiService();
@@ -55,8 +56,7 @@ _scrollListener() {
             return Container(
               height: MediaQuery.of(context).size.height,
               child: ListView.builder(
-                              controller: _controller,
-
+                controller: _controller,
                 itemCount: content['data']['posts']['data'].length - 1,
                 itemBuilder: (BuildContext context, int index) {
                   String imgurl = "https://alnahdanews.com/" +
@@ -158,10 +158,14 @@ _scrollListener() {
           } else {
             print(widget.catId);
             return Container(
-                height: 100,
-                child: Center(
-                    child: Image.asset('assets/images/logo.png',
-                        width: 100.0, height: 100.0)));
+              height: MediaQuery.of(context).size.height,
+              child: Center(
+                child: Image.asset('assets/images/2.png',
+                    width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.height,fit: BoxFit.fill,),
+                    
+              ),
+            );
           }
         });
   }
