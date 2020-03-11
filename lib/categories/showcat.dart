@@ -48,7 +48,7 @@ _scrollListener() {
 
   latestNews(context) {
     return FutureBuilder(
-        future: _apiService.getPosts(widget.catId),
+        future: _apiService.getPosts(widget.catId,1),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           if (snapshot.hasData) {
             Map content = snapshot.data;

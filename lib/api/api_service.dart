@@ -66,12 +66,13 @@ class ApiService {
       return null;
     }
   }
-  Future<Map> getPosts(int id) async {
+  Future<Map> getPosts(int id,int page) async {
      String myUrl =
-        'https://alnahdanews.com/api/v1/category/$id';
+        'https://alnahdanews.com/api/v1/category/$id?page=$page';
     http.Response response = await http.get(myUrl);
 
     if (response.statusCode == 200) {
+      print('get data');
       return json.decode(response.body);
     } else {
       return null;
