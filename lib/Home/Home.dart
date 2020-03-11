@@ -25,8 +25,9 @@ class _HomeViewState extends State<HomeView> {
     if (_controller.offset >= _controller.position.maxScrollExtent &&
         !_controller.position.outOfRange) {
       setState(() {
-        print(istop);
+        print("لتحت");
         istop = !istop;
+        
       });
     }
     if (_controller.offset <= _controller.position.minScrollExtent &&
@@ -134,6 +135,7 @@ class _HomeViewState extends State<HomeView> {
                 //     ? ScrollPhysics(parent: NeverScrollableScrollPhysics())
                 //     : null,
                 itemCount: content['data']['latest']['data'].length - 1,
+                controller: _controller,
                 itemBuilder: (BuildContext context, int index) {
                   String imgurl = "https://alnahdanews.com/" +
                       content['data']['latest']['data'][index + 1]['img']

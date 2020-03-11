@@ -52,7 +52,8 @@ _scrollListener() {
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           if (snapshot.hasData) {
             Map content = snapshot.data;
-            return Expanded(
+            return Container(
+              height: MediaQuery.of(context).size.height,
               child: ListView.builder(
                               controller: _controller,
 
