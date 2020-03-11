@@ -1,5 +1,6 @@
 import 'package:alnahda/breaknews.dart';
 import 'package:alnahda/more.dart';
+import 'package:alnahda/video/video.dart';
 
 import 'alray/alray.dart';
 import 'home/Home.dart';
@@ -19,7 +20,7 @@ class _MyTabBarState extends State<MyTabBar> {
     HomeView(),
     BreakNews(),
     Alray(),
-    Center(child: Text("فيديو")),
+    ShowVideo(),
     More(),
   ];
 
