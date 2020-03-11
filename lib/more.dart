@@ -45,6 +45,13 @@ class _MoreState extends State<More> {
               child: Image.asset('assets/images/appbarlogo.png',
                   width: 163.0, height: 67.0),
             ),
+             Container(
+               color: Colors.grey.withOpacity(0.3),
+               child: CatList(
+                img: 'assets/images/smartphone.png',
+                title: "تواصل معنا",
+            ),
+             ),
            catsBuilder(),
          
             // CatList(
@@ -83,10 +90,7 @@ class _MoreState extends State<More> {
             //   img: 'assets/images/box.png',
             //   title: "ثقافة وأدب",
             // ),
-            // CatList(
-            //   img: 'assets/images/smartphone.png',
-            //   title: "تواصل معنا",
-            // ),
+           
           ],
         ),
       )),
