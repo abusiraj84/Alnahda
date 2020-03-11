@@ -146,28 +146,28 @@ class _ShowVideoState extends State<ShowVideo> {
                                   Stack(
                                     children: <Widget>[
                                       Positioned(
-                                                                              child: Image.network(
+                                        child: Image.network(
                                           imgurl,
                                           width: 160,
                                           height: 105,
                                           fit: BoxFit.cover,
                                         ),
                                       ),
-                                       Positioned(
-                          left: 20,
-                          right: 20,
-                          top:30,
-                        
-                          child: CircleAvatar(
-                            child: Icon(
-                              Icons.play_arrow,
-                              size: 20,
-                              color: Colors.white,
-                            ),
-                            radius: 20,
-                            backgroundColor: Colors.grey.withOpacity(0.9),
-                          ),
-                        )
+                                      Positioned(
+                                        left: 20,
+                                        right: 20,
+                                        top: 30,
+                                        child: CircleAvatar(
+                                          child: Icon(
+                                            Icons.play_arrow,
+                                            size: 20,
+                                            color: Colors.white,
+                                          ),
+                                          radius: 20,
+                                          backgroundColor:
+                                              Colors.grey.withOpacity(0.9),
+                                        ),
+                                      )
                                     ],
                                   ),
                                   Spacer(),
@@ -199,10 +199,14 @@ class _ShowVideoState extends State<ShowVideo> {
           } else {
             //print(widget.catId);
             return Container(
-                height: 100,
-                child: Center(
-                    child: Image.asset('assets/images/logo.png',
-                        width: 100.0, height: 100.0)));
+              height: MediaQuery.of(context).size.height,
+              child: Center(
+                child: Image.asset('assets/images/2.png',
+                    width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.height,fit: BoxFit.fill,),
+                    
+              ),
+            );
           }
         });
   }
