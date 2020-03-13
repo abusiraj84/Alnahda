@@ -1,5 +1,6 @@
 import 'package:alnahda/api/api_service.dart';
 import 'package:alnahda/details/detailview.dart';
+import 'package:alnahda/video/videoplay.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 
@@ -72,8 +73,8 @@ class _ShowVideoState extends State<ShowVideo> {
                               context,
                               PageTransition(
                                   type: PageTransitionType.downToUp,
-                                  child: DetailView(content['data']['data']
-                                      ['data'][index + 1]['id'])));
+                                  child: VideoPlay(content['data']['data']
+                                      [index + 1]['id'])));
                         },
                         child: Stack(
                           children: <Widget>[
