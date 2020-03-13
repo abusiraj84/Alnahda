@@ -1,5 +1,4 @@
 import 'package:alnahda/Home/Home.dart';
-import 'package:alnahda/Home/home_test.dart';
 import 'package:alnahda/Home/main_screen.dart';
 import 'package:alnahda/tabbar.dart';
 import 'package:flutter/material.dart';
@@ -25,7 +24,7 @@ class MyApp extends StatelessWidget {
         const Locale('ar'), // arabic
       ],
       debugShowCheckedModeBanner: false,
-      home: SliverListWidget(),
+      home: MyTabBar(),
     );
   }
 }

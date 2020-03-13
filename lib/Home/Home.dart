@@ -1,5 +1,5 @@
 import 'package:alnahda/Home/caresoul.dart';
-import 'package:alnahda/Home/home_test.dart';
+import 'package:alnahda/Home/latest_cat.dart';
 import 'package:alnahda/Home/thirdnews.dart';
 import 'package:alnahda/api/api_service.dart';
 import 'package:alnahda/details/detailview.dart';
@@ -114,8 +114,8 @@ class _HomeViewState extends State<HomeView> {
                 //     )),
                 SizedBox(height: 10),
                 Container(
-                  height: MediaQuery.of(context).size.height,
-                  child: ScrollAndRefreshDemoPage(),
+                  height: MediaQuery.of(context).size.height -90,
+                  child: Latest(catId: 12,),
                 ),
 //  ScrollAndRefreshDemoPage(),
 // latestNews(context),

@@ -1,5 +1,5 @@
 import 'package:alnahda/Home/caresoul.dart';
-import 'package:alnahda/Home/home_test.dart';
+import 'package:alnahda/Home/latest_cat.dart';
 import 'package:alnahda/Home/thirdnews.dart';
 import 'package:flutter/material.dart';
 
@@ -82,7 +82,7 @@ class SliverListWidget extends StatelessWidget {
             //   ),
             // ),
              SliverFillRemaining(
-         child:  ScrollAndRefreshDemoPage(),
+         child:  Latest(catId: 12,),
             ),
           ],
         ),

@@ -8,18 +8,24 @@ import 'package:http/http.dart' as http;
 
 import 'package:page_transition/page_transition.dart';
 
-class ScrollAndRefreshDemoPage extends StatefulWidget {
+class Latest extends StatefulWidget {
+
+  final int catId ;
+
+  const Latest({Key key, @required this.catId}) : super(key: key);
   @override
-  _ScrollAndRefreshDemoPageState createState() =>
-      _ScrollAndRefreshDemoPageState();
+  _LatestState createState() =>
+      _LatestState();
 }
 
-class _ScrollAndRefreshDemoPageState extends State<ScrollAndRefreshDemoPage> {
+class _LatestState extends State<Latest> {
+  
   ApiService _apiService;
   ScrollController _scrollController = ScrollController();
   List<Posts> data = [];
   bool isLoading = false;
   int currentPage = 1;
+      ScrollPhysics physics;
 
   @override
   void initState() {
@@ -31,8 +37,25 @@ class _ScrollAndRefreshDemoPageState extends State<ScrollAndRefreshDemoPage> {
       setState(() {
         var isEnd = _scrollController.position.pixels  ==
             _scrollController.position.maxScrollExtent;
+           var isStart = _scrollController.position.pixels  ==
+            _scrollController.position.minScrollExtent;  
         if (isEnd) {
           fetchMore(currentPage);
+        }
+      if (isStart) {
+          print('start');
+          physics  = ScrollPhysics(parent: NeverScrollableScrollPhysics());
+          Future.delayed(const Duration(milliseconds: 2000), () {
+          setState(() {
+          physics  = ScrollPhysics(parent :ClampingScrollPhysics());
+          });
+                  
+
+
+});
+        }else{
+           physics  = ScrollPhysics(parent :ClampingScrollPhysics());
+
         }
       });
     });
@@ -45,7 +68,7 @@ class _ScrollAndRefreshDemoPageState extends State<ScrollAndRefreshDemoPage> {
   }
 
   fetch() {
-    ApiService().getPosts(12, currentPage).then((value) {
+    ApiService().getPosts(widget.catId, currentPage).then((value) {
       for (var item in value['data']['posts']['data']) {
         setState(() {
           data.add(Posts(imageUrl: 'https://alnahdanews.com/' + item['img'] , id: item['id'] ,title: item['title']));
@@ -74,7 +97,7 @@ class _ScrollAndRefreshDemoPageState extends State<ScrollAndRefreshDemoPage> {
 
   @override
   Widget build(BuildContext context) {
-    return PostsListBuilder(scrollController: _scrollController, data: data, isLoading: isLoading);
+    return PostsListBuilder(scrollController: _scrollController, data: data, isLoading: isLoading , physics: physics,);
 
       // FutureBuilder(
       //     future: ApiService().getPosts(12, currentPage),
@@ -200,17 +223,21 @@ class PostsListBuilder extends StatelessWidget {
     Key key,
     @required ScrollController scrollController,
     @required this.data,
-    @required this.isLoading,
+    @required this.isLoading, @required this.physics,
   }) : _scrollController = scrollController, super(key: key);
 
   final ScrollController _scrollController;
   final List<Posts> data;
   final bool isLoading;
+  final ScrollPhysics physics ;
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      controller: _scrollController,
+
+        return ListView.builder(
+          controller: _scrollController,
+          physics: physics  ,
+          shrinkWrap: false,
       itemCount: data.length + 1,
       itemBuilder: (BuildContext context, int index) {
         if (index == data.length) {
