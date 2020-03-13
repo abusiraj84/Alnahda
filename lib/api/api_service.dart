@@ -72,7 +72,8 @@ class ApiService {
     http.Response response = await http.get(myUrl);
 
     if (response.statusCode == 200) {
-      print('get data');
+      String pagess ='get data from $page';
+      print(pagess);
       return json.decode(response.body);
     } else {
       return null;
