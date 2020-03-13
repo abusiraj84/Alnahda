@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
         const Locale('ar'), // arabic
       ],
       debugShowCheckedModeBanner: false,
-      home: SliverListWidget(),
+      home: MyTabBar(),
     );
   }
 }
