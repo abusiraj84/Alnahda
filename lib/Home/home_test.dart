@@ -17,16 +17,14 @@ class ScrollAndRefreshDemoPage extends StatefulWidget {
 class _ScrollAndRefreshDemoPageState extends State<ScrollAndRefreshDemoPage> {
   ApiService _apiService;
   ScrollController _scrollController = ScrollController();
-
-  // List data = [];
+  List<Posts> data = [];
   bool isLoading = false;
-  // int prefix = 0;
   int currentPage = 1;
+
   @override
   void initState() {
     fetchMore(currentPage);
     _apiService = ApiService();
-    // _getMore();
     super.initState();
 
     _scrollController.addListener(() {
@@ -34,7 +32,6 @@ class _ScrollAndRefreshDemoPageState extends State<ScrollAndRefreshDemoPage> {
         var isEnd = _scrollController.position.pixels  ==
             _scrollController.position.maxScrollExtent;
         if (isEnd) {
-          // _getMore();
           fetchMore(currentPage);
         }
       });
@@ -47,44 +44,10 @@ class _ScrollAndRefreshDemoPageState extends State<ScrollAndRefreshDemoPage> {
     _scrollController.dispose();
   }
 
-  // Future _handleRefresh() async {
-  //   prefix += 1;
-  //   return _getMore(isRefresh: true);
-  // }
-
-  // Future _getMore({bool isRefresh = false}) async {
-  //   if (!isLoading) {
-  //     if (this.data.length > 0) {
-  //       setState(() {
-  //         isLoading = true;
-  //       });
-  //     }
-  //   } else {
-  //     return;
-  //   }
-  //   await Future.delayed(Duration(seconds: 2));
-  //   setState(() {
-  //     if (isRefresh) {
-  //       data.clear();
-  //     }
-  //     data.addAll(List.generate(10, (i) {
-  //       if (data.length == 0 && i == 0) {
-  //         return 0;
-  //       }
-  //       return i + data.length;
-  //     }));
-  //     isLoading = false;
-  //   });
-  // }
-  List<Posts> data = [];
-
   fetch() {
     ApiService().getPosts(12, currentPage).then((value) {
-      // String title = value['data']['posts']['data'][0]['title'];
-
       for (var item in value['data']['posts']['data']) {
         setState(() {
-
           data.add(Posts(imageUrl: 'https://alnahdanews.com/' + item['img'] , id: item['id'] ,title: item['title']));
           isLoading = false;
          
@@ -111,93 +74,7 @@ class _ScrollAndRefreshDemoPageState extends State<ScrollAndRefreshDemoPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("list"),
-      ),
-      body: ListView.builder(
-        controller: _scrollController,
-        itemCount: data.length + 1,
-        itemBuilder: (BuildContext context, int index) {
-          if (index == data.length) {
-            return Visibility(
-                visible: isLoading,
-                child: SizedBox(
-                  height: 40,
-                  width: MediaQuery.of(context).size.width,
-                  child: Center(
-                    child: Container(height: 50,child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text('جاري تحميل المزيد ...'),
-                    )),
-                  ),
-                ));
-          }
-          return Column(
-              children: <Widget>[
-                Container(
-                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                  color: Colors.white,
-                  child: GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          PageTransition(
-                              type: PageTransitionType.downToUp,
-                              child: DetailView(data[index].id)));
-                    },
-                    child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Image.network(
-                            data[index].imageUrl,
-                            width: 160,
-                            height: 105,
-                            fit: BoxFit.cover,
-                          ),
-                          Spacer(),
-                          Container(
-                              padding: EdgeInsets.only(right: 10, left: 0),
-                              width: MediaQuery.of(context).size.width - 200,
-                              child: Text(
-                                data[index].title,
-                                style: TextStyle(
-                                    fontFamily: "SST-Arabic-Medium",
-                                    fontSize: 18,
-                                    height: 1.5),
-                                textAlign: TextAlign.right,
-                                maxLines: 3,
-                              )),
-                        ]),
-                  ),
-                ),
-                SizedBox(height: 10),
-              ],
-            );
-          // old one 
-          // Column(
-          //   children: <Widget>[
-          //     Text("Page" + currentPage.toString()),
-          //     Column(
-          //       children: <Widget>[
-          //         // Text(data[index]),
-          //         // Image.network(
-          //         //   data[index].imageUrl,
-          //         //   height: 200,
-          //         //   fit: BoxFit.cover,
-          //         // ),
-                  
-          //         Text(data[index].id.toString()),
-          //         SizedBox(
-          //           height: 50,
-          //         )
-          //       ],
-          //     ),
-          //   ],
-          // );
-        },
-      ),
+    return PostsListBuilder(scrollController: _scrollController, data: data, isLoading: isLoading);
 
       // FutureBuilder(
       //     future: ApiService().getPosts(12, currentPage),
@@ -292,7 +169,7 @@ class _ScrollAndRefreshDemoPageState extends State<ScrollAndRefreshDemoPage> {
       //                     width: 100.0, height: 100.0)));
       //       }
       //     }),
-    );
+    
   }
 
   // latestNews(context) {
@@ -316,6 +193,106 @@ class _ScrollAndRefreshDemoPageState extends State<ScrollAndRefreshDemoPage> {
   //       });
   // }
 
+}
+
+class PostsListBuilder extends StatelessWidget {
+  const PostsListBuilder({
+    Key key,
+    @required ScrollController scrollController,
+    @required this.data,
+    @required this.isLoading,
+  }) : _scrollController = scrollController, super(key: key);
+
+  final ScrollController _scrollController;
+  final List<Posts> data;
+  final bool isLoading;
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+      controller: _scrollController,
+      itemCount: data.length + 1,
+      itemBuilder: (BuildContext context, int index) {
+        if (index == data.length) {
+          return Visibility(
+              visible: isLoading,
+              child: SizedBox(
+                height: 40,
+                width: MediaQuery.of(context).size.width,
+                child: Center(
+                  child: Container(height: 50,child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text('جاري تحميل المزيد ...'),
+                  )),
+                ),
+              ));
+        }
+        return Column(
+            children: <Widget>[
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                color: Colors.white,
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        PageTransition(
+                            type: PageTransitionType.downToUp,
+                            child: DetailView(data[index].id)));
+                  },
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Image.network(
+                          data[index].imageUrl,
+                          width: 160,
+                          height: 105,
+                          fit: BoxFit.cover,
+                        ),
+                        Spacer(),
+                        Container(
+                            padding: EdgeInsets.only(right: 10, left: 0),
+                            width: MediaQuery.of(context).size.width - 200,
+                            child: Text(
+                              data[index].title,
+                              style: TextStyle(
+                                  fontFamily: "SST-Arabic-Medium",
+                                  fontSize: 18,
+                                  height: 1.5),
+                              textAlign: TextAlign.right,
+                              maxLines: 3,
+                            )),
+                      ]),
+                ),
+              ),
+              SizedBox(height: 10),
+            ],
+          );
+        // old one 
+        // Column(
+        //   children: <Widget>[
+        //     Text("Page" + currentPage.toString()),
+        //     Column(
+        //       children: <Widget>[
+        //         // Text(data[index]),
+        //         // Image.network(
+        //         //   data[index].imageUrl,
+        //         //   height: 200,
+        //         //   fit: BoxFit.cover,
+        //         // ),
+                
+        //         Text(data[index].id.toString()),
+        //         SizedBox(
+        //           height: 50,
+        //         )
+        //       ],
+        //     ),
+        //   ],
+        // );
+      },
+    );
+  }
 }
 
 fetchData(Map content, BuildContext context) {

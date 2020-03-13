@@ -1,4 +1,5 @@
 import 'package:alnahda/Home/caresoul.dart';
+import 'package:alnahda/Home/home_test.dart';
 import 'package:alnahda/Home/thirdnews.dart';
 import 'package:alnahda/api/api_service.dart';
 import 'package:alnahda/details/detailview.dart';
@@ -112,13 +113,20 @@ class _HomeViewState extends State<HomeView> {
                 //       ),
                 //     )),
                 SizedBox(height: 10),
-                latestNews(context),
+                Container(
+                  height: MediaQuery.of(context).size.height,
+                  child: ScrollAndRefreshDemoPage(),
+                ),
+//  ScrollAndRefreshDemoPage(),
+// latestNews(context),
               ],
             ),
           ),
         ));
   }
+// new list
 
+// الليست القديمة 
   latestNews(context) {
     return FutureBuilder(
         future: _apiService.getFeatured(),
