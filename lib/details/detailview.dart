@@ -2,6 +2,7 @@ import 'package:alnahda/api/api_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_sfsymbols/flutter_sfsymbols.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class DetailView extends StatefulWidget {
   final int id;
@@ -13,6 +14,16 @@ class DetailView extends StatefulWidget {
 
 class _DetailViewState extends State<DetailView> {
   ApiService _apiService;
+ 
+
+  _launchURL(url) async {
+
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
 
   @override
   void initState() {
@@ -50,12 +61,11 @@ class _DetailViewState extends State<DetailView> {
                               decoration: BoxDecoration(
                             gradient: LinearGradient(
                               begin: Alignment.topCenter,
-                              end: Alignment
-                                  .bottomCenter, // 10% of the width, so there are ten blinds.
+                              end: Alignment.bottomCenter,
                               colors: [
                                 Colors.black.withOpacity(0.7),
                                 Colors.black.withOpacity(0)
-                              ], // whitish to gray
+                              ], 
                             ),
                           )),
                         ),
@@ -143,45 +153,19 @@ class _DetailViewState extends State<DetailView> {
                                   Directionality(
                                     textDirection: TextDirection.rtl,
                                     child: Html(
+                                        linkStyle: const TextStyle(
+                                          color: Colors.redAccent,
+                                        ),
                                         data: content['data']['details']
                                             ['body'],
                                         onLinkTap: (url) {
                                           print("Opening $url...");
+                                          _launchURL(url);
                                         },
+                                       
                                         customTextAlign: (_) =>
                                             TextAlign.right),
                                   ),
-                                  // Html(data: content['data']['details']['body'] ,customTextAlign: TextAlign.right,),
-                                  // Text(
-                                  //   "شهد سعر الدولار في سوريا مقابل الليرة السورية في السوق السوداء انخفاضا طفيفا اليوم الأحد 8 3 2020 وسجل سعر صرف الليرة السورية مقابل الدولار 1060 1068 ليرة سورية في دمشق ووصل سعر اليورو مقابل الليرة",
-                                  //   style: TextStyle(
-                                  //     fontFamily: "sst-roman",
-                                  //     fontSize: 18,
-                                  //     height: 1.7,
-                                  //   ),
-                                  //   textAlign: TextAlign.right,
-                                  //   textDirection: TextDirection.rtl,
-                                  // ),
-                                  // Text(
-                                  //   "شهد سعر الدولار في سوريا مقابل الليرة السورية في السوق السوداء انخفاضا طفيفا اليوم الأحد 8 3 2020 وسجل سعر صرف الليرة السورية مقابل الدولار 1060 1068 ليرة سورية في دمشق ووصل سعر اليورو مقابل الليرة",
-                                  //   style: TextStyle(
-                                  //     fontFamily: "sst-roman",
-                                  //     fontSize: 18,
-                                  //     height: 1.7,
-                                  //   ),
-                                  //   textAlign: TextAlign.right,
-                                  //   textDirection: TextDirection.rtl,
-                                  // ),
-                                  // Text(
-                                  //   "شهد سعر الدولار في سوريا مقابل الليرة السورية في السوق السوداء انخفاضا طفيفا اليوم الأحد 8 3 2020 وسجل سعر صرف الليرة السورية مقابل الدولار 1060 1068 ليرة سورية في دمشق ووصل سعر اليورو مقابل الليرة",
-                                  //   style: TextStyle(
-                                  //     fontFamily: "sst-roman",
-                                  //     fontSize: 18,
-                                  //     height: 1.7,
-                                  //   ),
-                                  //   textAlign: TextAlign.right,
-                                  //   textDirection: TextDirection.rtl,
-                                  // ),
                                   Footer(),
                                 ],
                               ),
