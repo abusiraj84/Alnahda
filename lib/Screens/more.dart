@@ -1,9 +1,8 @@
-import 'package:alnahda/categories/showcat.dart';
+import '../Services/api_service.dart';
+import './categories/showcat.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 
-import 'api/api_service.dart';
-import 'details/detailview.dart';
 
 class More extends StatefulWidget {
   More({Key key}) : super(key: key);

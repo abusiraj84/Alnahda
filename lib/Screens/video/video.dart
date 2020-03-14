@@ -1,8 +1,11 @@
-import 'package:alnahda/api/api_service.dart';
-import 'package:alnahda/details/detailview.dart';
-import 'package:alnahda/video/videoplay.dart';
+import '../../Screens/details/detailview.dart';
+import 'package:alnahda/Services/api_service.dart';
+
+
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
+
+import 'videoplay.dart';
 
 class ShowVideo extends StatefulWidget {
   ShowVideo({Key key}) : super(key: key);
@@ -83,12 +86,14 @@ class _ShowVideoState extends State<ShowVideo> {
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
-                                  Image.network(
-                                    imgurl,
-                                    height: 260,
-                                    width: MediaQuery.of(context).size.width,
-                                    fit: BoxFit.fill,
-                                  ),
+                                  FadeInImage.assetNetwork(
+                               
+                                  height: 260,
+                                  width: double.infinity ,
+                                  fit: BoxFit.cover,
+                               
+                                  placeholder: 'assets/images/placeholder_big.png', image: imgurl,
+                                ),
                                   Padding(
                                     padding: const EdgeInsets.symmetric(
                                         horizontal: 20, vertical: 10),
@@ -147,12 +152,13 @@ class _ShowVideoState extends State<ShowVideo> {
                                   Stack(
                                     children: <Widget>[
                                       Positioned(
-                                        child: Image.network(
-                                          imgurl,
-                                          width: 160,
-                                          height: 105,
-                                          fit: BoxFit.cover,
-                                        ),
+                                        child:FadeInImage.assetNetwork(
+                                  width: 160,
+                                  height: 105,
+                                  fit: BoxFit.cover,
+                               
+                                  placeholder: 'assets/images/placeholder_small.png', image: imgurl,
+                                ),
                                       ),
                                       Positioned(
                                         left: 20,
@@ -202,9 +208,7 @@ class _ShowVideoState extends State<ShowVideo> {
             return Container(
               height: MediaQuery.of(context).size.height,
               child: Center(
-                child: Image.asset('assets/images/2.png',
-                    width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.height,fit: BoxFit.fill,),
+                child: CircularProgressIndicator()
                     
               ),
             );

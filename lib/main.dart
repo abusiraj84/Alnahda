@@ -1,6 +1,7 @@
-import 'package:alnahda/tabbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+
+import 'Screens/tabbar.dart';
 
 void main() => runApp(MyApp());
 

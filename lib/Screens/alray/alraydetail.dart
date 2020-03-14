@@ -1,29 +1,19 @@
-import 'package:alnahda/api/api_service.dart';
+import '../../services/api_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_sfsymbols/flutter_sfsymbols.dart';
-import 'package:url_launcher/url_launcher.dart';
 
-class DetailView extends StatefulWidget {
+class AlrayDetail extends StatefulWidget {
   final int id;
-  DetailView(this.id);
+  final String img;
+  AlrayDetail(this.id, this.img);
 
   @override
-  _DetailViewState createState() => _DetailViewState();
+  _AlrayDetailState createState() => _AlrayDetailState();
 }
 
-class _DetailViewState extends State<DetailView> {
+class _AlrayDetailState extends State<AlrayDetail> {
   ApiService _apiService;
- 
-
-  _launchURL(url) async {
-
-    if (await canLaunch(url)) {
-      await launch(url);
-    } else {
-      throw 'Could not launch $url';
-    }
-  }
 
   @override
   void initState() {
@@ -45,13 +35,15 @@ class _DetailViewState extends State<DetailView> {
                   Map content = snapshot.data;
                   String imgurl = "https://alnahdanews.com/" +
                       content['data']['img'].toString();
+                  String authImgurl = "https://alnahdanews.com/" + widget.img;
+
                   return Stack(
                     children: <Widget>[
                       Positioned(
                         top: 0,
                         left: 0,
                         right: 0,
-                        height: 300,
+                        height: MediaQuery.of(context).size.height,
                         child: Container(
                           decoration: BoxDecoration(
                             image: DecorationImage(
@@ -61,11 +53,12 @@ class _DetailViewState extends State<DetailView> {
                               decoration: BoxDecoration(
                             gradient: LinearGradient(
                               begin: Alignment.topCenter,
-                              end: Alignment.bottomCenter,
+                              end: Alignment
+                                  .bottomCenter, // 10% of the width, so there are ten blinds.
                               colors: [
                                 Colors.black.withOpacity(0.7),
-                                Colors.black.withOpacity(0)
-                              ], 
+                                Colors.black.withOpacity(0.6)
+                              ], // whitish to gray
                             ),
                           )),
                         ),
@@ -98,10 +91,10 @@ class _DetailViewState extends State<DetailView> {
                         ),
                       ),
                       Positioned(
-                        left: 10,
-                        right: 10,
+                        left: 5,
+                        right: 5,
                         bottom: 0,
-                        height: MediaQuery.of(context).size.height - 310,
+                        height: MediaQuery.of(context).size.height - 140,
                         child: Container(
                           width: 400,
                           decoration: BoxDecoration(
@@ -153,26 +146,61 @@ class _DetailViewState extends State<DetailView> {
                                   Directionality(
                                     textDirection: TextDirection.rtl,
                                     child: Html(
-                                        linkStyle: const TextStyle(
-                                          color: Colors.redAccent,
-                                        ),
                                         data: content['data']['details']
                                             ['body'],
                                         onLinkTap: (url) {
                                           print("Opening $url...");
-                                          _launchURL(url);
                                         },
-                                       
                                         customTextAlign: (_) =>
                                             TextAlign.right),
                                   ),
+                                  // Html(data: content['data']['details']['body'] ,customTextAlign: TextAlign.right,),
+                                  // Text(
+                                  //   "شهد سعر الدولار في سوريا مقابل الليرة السورية في السوق السوداء انخفاضا طفيفا اليوم الأحد 8 3 2020 وسجل سعر صرف الليرة السورية مقابل الدولار 1060 1068 ليرة سورية في دمشق ووصل سعر اليورو مقابل الليرة",
+                                  //   style: TextStyle(
+                                  //     fontFamily: "sst-roman",
+                                  //     fontSize: 18,
+                                  //     height: 1.7,
+                                  //   ),
+                                  //   textAlign: TextAlign.right,
+                                  //   textDirection: TextDirection.rtl,
+                                  // ),
+                                  // Text(
+                                  //   "شهد سعر الدولار في سوريا مقابل الليرة السورية في السوق السوداء انخفاضا طفيفا اليوم الأحد 8 3 2020 وسجل سعر صرف الليرة السورية مقابل الدولار 1060 1068 ليرة سورية في دمشق ووصل سعر اليورو مقابل الليرة",
+                                  //   style: TextStyle(
+                                  //     fontFamily: "sst-roman",
+                                  //     fontSize: 18,
+                                  //     height: 1.7,
+                                  //   ),
+                                  //   textAlign: TextAlign.right,
+                                  //   textDirection: TextDirection.rtl,
+                                  // ),
+                                  // Text(
+                                  //   "شهد سعر الدولار في سوريا مقابل الليرة السورية في السوق السوداء انخفاضا طفيفا اليوم الأحد 8 3 2020 وسجل سعر صرف الليرة السورية مقابل الدولار 1060 1068 ليرة سورية في دمشق ووصل سعر اليورو مقابل الليرة",
+                                  //   style: TextStyle(
+                                  //     fontFamily: "sst-roman",
+                                  //     fontSize: 18,
+                                  //     height: 1.7,
+                                  //   ),
+                                  //   textAlign: TextAlign.right,
+                                  //   textDirection: TextDirection.rtl,
+                                  // ),
                                   Footer(),
                                 ],
                               ),
                             ),
                           ),
                         ),
-                      )
+                      ),
+                      Positioned(
+                        top: 40,
+                        left: 160,
+                        right: 160,
+                        child: CircleAvatar(
+                          backgroundImage: NetworkImage(authImgurl),
+                          radius: 45,
+                        ),
+                      ),
                     ],
                   );
                 } else {

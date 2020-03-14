@@ -1,5 +1,6 @@
-import 'package:alnahda/api/api_service.dart';
-import 'package:alnahda/details/detailview.dart';
+import '../../Services/api_service.dart';
+
+import '../details/detailview.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 

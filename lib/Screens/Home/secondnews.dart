@@ -1,4 +1,4 @@
-import 'package:alnahda/details/detailview.dart';
+import 'package:alnahda/Screens/details/detailview.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 

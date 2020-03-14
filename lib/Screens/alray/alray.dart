@@ -1,7 +1,9 @@
-import 'package:alnahda/alray/alraydetail.dart';
-import 'package:alnahda/api/api_service.dart';
+import '../alray/alraydetail.dart';
+import '../../services/api_service.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
+
+import 'alraydetail.dart';
 
 class Alray extends StatefulWidget {
   Alray({Key key}) : super(key: key);

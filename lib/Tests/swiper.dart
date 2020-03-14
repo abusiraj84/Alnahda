@@ -1,16 +1,17 @@
-import 'package:alnahda/api/api_service.dart';
+import 'package:alnahda/Screens/details/detailview.dart';
+
+import '../services/api_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:page_transition/page_transition.dart';
 
-import '../details/detailview.dart';
 
-class FeaturedWidget extends StatefulWidget {
+class SwiperView extends StatefulWidget {
   @override
   _FeaturedState createState() => _FeaturedState();
 }
 
-class _FeaturedState extends State<FeaturedWidget> {
+class _FeaturedState extends State<SwiperView> {
   ApiService _apiService;
 
   @override

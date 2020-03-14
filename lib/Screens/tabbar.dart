@@ -1,11 +1,12 @@
-import 'package:alnahda/breaknews.dart';
-import 'package:alnahda/more.dart';
-import 'package:alnahda/video/video.dart';
 
+import 'Home/HomeView.dart';
 import 'alray/alray.dart';
-import 'home/Home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sfsymbols/flutter_sfsymbols.dart';
+
+import 'breaknews/breaknews.dart';
+import 'more.dart';
+import 'video/video.dart';
 
 class MyTabBar extends StatefulWidget {
   MyTabBar({Key key}) : super(key: key);

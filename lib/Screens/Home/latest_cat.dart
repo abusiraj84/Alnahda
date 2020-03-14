@@ -1,10 +1,7 @@
-import 'dart:convert';
-
-import 'package:alnahda/api/api_service.dart';
-import 'package:alnahda/details/detailview.dart';
+import '../../services/api_service.dart';
+import '../details/detailview.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
-import 'package:http/http.dart' as http;
 
 import 'package:page_transition/page_transition.dart';
 
@@ -20,7 +17,7 @@ class Latest extends StatefulWidget {
 
 class _LatestState extends State<Latest> {
   
-  ApiService _apiService;
+  
   ScrollController _scrollController = ScrollController();
   List<Posts> data = [];
   bool isLoading = false;
@@ -30,7 +27,6 @@ class _LatestState extends State<Latest> {
   @override
   void initState() {
     fetchMore(currentPage);
-    _apiService = ApiService();
     super.initState();
 
     _scrollController.addListener(() {
@@ -271,12 +267,14 @@ class PostsListBuilder extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        Image.network(
-                          data[index].imageUrl,
-                          width: 160,
-                          height: 105,
-                          fit: BoxFit.cover,
-                        ),
+                 
+                        FadeInImage.assetNetwork(
+                                  width: 160,
+                                  height: 105,
+                                  fit: BoxFit.cover,
+                               
+                                  placeholder: 'assets/images/placeholder_small.png', image: data[index].imageUrl,
+                                ),
                         Spacer(),
                         Container(
                             padding: EdgeInsets.only(right: 10, left: 0),
@@ -323,8 +321,8 @@ class PostsListBuilder extends StatelessWidget {
 }
 
 fetchData(Map content, BuildContext context) {
-  var namesGrowable = List();
-  Map contentDataMap;
+  // var namesGrowable = List();
+  // Map contentDataMap;
   // for (var item in content['data']) {
   //   // print(item.toString());
   //   contentDataMap.addAll(item);
@@ -403,14 +401,12 @@ class _PostsListState extends State<PostsList> {
   Map posts;
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     posts = widget.content;
   }
 
   // @override
   // void dispose() {
-  //   // TODO: implement dispose
   //   super.dispose();
   // }
 

@@ -1,4 +1,4 @@
-import 'package:alnahda/widget/lebanon_news_widget.dart';
+import 'lebanon_news_widget.dart';
 import 'package:flutter/material.dart';
 
 class ThirdNews extends StatelessWidget {

@@ -1,4 +1,4 @@
-import 'package:alnahda/api/api_service.dart';
+import '../../services/api_service.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 
@@ -55,12 +55,13 @@ class _LebanonNewsState extends State<LebanonNews> {
                       },
                       child: Column(
                         children: <Widget>[
-                          Image.network(
-                            imgurl,
-                            height: 100,
-                            width: 170,
-                            fit: BoxFit.fill,
-                          ),
+                          FadeInImage.assetNetwork(
+                                  width: 160,
+                                  height: 105,
+                                  fit: BoxFit.cover,
+                               
+                                  placeholder: 'assets/images/placeholder_small.png', image: imgurl,
+                                ),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Text(
