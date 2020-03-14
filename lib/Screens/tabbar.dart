@@ -1,6 +1,6 @@
 
 import 'Home/HomeView.dart';
-import 'alray/alray.dart';
+import 'alray/AlrayView.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sfsymbols/flutter_sfsymbols.dart';
 
@@ -20,7 +20,7 @@ class _MyTabBarState extends State<MyTabBar> {
   final tabs = [
     HomeView(),
     BreakNews(),
-    Alray(),
+    AlrayView(),
     ShowVideo(),
     More(),
   ];

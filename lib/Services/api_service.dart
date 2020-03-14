@@ -1,4 +1,3 @@
-
 import 'dart:convert';
 
 import 'package:http/http.dart' show Client;
@@ -8,21 +7,8 @@ class ApiService {
   final String baseUrl = "https://alnahdanews.com/api/v1";
   Client client = Client();
 
-
   Future<Map> getFeatured() async {
-     String myUrl =
-        'https://alnahdanews.com/api/v1/home';
-    http.Response response = await http.get(myUrl);
-
-    if (response.statusCode == 200) {
-      return json.decode(response.body);
-    } else {
-      return null;
-    }
-  }
-    Future<Map> getBreakNews() async {
-     String myUrl =
-        'https://alnahdanews.com/api/v1/breaking';
+    String myUrl = 'https://alnahdanews.com/api/v1/home';
     http.Response response = await http.get(myUrl);
 
     if (response.statusCode == 200) {
@@ -32,9 +18,8 @@ class ApiService {
     }
   }
 
-      Future<Map> getOpinon() async {
-     String myUrl =
-        'https://alnahdanews.com/api/v1/category/2';
+  Future<Map> getBreakNews() async {
+    String myUrl = 'https://alnahdanews.com/api/v1/breaking';
     http.Response response = await http.get(myUrl);
 
     if (response.statusCode == 200) {
@@ -44,9 +29,8 @@ class ApiService {
     }
   }
 
-   Future<Map> getdetail(int id) async {
-     String myUrl =
-        'https://alnahdanews.com/api/v1/post/$id';
+  Future<Map> getOpinon() async {
+    String myUrl = 'https://alnahdanews.com/api/v1/category/2';
     http.Response response = await http.get(myUrl);
 
     if (response.statusCode == 200) {
@@ -55,9 +39,9 @@ class ApiService {
       return null;
     }
   }
- Future<Map> getCats() async {
-     String myUrl =
-        'https://alnahdanews.com/api/v1/nav';
+
+  Future<Map> getdetail(int id) async {
+    String myUrl = 'https://alnahdanews.com/api/v1/post/$id';
     http.Response response = await http.get(myUrl);
 
     if (response.statusCode == 200) {
@@ -66,9 +50,24 @@ class ApiService {
       return null;
     }
   }
-  Future<Map> getPosts(int id,int page) async {
-     String myUrl =
-        'https://alnahdanews.com/api/v1/category/$id?page=$page';
+
+  Future<Map> getCats() async {
+    String myUrl = 'https://alnahdanews.com/api/v1/nav';
+    http.Response response = await http.get(myUrl);
+
+    if (response.statusCode == 200) {
+      return json.decode(response.body);
+    } else {
+      return null;
+    }
+  }
+
+  Future<Map> getPosts(int catId,int page) async {
+     String myUrl;
+   
+      myUrl = 'https://alnahdanews.com/api/v1/category/$catId?page=$page';
+    
+
     http.Response response = await http.get(myUrl);
 
     if (response.statusCode == 200) {
@@ -79,10 +78,51 @@ class ApiService {
       return null;
     }
   }
-
-    Future<Map> getVideos() async {
+  Future<Map> getLatest(int page) async {
      String myUrl =
-        'https://alnahdanews.com/api/v1/videos';
+     
+        'https://alnahdanews.com/api/v1/latest?page=$page';
+    http.Response response = await http.get(myUrl);
+
+    if (response.statusCode == 200) {
+      String pagess ='get data from $page';
+      print(pagess);
+      return json.decode(response.body);
+    } else {
+      return null;
+    }
+  }
+    Future<Map> getAlray(int page) async {
+     String myUrl ='https://alnahdanews.com/api/v1/category/2?page=$page';
+    http.Response response = await http.get(myUrl);
+
+    if (response.statusCode == 200) {
+      // String pagess ='get data from $page';
+      // print(pagess);
+      return json.decode(response.body);
+    } else {
+      return null;
+    }
+  }
+  // Future<Map> getPosts( int catId, int page) async {
+  //   String myUrl;
+   
+  //     myUrl = 'https://alnahdanews.com/api/v1/category/$catId?page=$page';
+    
+
+  //   http.Response response = await http.get(myUrl);
+
+  //   if (response.statusCode == 200) {
+  //     String pagess ='get data from $page';
+  //     print(pagess);
+  //     return json.decode(response.body);
+  //   } else {
+  //     return null;
+  //   }
+  // }
+
+  Future<Map> getVideos() async {
+    String myUrl = 'https://alnahdanews.com/api/v1/videos';
     http.Response response = await http.get(myUrl);
 
     if (response.statusCode == 200) {
@@ -91,6 +131,4 @@ class ApiService {
       return null;
     }
   }
-  
 }
-
