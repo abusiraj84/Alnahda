@@ -1,36 +1,59 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:video_player/video_player.dart';
 
 import 'chewie_list_item.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
-class VideoPlay extends StatelessWidget {
+class VideoPlay extends StatefulWidget {
+  const VideoPlay({Key key, this.title, this.description, this.path})
+      : super(key: key);
 
-  final int id;
+  final String description;
+  final String path;
+  final String title;
 
-  const VideoPlay(content, {Key key, this.id}) : super(key: key);
+  @override
+  _VideoPlayState createState() => _VideoPlayState();
+}
+
+class _VideoPlayState extends State<VideoPlay> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Video Player'),
       ),
-      body: ListView(
-        children: <Widget>[
-          // ChewieListItem(
-          //   videoPlayerController: VideoPlayerController.asset(
-          //     'videos/IntroVideo.mp4',
-          //   ),
-          //   looping: true,
-          // ),
-          ChewieListItem(
-            videoPlayerController: VideoPlayerController.network(
-              'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
-              
+      body: SingleChildScrollView(
+              child: Column(
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Text(widget.title,style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,height: 1.3)),
             ),
-          ),
-         
-        ],
+            HtmlWidget(
+              " <iframe width='560' height='315' src=" +
+                  widget.path +
+                  "frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>",
+              webView: true,
+              webViewJs: true,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Text(widget.description,style: TextStyle(),textAlign: TextAlign.right,),
+            ),
+          ],
+        ),
       ),
     );
   }
 }
+
+// HtmlWidget(
+//    """
+//    <iframe src="https://www.facebook.com/plugins/post.php?href=https://www.facebook.com/NasDailyArabic/posts/2653397148115727"  ></iframe>
+//    <iframe width="560" height="315" src="https://www.youtube.com/watch?v=G4xhbiJ605o" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+// """,
+//           webView: true,
+//           webViewJs: true,
+//         ),
