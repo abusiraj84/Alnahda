@@ -1,7 +1,6 @@
 import '../../Screens/details/detailview.dart';
 import 'package:alnahda/Services/api_service.dart';
 
-
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 
@@ -9,6 +8,7 @@ import 'videoplay.dart';
 
 class ShowVideo extends StatefulWidget {
   ShowVideo({Key key}) : super(key: key);
+
   // final String title;
   // final int catId;
 
@@ -19,20 +19,6 @@ class ShowVideo extends StatefulWidget {
 class _ShowVideoState extends State<ShowVideo> {
   ApiService _apiService;
   ScrollController _controller;
-  _scrollListener() {
-    if (_controller.offset >= _controller.position.maxScrollExtent &&
-        !_controller.position.outOfRange) {
-      setState(() {
-        // message = "reach the bottom";
-      });
-    }
-    if (_controller.offset <= _controller.position.minScrollExtent &&
-        !_controller.position.outOfRange) {
-      setState(() {
-        // message = "reach the top";
-      });
-    }
-  }
 
   @override
   void initState() {
@@ -43,12 +29,21 @@ class _ShowVideoState extends State<ShowVideo> {
     _apiService = ApiService();
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text("فيديو")),
-      body: latestNews(context),
-    );
+  _scrollListener() {
+    if (_controller.offset >= _controller.position.maxScrollExtent &&
+        !_controller.position.outOfRange) {
+      setState(() {
+        // message = "reach the bottom";
+        print("bottom");
+      });
+    }
+    if (_controller.offset <= _controller.position.minScrollExtent &&
+        !_controller.position.outOfRange) {
+      setState(() {
+        // message = "reach the top";
+        print("top");
+      });
+    }
   }
 
   latestNews(context) {
@@ -61,10 +56,15 @@ class _ShowVideoState extends State<ShowVideo> {
               height: MediaQuery.of(context).size.height,
               child: ListView.builder(
                 controller: _controller,
-                itemCount: content['data']['data'].length - 1,
+                itemCount: content['data']['data'].length,
                 itemBuilder: (BuildContext context, int index) {
-                  String imgurl = "https://alnahdanews.com/" +
-                      content['data']['data'][index + 1]['img'].toString();
+                  String imgurlBig = "https://alnahdanews.com/" +
+                      content['data']['data'][index]['img'].toString();
+                  String imgurlSmall = "https://alnahdanews.com/" +
+                      content['data']['data'][index]['img'].toString();
+                  String title = content['data']['data'][index]['title'];
+                  String description = content['data']['data'][index]['description'];
+                  String path = content['data']['data'][index]['path'];
 
                   if (index == 0) {
                     return Container(
@@ -76,8 +76,10 @@ class _ShowVideoState extends State<ShowVideo> {
                               context,
                               PageTransition(
                                   type: PageTransitionType.downToUp,
-                                  child: VideoPlay(content['data']['data']
-                                      [index + 1]['id'])));
+                                  child: VideoPlay(
+                                     title: title,
+                                     description: description,path: path,
+                                      ),),);
                         },
                         child: Stack(
                           children: <Widget>[
@@ -87,19 +89,18 @@ class _ShowVideoState extends State<ShowVideo> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
                                   FadeInImage.assetNetwork(
-                               
-                                  height: 260,
-                                  width: double.infinity ,
-                                  fit: BoxFit.cover,
-                               
-                                  placeholder: 'assets/images/placeholder_big.png', image: imgurl,
-                                ),
+                                    height: 260,
+                                    width: double.infinity,
+                                    fit: BoxFit.cover,
+                                    placeholder:
+                                        'assets/images/placeholder_big.png',
+                                    image: imgurlBig,
+                                  ),
                                   Padding(
                                     padding: const EdgeInsets.symmetric(
                                         horizontal: 20, vertical: 10),
                                     child: Text(
-                                      content['data']['data'][index + 1]
-                                          ['title'],
+                                      content['data']['data'][index]['title'],
                                       style: TextStyle(
                                           fontFamily: "sst-arabic-bold",
                                           fontSize: 23,
@@ -139,11 +140,14 @@ class _ShowVideoState extends State<ShowVideo> {
                           child: GestureDetector(
                             onTap: () {
                               Navigator.push(
-                                  context,
-                                  PageTransition(
-                                      type: PageTransitionType.downToUp,
-                                      child: DetailView(content['data']['data']
-                                          [index + 1]['id'])));
+                                context,
+                                PageTransition(
+                                  type: PageTransitionType.downToUp,
+                                  child: VideoPlay(
+                                     title: title,
+                                     description: description,path: path,
+                                      ),),);
+                                  
                             },
                             child: Row(
                                 mainAxisAlignment: MainAxisAlignment.start,
@@ -152,13 +156,14 @@ class _ShowVideoState extends State<ShowVideo> {
                                   Stack(
                                     children: <Widget>[
                                       Positioned(
-                                        child:FadeInImage.assetNetwork(
-                                  width: 160,
-                                  height: 105,
-                                  fit: BoxFit.cover,
-                               
-                                  placeholder: 'assets/images/placeholder_small.png', image: imgurl,
-                                ),
+                                        child: FadeInImage.assetNetwork(
+                                          width: 160,
+                                          height: 105,
+                                          fit: BoxFit.cover,
+                                          placeholder:
+                                              'assets/images/placeholder_small.png',
+                                          image: imgurlSmall,
+                                        ),
                                       ),
                                       Positioned(
                                         left: 20,
@@ -184,8 +189,7 @@ class _ShowVideoState extends State<ShowVideo> {
                                       width: MediaQuery.of(context).size.width -
                                           200,
                                       child: Text(
-                                        content['data']['data'][index + 1]
-                                            ['title'],
+                                        content['data']['data'][index]['title'],
                                         style: TextStyle(
                                             fontFamily: "SST-Arabic-Medium",
                                             fontSize: 18,
@@ -207,12 +211,17 @@ class _ShowVideoState extends State<ShowVideo> {
             //print(widget.catId);
             return Container(
               height: MediaQuery.of(context).size.height,
-              child: Center(
-                child: CircularProgressIndicator()
-                    
-              ),
+              child: Center(child: CircularProgressIndicator()),
             );
           }
         });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text("فيديو")),
+      body: latestNews(context),
+    );
   }
 }
