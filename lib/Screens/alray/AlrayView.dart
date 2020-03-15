@@ -97,6 +97,7 @@ class _AlrayViewState extends State<AlrayView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: Container(),
         title: Text('الرأي'),
       ),
       body: PostsListBuilder(

@@ -1,3 +1,5 @@
+import 'package:alnahda/Animations/fadeanimation.dart';
+
 import '../../Screens/details/detailview.dart';
 import 'package:alnahda/Services/api_service.dart';
 
@@ -84,32 +86,34 @@ class _ShowVideoState extends State<ShowVideo> {
                         child: Stack(
                           children: <Widget>[
                             Positioned(
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: <Widget>[
-                                  FadeInImage.assetNetwork(
-                                    height: 260,
-                                    width: double.infinity,
-                                    fit: BoxFit.cover,
-                                    placeholder:
-                                        'assets/images/placeholder_big.png',
-                                    image: imgurlBig,
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 20, vertical: 10),
-                                    child: Text(
-                                      content['data']['data'][index]['title'],
-                                      style: TextStyle(
-                                          fontFamily: "sst-arabic-bold",
-                                          fontSize: 23,
-                                          height: 1.3),
-                                      textAlign: TextAlign.right,
-                                      maxLines: 2,
+                              child: FadeAnimation(
+                                                              0.6, Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    FadeInImage.assetNetwork(
+                                      height: 260,
+                                      width: double.infinity,
+                                      fit: BoxFit.cover,
+                                      placeholder:
+                                          'assets/images/placeholder_big.png',
+                                      image: imgurlBig,
                                     ),
-                                  ),
-                                ],
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 20, vertical: 10),
+                                      child: Text(
+                                        content['data']['data'][index]['title'],
+                                        style: TextStyle(
+                                            fontFamily: "sst-arabic-bold",
+                                            fontSize: 23,
+                                            height: 1.3),
+                                        textAlign: TextAlign.right,
+                                        maxLines: 2,
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                             Positioned(
@@ -131,77 +135,79 @@ class _ShowVideoState extends State<ShowVideo> {
                       ),
                     );
                   } else {
-                    return Column(
-                      children: <Widget>[
-                        Container(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 20, vertical: 10),
-                          color: Colors.white,
-                          child: GestureDetector(
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                PageTransition(
-                                  type: PageTransitionType.downToUp,
-                                  child: VideoPlay(
-                                     title: title,
-                                     description: description,path: path,
-                                      ),),);
-                                  
-                            },
-                            child: Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: <Widget>[
-                                  Stack(
-                                    children: <Widget>[
-                                      Positioned(
-                                        child: FadeInImage.assetNetwork(
-                                          width: 160,
-                                          height: 105,
-                                          fit: BoxFit.cover,
-                                          placeholder:
-                                              'assets/images/placeholder_small.png',
-                                          image: imgurlSmall,
-                                        ),
-                                      ),
-                                      Positioned(
-                                        left: 20,
-                                        right: 20,
-                                        top: 30,
-                                        child: CircleAvatar(
-                                          child: Icon(
-                                            Icons.play_arrow,
-                                            size: 20,
-                                            color: Colors.white,
+                    return FadeAnimation(
+                                          0.7, Column(
+                        children: <Widget>[
+                          Container(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 20, vertical: 10),
+                            color: Colors.white,
+                            child: GestureDetector(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  PageTransition(
+                                    type: PageTransitionType.downToUp,
+                                    child: VideoPlay(
+                                       title: title,
+                                       description: description,path: path,
+                                        ),),);
+                                    
+                              },
+                              child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    Stack(
+                                      children: <Widget>[
+                                        Positioned(
+                                          child: FadeInImage.assetNetwork(
+                                            width: 160,
+                                            height: 105,
+                                            fit: BoxFit.cover,
+                                            placeholder:
+                                                'assets/images/placeholder_small.png',
+                                            image: imgurlSmall,
                                           ),
-                                          radius: 20,
-                                          backgroundColor:
-                                              Colors.grey.withOpacity(0.9),
                                         ),
-                                      )
-                                    ],
-                                  ),
-                                  Spacer(),
-                                  Container(
-                                      padding:
-                                          EdgeInsets.only(right: 10, left: 0),
-                                      width: MediaQuery.of(context).size.width -
-                                          200,
-                                      child: Text(
-                                        content['data']['data'][index]['title'],
-                                        style: TextStyle(
-                                            fontFamily: "SST-Arabic-Medium",
-                                            fontSize: 18,
-                                            height: 1.5),
-                                        textAlign: TextAlign.right,
-                                        maxLines: 3,
-                                      )),
-                                ]),
+                                        Positioned(
+                                          left: 20,
+                                          right: 20,
+                                          top: 30,
+                                          child: CircleAvatar(
+                                            child: Icon(
+                                              Icons.play_arrow,
+                                              size: 20,
+                                              color: Colors.white,
+                                            ),
+                                            radius: 20,
+                                            backgroundColor:
+                                                Colors.grey.withOpacity(0.9),
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                    Spacer(),
+                                    Container(
+                                        padding:
+                                            EdgeInsets.only(right: 10, left: 0),
+                                        width: MediaQuery.of(context).size.width -
+                                            200,
+                                        child: Text(
+                                          content['data']['data'][index]['title'],
+                                          style: TextStyle(
+                                              fontFamily: "SST-Arabic-Medium",
+                                              fontSize: 18,
+                                              height: 1.5),
+                                          textAlign: TextAlign.right,
+                                          maxLines: 3,
+                                        )),
+                                  ]),
+                            ),
                           ),
-                        ),
-                        SizedBox(height: 10),
-                      ],
+                          SizedBox(height: 10),
+                        ],
+                      ),
                     );
                   }
                 },
@@ -222,7 +228,8 @@ class _ShowVideoState extends State<ShowVideo> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("فيديو")),
+      
+      appBar: AppBar(title: Text("فيديو"),leading: Container(),),
       body: latestNews(context),
     );
   }
