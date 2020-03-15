@@ -6,6 +6,7 @@ import 'package:alnahda/Screens/details/detailview.dart';
 import 'package:alnahda/Services/api_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:page_transition/page_transition.dart';
 
 
@@ -41,9 +42,19 @@ _scrollListener() {
       _goUP =true;
       setState(() {
         _moveDown();
-                  Scaffold.of(context).showSnackBar(SnackBar(duration: Duration(milliseconds: 1000), backgroundColor: Colors.red,
-      content: Text("يتم الآن تحميل المزيد من الأخبار .. يرجى المتابعة إلى الأسفل",style: TextStyle(fontFamily: "SST-Arabic-Medium"),),
-    ));
+    //               Scaffold.of(context).showSnackBar(SnackBar(duration: Duration(milliseconds: 1000), backgroundColor: Colors.red,
+    //   content: Text("يتم الآن تحميل المزيد من الأخبار .. يرجى المتابعة إلى الأسفل",style: TextStyle(fontFamily: "SST-Arabic-Medium"),),
+    // ));
+Fluttertoast.showToast(
+        msg: "يتم الآن تحميل المزيد من الأخبار .. يرجى المتابعة إلى الأسفل",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIos: 1,
+        backgroundColor: Colors.red,
+        textColor: Colors.white,
+        fontSize: 14.0,
+        
+    );
 
       });
     }
