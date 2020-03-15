@@ -1,3 +1,5 @@
+import 'package:alnahda/Animations/fadeanimation.dart';
+
 import '../../Services/api_service.dart';
 
 import '../details/detailview.dart';
@@ -77,80 +79,84 @@ class _ShowCatState extends State<ShowCat> {
                                     child: DetailView(content['data']['posts']
                                         ['data'][index + 1]['id'])));
                           },
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Image.network(
-                                imgurl,
-                                height: 260,
-                                width: MediaQuery.of(context).size.width,
-                                fit: BoxFit.fill,
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 20, vertical: 10),
-                                child: Text(
-                                  content['data']['posts']['data'][index + 1]
-                                      ['title'],
-                                  style: TextStyle(
-                                      fontFamily: "sst-arabic-bold",
-                                      fontSize: 23,
-                                      height: 1.3),
-                                  textAlign: TextAlign.right,
-                                  maxLines: 2,
+                          child: FadeAnimation(
+                                                      0.5, Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Image.network(
+                                  imgurl,
+                                  height: 260,
+                                  width: MediaQuery.of(context).size.width,
+                                  fit: BoxFit.fill,
                                 ),
-                              ),
-                            ],
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 20, vertical: 10),
+                                  child: Text(
+                                    content['data']['posts']['data'][index + 1]
+                                        ['title'],
+                                    style: TextStyle(
+                                        fontFamily: "sst-arabic-bold",
+                                        fontSize: 23,
+                                        height: 1.3),
+                                    textAlign: TextAlign.right,
+                                    maxLines: 2,
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                         ));
                   } else {
-                    return Column(
-                      children: <Widget>[
-                        Container(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 20, vertical: 10),
-                          color: Colors.white,
-                          child: GestureDetector(
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  PageTransition(
-                                      type: PageTransitionType.downToUp,
-                                      child: DetailView(content['data']['posts']
-                                          ['data'][index + 1]['id'])));
-                            },
-                            child: Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: <Widget>[
-                                  Image.network(
-                                    imgurl,
-                                    width: 160,
-                                    height: 105,
-                                    fit: BoxFit.cover,
-                                  ),
-                                  Spacer(),
-                                  Container(
-                                      padding:
-                                          EdgeInsets.only(right: 10, left: 0),
-                                      width: MediaQuery.of(context).size.width -
-                                          200,
-                                      child: Text(
-                                        content['data']['posts']['data']
-                                            [index + 1]['title'],
-                                        style: TextStyle(
-                                            fontFamily: "SST-Arabic-Medium",
-                                            fontSize: 18,
-                                            height: 1.5),
-                                        textAlign: TextAlign.right,
-                                        maxLines: 3,
-                                      )),
-                                ]),
+                    return FadeAnimation(
+                                          0.4, Column(
+                        children: <Widget>[
+                          Container(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 20, vertical: 10),
+                            color: Colors.white,
+                            child: GestureDetector(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    PageTransition(
+                                        type: PageTransitionType.downToUp,
+                                        child: DetailView(content['data']['posts']
+                                            ['data'][index + 1]['id'])));
+                              },
+                              child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    Image.network(
+                                      imgurl,
+                                      width: 160,
+                                      height: 105,
+                                      fit: BoxFit.cover,
+                                    ),
+                                    Spacer(),
+                                    Container(
+                                        padding:
+                                            EdgeInsets.only(right: 10, left: 0),
+                                        width: MediaQuery.of(context).size.width -
+                                            200,
+                                        child: Text(
+                                          content['data']['posts']['data']
+                                              [index + 1]['title'],
+                                          style: TextStyle(
+                                              fontFamily: "SST-Arabic-Medium",
+                                              fontSize: 18,
+                                              height: 1.5),
+                                          textAlign: TextAlign.right,
+                                          maxLines: 3,
+                                        )),
+                                  ]),
+                            ),
                           ),
-                        ),
-                        SizedBox(height: 10),
-                      ],
+                          SizedBox(height: 10),
+                        ],
+                      ),
                     );
                   }
                 },

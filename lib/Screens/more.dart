@@ -29,6 +29,7 @@ class _MoreState extends State<More> {
     //     body: SafeArea(
     //       child: lebanonBuilder(),
     //     ));
+    
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(10.0), // here the desired height

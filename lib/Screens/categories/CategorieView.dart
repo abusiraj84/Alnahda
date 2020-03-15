@@ -1,3 +1,4 @@
+import 'package:alnahda/Animations/fadeanimation.dart';
 import 'package:alnahda/Screens/details/detailview.dart';
 
 import '../../services/api_service.dart';
@@ -151,31 +152,33 @@ class PostsListBuilder extends StatelessWidget {
                               type: PageTransitionType.downToUp,
                               child: DetailView(data[index].id)));
                     },
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        FadeInImage.assetNetwork(
-                          height: 260,
-                          width: double.infinity,
-                          fit: BoxFit.cover,
-                          placeholder: 'assets/images/loader.gif',
-                          image: data[index].imageUrl,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 20, vertical: 10),
-                          child: Text(
-                            data[index].title,
-                            style: TextStyle(
-                                fontFamily: "sst-arabic-bold",
-                                fontSize: 23,
-                                height: 1.3),
-                            textAlign: TextAlign.right,
-                            maxLines: 2,
+                    child: FadeAnimation(
+                                         0.5, Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          FadeInImage.assetNetwork(
+                            height: 260,
+                            width: double.infinity,
+                            fit: BoxFit.cover,
+                            placeholder: 'assets/images/loader.gif',
+                            image: data[index].imageUrl,
                           ),
-                        ),
-                      ],
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 20, vertical: 10),
+                            child: Text(
+                              data[index].title,
+                              style: TextStyle(
+                                  fontFamily: "sst-arabic-bold",
+                                  fontSize: 23,
+                                  height: 1.3),
+                              textAlign: TextAlign.right,
+                              maxLines: 2,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   )),
             );
@@ -206,48 +209,50 @@ class PostsListBuilder extends StatelessWidget {
                     )),
               );
             }
-            return Column(
-              children: <Widget>[
-                Container(
-                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                  color: Colors.white,
-                  child: GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          PageTransition(
-                              type: PageTransitionType.downToUp,
-                              child: DetailView(data[index].id)));
-                    },
-                    child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          FadeInImage.assetNetwork(
-                            width: 160,
-                            height: 105,
-                            fit: BoxFit.cover,
-                            placeholder: 'assets/images/loader.gif',
-                            image: data[index].imageUrl,
-                          ),
-                          Spacer(),
-                          Container(
-                              padding: EdgeInsets.only(right: 10, left: 0),
-                              width: MediaQuery.of(context).size.width - 200,
-                              child: Text(
-                                data[index].title,
-                                style: TextStyle(
-                                    fontFamily: "SST-Arabic-Medium",
-                                    fontSize: 18,
-                                    height: 1.5),
-                                textAlign: TextAlign.right,
-                                maxLines: 3,
-                              )),
-                        ]),
+            return FadeAnimation(
+                          0.6, Column(
+                children: <Widget>[
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                    color: Colors.white,
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            PageTransition(
+                                type: PageTransitionType.downToUp,
+                                child: DetailView(data[index].id)));
+                      },
+                      child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            FadeInImage.assetNetwork(
+                              width: 160,
+                              height: 105,
+                              fit: BoxFit.cover,
+                              placeholder: 'assets/images/loader.gif',
+                              image: data[index].imageUrl,
+                            ),
+                            Spacer(),
+                            Container(
+                                padding: EdgeInsets.only(right: 10, left: 0),
+                                width: MediaQuery.of(context).size.width - 200,
+                                child: Text(
+                                  data[index].title,
+                                  style: TextStyle(
+                                      fontFamily: "SST-Arabic-Medium",
+                                      fontSize: 18,
+                                      height: 1.5),
+                                  textAlign: TextAlign.right,
+                                  maxLines: 3,
+                                )),
+                          ]),
+                    ),
                   ),
-                ),
-                SizedBox(height: 10),
-              ],
+                  SizedBox(height: 10),
+                ],
+              ),
             );
           }
         },
