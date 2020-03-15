@@ -209,10 +209,12 @@ class _ShowVideoState extends State<ShowVideo> {
             );
           } else {
             //print(widget.catId);
-            return Container(
-              height: MediaQuery.of(context).size.height,
-              child: Center(child: CircularProgressIndicator()),
-            );
+             return Container(
+                  height: MediaQuery.of(context).size.height,
+                  child: Center(
+                    child: Image.asset('assets/images/loading.gif',width: 200)
+                  ),
+                );
           }
         });
   }

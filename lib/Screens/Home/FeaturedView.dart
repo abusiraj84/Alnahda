@@ -52,7 +52,7 @@ class _FeaturedViewState extends State<FeaturedView> {
                                   width: double.infinity ,
                                   fit: BoxFit.cover,
                                
-                                  placeholder: 'assets/images/placeholder_big.png', image: imgurl,
+                                  placeholder: 'assets/images/loader.gif', image: imgurl,
                                 ),
                           Padding(
                             padding: const EdgeInsets.all(20.0),
@@ -74,7 +74,7 @@ class _FeaturedViewState extends State<FeaturedView> {
                 return Container(
                   height: MediaQuery.of(context).size.height,
                   child: Center(
-                    child: CircularProgressIndicator()
+                    child: Image.asset('assets/images/loading.gif',width: 200)
                   ),
                 );
               }
@@ -128,7 +128,7 @@ class _FeaturedViewState extends State<FeaturedView> {
                                   height: 105,
                                   fit: BoxFit.cover,
                                
-                                  placeholder: 'assets/images/placeholder_small.png', image: imgurl,
+                                  placeholder: 'assets/images/loader.gif', image: imgurl,
                                 ),
                                 Spacer(),
                                 Container(
@@ -160,7 +160,7 @@ class _FeaturedViewState extends State<FeaturedView> {
             return Container(
               height: MediaQuery.of(context).size.height,
               child: Center(
-                child:CircularProgressIndicator()
+                child:Image.asset('assets/images/loading.gif',width: 100)
               ),
             );
           }

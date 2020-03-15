@@ -34,9 +34,10 @@ class _LatestState extends State<Latest> {
         var isStart = _scrollController.position.pixels ==
             _scrollController.position.minScrollExtent;
         if (isEnd) {
-           Scaffold.of(context).showSnackBar(SnackBar(
-      content: Text("جاري تحميل المزيد ...."),
-    ));
+    //        Scaffold.of(context).showSnackBar(SnackBar(
+    //   content: Text("جاري تحميل المزيد ...."),
+    // ));
+    
           fetchMore(currentPage);
           
         }
@@ -140,59 +141,74 @@ class PostsListBuilder extends StatelessWidget {
       itemCount: data.length + 1,
       itemBuilder: (BuildContext context, int index) {
         if (index == 0 && data.length > 0) {
-          return Container(
-              height: 350,
-              color: Colors.white,
-              child: GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                      context,
-                      PageTransition(
-                          type: PageTransitionType.downToUp,
-                          child: DetailView(data[index].id)));
-                },
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    FadeInImage.assetNetwork(
-                      height: 260,
-                      fit: BoxFit.cover,
-                      placeholder: 'assets/images/placeholder_small.png',
-                      image: data[index].imageUrl,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 20, vertical: 10),
-                      child: Text(
-                        data[index].title,
-                        style: TextStyle(
-                            fontFamily: "sst-arabic-bold",
-                            fontSize: 23,
-                            height: 1.3),
-                        textAlign: TextAlign.right,
-                        maxLines: 2,
+          return Padding(
+            padding: const EdgeInsets.only(bottom: 20,top: 10),
+            child: Container(
+                height: 370,
+                color: Colors.white,
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        PageTransition(
+                            type: PageTransitionType.downToUp,
+                            child: DetailView(data[index].id)));
+                  },
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      FadeInImage.assetNetwork(
+                        height: 260,
+                        width: double.infinity,
+                        fit: BoxFit.cover,
+                        placeholder: 'assets/images/placeholder_big.png',
+                        image: data[index].imageUrl,
                       ),
-                    ),
-                  ],
-                ),
-              ));
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 20, vertical: 10),
+                        child: Text(
+                          data[index].title,
+                          style: TextStyle(
+                              fontFamily: "sst-arabic-bold",
+                              fontSize: 23,
+                              height: 1.3),
+                          textAlign: TextAlign.right,
+                          maxLines: 2,
+                        ),
+                      ),
+                      
+                    ],
+                  ),
+                )),
+          );
         } else {
           if (index == data.length) {
-            return Visibility(
-                visible: isLoading,
-                child: SizedBox(
-                  height: 40,
-                  width: MediaQuery.of(context).size.width,
-                  child: Center(
-                    child: Container(
-                        height: 50,
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text('جاري تحميل المزيد ...'),
-                        )),
-                  ),
-                ));
+            return Container(
+                height: 100,
+                child: Visibility(
+                    visible: isLoading,
+                    child: Column(
+                      children: <Widget>[
+                        SizedBox(height:20),
+                        Container( child: CircularProgressIndicator()),
+                        SizedBox(
+                          height: 40,
+                          width: MediaQuery.of(context).size.width,
+                          child: Center(
+                            child: Container(
+                                height: 40,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text('جاري تحميل المزيد ...'),
+                                )),
+                          ),
+                        ),
+                     
+                      ],
+                    )),
+              );
           }
           return Column(
             children: <Widget>[
@@ -215,7 +231,7 @@ class PostsListBuilder extends StatelessWidget {
                           width: 160,
                           height: 105,
                           fit: BoxFit.cover,
-                          placeholder: 'assets/images/placeholder_small.png',
+                          placeholder: 'assets/images/loader.gif',
                           image: data[index].imageUrl,
                         ),
                         Spacer(),

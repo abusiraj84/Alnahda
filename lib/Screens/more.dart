@@ -140,11 +140,12 @@ class _MoreState extends State<More> {
             ),
           );
         } else {
-          return Container(
-              height: 100,
-              child: Center(
-                  child: Image.asset('assets/images/logo.png',
-                      width: 100.0, height: 100.0)));
+           return Container(
+                  height: MediaQuery.of(context).size.height - 277,
+                  child: Center(
+                    child: Image.asset('assets/images/loading.gif',width: 200)
+                  ),
+                );
         }
       },
     );

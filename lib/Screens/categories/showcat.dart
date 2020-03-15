@@ -158,15 +158,12 @@ class _ShowCatState extends State<ShowCat> {
             );
           } else {
             print(widget.catId);
-            return Container(
-              height: MediaQuery.of(context).size.height,
-              child: Center(
-                child: Image.asset('assets/images/2.png',
-                    width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.height,fit: BoxFit.fill,),
-                    
-              ),
-            );
+             return Container(
+                  height: MediaQuery.of(context).size.height,
+                  child: Center(
+                    child: Image.asset('assets/images/loading.gif',width: 200)
+                  ),
+                );
           }
         });
   }

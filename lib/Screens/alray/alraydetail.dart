@@ -26,6 +26,7 @@ class _AlrayDetailState extends State<AlrayDetail> {
     print(widget.id);
 
     return Scaffold(
+      appBar: AppBar(title: Text("الرأي"),),
       body: SafeArea(
           bottom: false,
           child: FutureBuilder(
@@ -35,7 +36,7 @@ class _AlrayDetailState extends State<AlrayDetail> {
                   Map content = snapshot.data;
                   String imgurl = "https://alnahdanews.com/" +
                       content['data']['img'].toString();
-                  String authImgurl = "https://alnahdanews.com/" + widget.img;
+                  String authImgurl =  widget.img;
 
                   return Stack(
                     children: <Widget>[
@@ -56,8 +57,8 @@ class _AlrayDetailState extends State<AlrayDetail> {
                               end: Alignment
                                   .bottomCenter, // 10% of the width, so there are ten blinds.
                               colors: [
-                                Colors.black.withOpacity(0.7),
-                                Colors.black.withOpacity(0.6)
+                                Colors.black.withOpacity(0.5),
+                                Colors.black.withOpacity(0.1)
                               ], // whitish to gray
                             ),
                           )),
@@ -93,7 +94,7 @@ class _AlrayDetailState extends State<AlrayDetail> {
                       Positioned(
                         left: 5,
                         right: 5,
-                        bottom: 0,
+                        bottom: -100,
                         height: MediaQuery.of(context).size.height - 140,
                         child: Container(
                           width: 400,
@@ -193,7 +194,7 @@ class _AlrayDetailState extends State<AlrayDetail> {
                         ),
                       ),
                       Positioned(
-                        top: 40,
+                        top: 120,
                         left: 160,
                         right: 160,
                         child: CircleAvatar(
@@ -204,13 +205,12 @@ class _AlrayDetailState extends State<AlrayDetail> {
                     ],
                   );
                 } else {
-                  return Container(
-                    height: 370,
-                    color: Colors.grey,
-                    child: Center(
-                        child: Image.asset('assets/images/logo.png',
-                            width: 163.0, height: 67.0)),
-                  );
+                    return Container(
+                  height: MediaQuery.of(context).size.height,
+                  child: Center(
+                    child: Image.asset('assets/images/loading.gif',width: 200)
+                  ),
+                );
                 }
               })),
     );

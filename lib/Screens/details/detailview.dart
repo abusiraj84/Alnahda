@@ -177,12 +177,11 @@ class _DetailViewState extends State<DetailView> {
                   );
                 } else {
                   return Container(
-                    height: 370,
-                    color: Colors.grey,
-                    child: Center(
-                        child: Image.asset('assets/images/logo.png',
-                            width: 163.0, height: 67.0)),
-                  );
+                  height: MediaQuery.of(context).size.height,
+                  child: Center(
+                    child: Image.asset('assets/images/loading.gif',width: 200)
+                  ),
+                );
                 }
               })),
     );

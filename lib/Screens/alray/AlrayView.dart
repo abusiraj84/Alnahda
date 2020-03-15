@@ -1,4 +1,3 @@
-import 'package:fluttertoast/fluttertoast.dart';
 
 import '../../services/api_service.dart';
 import 'package:flutter/material.dart';
@@ -36,9 +35,9 @@ class _AlrayViewState extends State<AlrayView> {
         if (isEnd) {
           fetchMore(currentPage);
    print('end');
-   Scaffold.of(context).showSnackBar(SnackBar(
-      content: Text("جاري تحميل المزيد ...."),
-    ));
+  //  Scaffold.of(context).showSnackBar(SnackBar(
+  //     content: Text("جاري تحميل المزيد ...."),
+  //   ));
 
         }
         if (isStart) {
@@ -94,12 +93,17 @@ class _AlrayViewState extends State<AlrayView> {
 
   @override
   Widget build(BuildContext context) {
-    return PostsListBuilder(
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('الرأي'),
+      ),
+      body: PostsListBuilder(
       scrollController: _scrollController,
       data: data,
       isLoading: isLoading,
       physics: physics,
       curruntPage: currentPage,
+    )
     );
   }
 }
@@ -141,20 +145,30 @@ class PostsListBuilder extends StatelessWidget {
       itemCount: data.length + 1,
       itemBuilder: (BuildContext context, int index) {
         if (index == data.length) {
-          return Visibility(
-              visible: isLoading,
-              child: SizedBox(
-                height: 40,
-                width: MediaQuery.of(context).size.width,
-                child: Center(
-                  child: Container(
-                      height: 50,
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text('جاري تحميل المزيد ...'),
-                      )),
-                ),
-              ));
+          return Container(
+                height: 100,
+                child: Visibility(
+                    visible: isLoading,
+                    child: Column(
+                      children: <Widget>[
+                        SizedBox(height:20),
+                        Container( child: CircularProgressIndicator()),
+                        SizedBox(
+                          height: 40,
+                          width: MediaQuery.of(context).size.width,
+                          child: Center(
+                            child: Container(
+                                height: 40,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text('جاري تحميل المزيد ...'),
+                                )),
+                          ),
+                        ),
+                     
+                      ],
+                    )),
+              );
         }
         return InkWell(
           onTap: () {
@@ -178,11 +192,26 @@ class PostsListBuilder extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        CircleAvatar(
-                          radius: 30,
-                          backgroundImage: NetworkImage(
-                            data[index].imageUrl,
+                        // CircleAvatar(
+                        //   radius: 30,
+                        //   backgroundImage: NetworkImage(
+                        //     data[index].imageUrl,
+                        //   ),
+                        // ),
+                        Container(
+                          width: 60,
+                          height: 60,
+                          decoration: BoxDecoration(
+                            color: Colors.grey.withOpacity(0.2),
+                            shape: BoxShape.circle,
+                            border: Border.all(color:Colors.red.shade800,width: 4),
+                            image: DecorationImage(image: NetworkImage(data[index].imageUrl),
+                            fit: BoxFit.cover
+                            ),
+                            
+
                           ),
+                          //child: FadeInImage(placeholder: AssetImage('assets/images/loading.gif'), image: NetworkImage(data[index].imageUrl)),
                         ),
                         SizedBox(
                           width: 20,

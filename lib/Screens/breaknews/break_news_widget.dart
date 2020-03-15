@@ -88,10 +88,11 @@ class _BreakNewsState extends State<BreakNewsWidget> {
           );
         } else {
           return Container(
-              height: 100,
-              child: Center(
-                  child: Image.asset('assets/images/logo.png',
-                      width: 100.0, height: 100.0)));
+                  height: MediaQuery.of(context).size.height,
+                  child: Center(
+                    child: Image.asset('assets/images/loading.gif',width: 200)
+                  ),
+                );
         }
       },
     );
