@@ -1,3 +1,5 @@
+import 'package:share/share.dart';
+
 import '../../services/api_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
@@ -79,15 +81,17 @@ class _DetailViewState extends State<DetailView> {
                             children: <Widget>[
                               InkWell(
                                 onTap: () {
-                                  Navigator.pop(context);
+                                  Share.share('https://alnahdanews.com/post/' + widget.id.toString(), subject: content['data']['details']
+                                            ['title']);
+
                                 },
                                 child: CircleAvatar(
-                                  backgroundColor: Color(0xff17202c),
+                                  backgroundColor: Colors.white,
                                   radius: 20,
                                   child: Icon(
                                     SFSymbols.square_arrow_up,
                                     size: 20,
-                                    color: Colors.white,
+                                    color: Color(0xff17202c),
                                   ),
                                 ),
                               ),
@@ -96,12 +100,12 @@ class _DetailViewState extends State<DetailView> {
                                   Navigator.pop(context);
                                 },
                                 child: CircleAvatar(
-                                  backgroundColor: Color(0xff17202c),
+                                  backgroundColor: Colors.white,
                                   radius: 20,
                                   child: Icon(
                                     SFSymbols.arrow_left,
                                     size: 20,
-                                    color: Colors.white,
+                                    color: Color(0xff17202c),
                                   ),
                                 ),
                               )

@@ -61,10 +61,14 @@ class _SplashScreenState extends State<SplashScreen> {
             ),
             Positioned(
               top:500,
-              child: Image.asset(
-                'assets/images/load.gif',
-                width: MediaQuery.of(context).size.width,
-               
+              left:100,
+ width: MediaQuery.of(context).size.width - 200 ,
+              child: Center(
+                child: Image.asset(
+                  'assets/images/load.gif',
+                 
+                  
+                ),
               ),
             ),
             Positioned(

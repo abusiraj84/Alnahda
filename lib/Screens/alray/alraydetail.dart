@@ -1,3 +1,5 @@
+import 'package:share/share.dart';
+
 import '../../services/api_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
@@ -26,7 +28,7 @@ class _AlrayDetailState extends State<AlrayDetail> {
     print(widget.id);
 
     return Scaffold(
- backgroundColor: Colors.grey.shade100,
+      backgroundColor: Colors.grey.shade100,
       body: SafeArea(
           bottom: false,
           child: FutureBuilder(
@@ -36,7 +38,7 @@ class _AlrayDetailState extends State<AlrayDetail> {
                   Map content = snapshot.data;
                   String imgurl = "https://alnahdanews.com/" +
                       content['data']['img'].toString();
-                  String authImgurl =  widget.img;
+                  String authImgurl = widget.img;
 
                   return Stack(
                     children: <Widget>[
@@ -44,24 +46,28 @@ class _AlrayDetailState extends State<AlrayDetail> {
                         top: 0,
                         left: 0,
                         right: 0,
-                        height: MediaQuery.of(context).size.height /4,
-                        child: Container(
-                          decoration: BoxDecoration(
-                            image: DecorationImage(
-                                fit: BoxFit.cover, image: NetworkImage(imgurl)),
-                          ),
+                        height: MediaQuery.of(context).size.height / 3,
+                        child: Opacity(
+                          opacity: 0.6,
                           child: Container(
-                              decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                              begin: Alignment.topCenter,
-                              end: Alignment
-                                  .bottomCenter, // 10% of the width, so there are ten blinds.
-                              colors: [
-                                Colors.black.withOpacity(0.2),
-                                Colors.black.withOpacity(0)
-                              ], // whitish to gray
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                                  fit: BoxFit.cover,
+                                  image: NetworkImage(imgurl)),
                             ),
-                          )),
+                            child: Container(
+                                decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                begin: Alignment.topCenter,
+                                end: Alignment
+                                    .bottomCenter, // 10% of the width, so there are ten blinds.
+                                colors: [
+                                  Colors.black.withOpacity(0.2),
+                                  Colors.black.withOpacity(0)
+                                ], // whitish to gray
+                              ),
+                            )),
+                          ),
                         ),
                       ),
                       Positioned(
@@ -77,7 +83,11 @@ class _AlrayDetailState extends State<AlrayDetail> {
                                 children: <Widget>[
                                   InkWell(
                                     onTap: () {
-                                      Navigator.pop(context);
+                                      Share.share(
+                                          'https://alnahdanews.com/post/' +
+                                              widget.id.toString(),
+                                          subject: content['data']['details']
+                                              ['title']);
                                     },
                                     child: CircleAvatar(
                                       backgroundColor: Color(0xff17202c),
@@ -93,10 +103,9 @@ class _AlrayDetailState extends State<AlrayDetail> {
                                     width: 20,
                                   ),
                                   CircleAvatar(
-                                      backgroundImage: NetworkImage(authImgurl),
-                                      radius: 20,
-                                      
-                                    ),
+                                    backgroundImage: NetworkImage(authImgurl),
+                                    radius: 20,
+                                  ),
                                 ],
                               ),
                               InkWell(
@@ -173,7 +182,7 @@ class _AlrayDetailState extends State<AlrayDetail> {
                                   Directionality(
                                     textDirection: TextDirection.rtl,
                                     child: Html(
-                                       linkStyle: const TextStyle(
+                                        linkStyle: const TextStyle(
                                           color: Colors.redAccent,
                                         ),
                                         data: content['data']['details']
@@ -229,8 +238,8 @@ class _AlrayDetailState extends State<AlrayDetail> {
                       //   top: 100,
                       //   left: 160,
                       //   right: 160,
-                       
-                      //   child: 
+
+                      //   child:
                       //   // CircleAvatar(
                       //   //   backgroundImage: NetworkImage(authImgurl),
                       //   //   radius: 45,
@@ -245,7 +254,6 @@ class _AlrayDetailState extends State<AlrayDetail> {
                       //       image: DecorationImage(image: NetworkImage(authImgurl),
                       //       fit: BoxFit.cover
                       //       ),
-                            
 
                       //     ),
                       //   ),
@@ -253,12 +261,12 @@ class _AlrayDetailState extends State<AlrayDetail> {
                     ],
                   );
                 } else {
-                    return Container(
-                  height: MediaQuery.of(context).size.height,
-                  child: Center(
-                    child: Image.asset('assets/images/loading.gif',width: 200)
-                  ),
-                );
+                  return Container(
+                    height: MediaQuery.of(context).size.height,
+                    child: Center(
+                        child: Image.asset('assets/images/loading.gif',
+                            width: 200)),
+                  );
                 }
               })),
     );
