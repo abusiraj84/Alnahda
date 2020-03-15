@@ -1,3 +1,4 @@
+import 'package:alnahda/Animations/fadeanimation.dart';
 import 'package:alnahda/Screens/Home/FeaturedView.dart';
 import 'package:alnahda/Screens/Home/latest_cat.dart';
 import 'package:alnahda/Screens/Home/thirdnews.dart';
@@ -107,7 +108,7 @@ class _HomeViewState extends State<HomeView> {
                 FeaturedView(),
                 SizedBox(height: 10),
                 // SecondNews(),
-                ThirdNews(),
+                FadeAnimation(0.5, ThirdNews()),
                 SizedBox(height: 10),
 
                 Container(

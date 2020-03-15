@@ -1,4 +1,6 @@
 
+import 'package:alnahda/Animations/fadeanimation.dart';
+
 import '../../services/api_service.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
@@ -178,74 +180,76 @@ class PostsListBuilder extends StatelessWidget {
                     type: PageTransitionType.downToUp,
                     child: AlrayDetail(data[index].id, data[index].imageUrl)));
           },
-          child: Padding(
-            padding: const EdgeInsets.only(top: 10),
-            child: Container(
-              color: Colors.white,
-              child: Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        // CircleAvatar(
-                        //   radius: 30,
-                        //   backgroundImage: NetworkImage(
-                        //     data[index].imageUrl,
-                        //   ),
-                        // ),
-                        Container(
-                          width: 60,
-                          height: 60,
-                          decoration: BoxDecoration(
-                            color: Colors.grey.withOpacity(0.2),
-                            shape: BoxShape.circle,
-                            border: Border.all(color:Colors.red.shade800,width: 4),
-                            image: DecorationImage(image: NetworkImage(data[index].imageUrl),
-                            fit: BoxFit.cover
-                            ),
-                            
+          child: FadeAnimation(
+                      0.5, Padding(
+              padding: const EdgeInsets.only(top: 10),
+              child: Container(
+                color: Colors.white,
+                child: Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          // CircleAvatar(
+                          //   radius: 30,
+                          //   backgroundImage: NetworkImage(
+                          //     data[index].imageUrl,
+                          //   ),
+                          // ),
+                          Container(
+                            width: 60,
+                            height: 60,
+                            decoration: BoxDecoration(
+                              color: Colors.grey.withOpacity(0.2),
+                              shape: BoxShape.circle,
+                              border: Border.all(color:Colors.red.shade800,width: 4),
+                              image: DecorationImage(image: NetworkImage(data[index].imageUrl),
+                              fit: BoxFit.cover
+                              ),
+                              
 
+                            ),
                           ),
-                        ),
-                        SizedBox(
-                          width: 20,
-                        ),
-                        Container(
-                          width: 280,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Text(data[index].title,
+                          SizedBox(
+                            width: 20,
+                          ),
+                          Container(
+                            width: 280,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Text(data[index].title,
+                                    style: TextStyle(
+                                        fontFamily: "sst-arabic-bold",
+                                        fontSize: 14,
+                                        height: 1.6),
+                                    textAlign: TextAlign.right,
+                                    maxLines: 2),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Text(
+                                  data[index].name,
                                   style: TextStyle(
-                                      fontFamily: "sst-arabic-bold",
-                                      fontSize: 14,
-                                      height: 1.6),
+                                      fontFamily: "sst-roman",
+                                      fontSize: 13,
+                                      color: Colors.grey.shade600,
+                                      height: 1.3),
                                   textAlign: TextAlign.right,
-                                  maxLines: 2),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              Text(
-                                data[index].name,
-                                style: TextStyle(
-                                    fontFamily: "sst-roman",
-                                    fontSize: 13,
-                                    color: Colors.grey.shade600,
-                                    height: 1.3),
-                                textAlign: TextAlign.right,
-                              ),
-                            ],
+                                ),
+                              ],
+                            ),
                           ),
-                        ),
-                      ],
-                    ),
-                  ],
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),

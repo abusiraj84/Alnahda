@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:alnahda/Animations/fadeanimation.dart';
 import 'package:alnahda/Screens/tabbar.dart';
 import 'package:flutter/material.dart';
 
@@ -30,7 +31,7 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   startTime() async {
-    var _duration = Duration(seconds: 2);
+    var _duration = Duration(seconds: 1);
     return Timer(_duration, navigationPage);
   }
 
@@ -53,10 +54,12 @@ class _SplashScreenState extends State<SplashScreen> {
               top: 300,
               left: 100,
               right: 100,
-              child: Image.asset(
-                'assets/images/splashLogo.png',
-                width: 150,
-                height: 150,
+              child: FadeAnimation(
+                             0.4,Image.asset(
+                  'assets/images/splashLogo.png',
+                  width: 150,
+                  height: 150,
+                ),
               ),
             ),
             Positioned(

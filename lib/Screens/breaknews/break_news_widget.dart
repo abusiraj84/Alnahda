@@ -1,3 +1,5 @@
+import 'package:alnahda/Animations/fadeanimation.dart';
+
 import '../../services/api_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sfsymbols/flutter_sfsymbols.dart';
@@ -41,45 +43,47 @@ class _BreakNewsState extends State<BreakNewsWidget> {
                  
                   child: Padding(
                     padding: const EdgeInsets.all(20.0),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: <Widget>[
-                            Icon(
-                              SFSymbols.flame_fill,
-                              color: Color(0xffeb4e54),
-                              size: 15,
-                              
-                            ),
-                            SizedBox(
-                              width: 7,
-                            ),
-                            Text(content['data'][index]['time'].toString(),
-                                style: TextStyle(
-                                    color: Color(0xffeb4e54),
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 15)),
-                          ],
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Container(
-                          width: 400,
-                          child: Text(
-                           content['data'][index]['title'].toString(),
-                            style: TextStyle(
-                                fontFamily: "sst-arabic-bold",
-                                fontSize: 14,
-                                height: 1.7),
-                            textAlign: TextAlign.right,
+                    child: FadeAnimation(
+                                          0.5,Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: <Widget>[
+                              Icon(
+                                SFSymbols.flame_fill,
+                                color: Color(0xffeb4e54),
+                                size: 15,
+                                
+                              ),
+                              SizedBox(
+                                width: 7,
+                              ),
+                              Text(content['data'][index]['time'].toString(),
+                                  style: TextStyle(
+                                      color: Color(0xffeb4e54),
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 15)),
+                            ],
                           ),
-                        ),
-                      ],
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Container(
+                            width: 400,
+                            child: Text(
+                             content['data'][index]['title'].toString(),
+                              style: TextStyle(
+                                  fontFamily: "sst-arabic-bold",
+                                  fontSize: 14,
+                                  height: 1.7),
+                              textAlign: TextAlign.right,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
