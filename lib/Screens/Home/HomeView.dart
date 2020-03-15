@@ -1,4 +1,3 @@
-import 'package:alnahda/Animations/fadeanimation.dart';
 import 'package:alnahda/Screens/Home/FeaturedView.dart';
 import 'package:alnahda/Screens/Home/latest_cat.dart';
 import 'package:alnahda/Screens/Home/thirdnews.dart';
@@ -105,7 +104,7 @@ class _HomeViewState extends State<HomeView> {
             controller: _controller,
             child: Column(
               children: <Widget>[
-                FadeAnimation(100, FeaturedView()),
+                FeaturedView(),
                 SizedBox(height: 10),
                 // SecondNews(),
                 ThirdNews(),
