@@ -211,7 +211,6 @@ class PostsListBuilder extends StatelessWidget {
                             
 
                           ),
-                          //child: FadeInImage(placeholder: AssetImage('assets/images/loading.gif'), image: NetworkImage(data[index].imageUrl)),
                         ),
                         SizedBox(
                           width: 20,

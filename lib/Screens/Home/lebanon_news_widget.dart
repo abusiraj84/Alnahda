@@ -45,19 +45,7 @@ class _LebanonNewsState extends State<LebanonNews> {
                   decoration: BoxDecoration(
                       color: Colors.white,
                       border: Border.all(color: Colors.grey.shade100),
-                       boxShadow: [
-                              BoxShadow(
-                                color: Colors.black.withOpacity(0.1),
-                                blurRadius:
-                                    0.5, // has the effect of softening the shadow
-                                spreadRadius:
-                                   0.1, // has the effect of extending the shadow
-                                offset: Offset(
-                                  0.0, // horizontal, move right 10
-                                  1.0, // vertical, move down 10
-                                ),
-                              )
-                            ],),
+                      ),
                       
                   child: GestureDetector(
                       onTap: () {
@@ -72,6 +60,7 @@ class _LebanonNewsState extends State<LebanonNews> {
                           FadeInImage.assetNetwork(
                                  
                                   height: 105,
+                                  width: double.infinity,
                                   fit: BoxFit.cover,
                                
                                   placeholder: 'assets/images/placeholder_small.png', image: imgurl,

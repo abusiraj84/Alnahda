@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-          fontFamily: "SST-Arabic-Medium", primaryColor: Color(0xff17202c)),
+          fontFamily: "SST-Arabic-Medium", primaryColor: Color(0xff17202c),accentColor:Color(0xff17202c) ),
       localizationsDelegates: [
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,

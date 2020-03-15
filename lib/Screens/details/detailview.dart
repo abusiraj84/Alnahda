@@ -14,10 +14,8 @@ class DetailView extends StatefulWidget {
 
 class _DetailViewState extends State<DetailView> {
   ApiService _apiService;
- 
 
   _launchURL(url) async {
-
     if (await canLaunch(url)) {
       await launch(url);
     } else {
@@ -63,9 +61,9 @@ class _DetailViewState extends State<DetailView> {
                               begin: Alignment.topCenter,
                               end: Alignment.bottomCenter,
                               colors: [
-                                Colors.black.withOpacity(0.7),
+                                Colors.black.withOpacity(0.3),
                                 Colors.black.withOpacity(0)
-                              ], 
+                              ],
                             ),
                           )),
                         ),
@@ -79,20 +77,41 @@ class _DetailViewState extends State<DetailView> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: <Widget>[
-                              IconButton(
-                                  icon: Icon(
+                              InkWell(
+                                onTap: () {
+                                  Navigator.pop(context);
+                                },
+                                child: CircleAvatar(
+                                  backgroundColor: Color(0xff17202c),
+                                  radius: 20,
+                                  child: Icon(
                                     SFSymbols.square_arrow_up,
-                                    size: 25,
+                                    size: 20,
                                     color: Colors.white,
                                   ),
-                                  onPressed: () => Navigator.pop(context)),
-                              IconButton(
-                                  icon: Icon(
+                                ),
+                              ),
+                              InkWell(
+                                onTap: () {
+                                  Navigator.pop(context);
+                                },
+                                child: CircleAvatar(
+                                  backgroundColor: Color(0xff17202c),
+                                  radius: 20,
+                                  child: Icon(
                                     SFSymbols.arrow_left,
-                                    size: 25,
+                                    size: 20,
                                     color: Colors.white,
                                   ),
-                                  onPressed: () => Navigator.pop(context)),
+                                ),
+                              )
+                              // IconButton(
+                              //     icon: Icon(
+                              //       SFSymbols.arrow_left,
+                              //       size: 25,
+                              //       color: Colors.white,
+                              //     ),
+                              //     onPressed: () => Navigator.pop(context)),
                             ],
                           ),
                         ),
@@ -162,7 +181,6 @@ class _DetailViewState extends State<DetailView> {
                                           print("Opening $url...");
                                           _launchURL(url);
                                         },
-                                       
                                         customTextAlign: (_) =>
                                             TextAlign.right),
                                   ),
@@ -177,11 +195,11 @@ class _DetailViewState extends State<DetailView> {
                   );
                 } else {
                   return Container(
-                  height: MediaQuery.of(context).size.height,
-                  child: Center(
-                    child: Image.asset('assets/images/loading.gif',width: 200)
-                  ),
-                );
+                    height: MediaQuery.of(context).size.height,
+                    child: Center(
+                        child: Image.asset('assets/images/loading.gif',
+                            width: 200)),
+                  );
                 }
               })),
     );

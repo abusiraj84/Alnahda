@@ -26,7 +26,7 @@ class _AlrayDetailState extends State<AlrayDetail> {
     print(widget.id);
 
     return Scaffold(
-      appBar: AppBar(title: Text("الرأي"),),
+ backgroundColor: Colors.grey.shade100,
       body: SafeArea(
           bottom: false,
           child: FutureBuilder(
@@ -44,7 +44,7 @@ class _AlrayDetailState extends State<AlrayDetail> {
                         top: 0,
                         left: 0,
                         right: 0,
-                        height: MediaQuery.of(context).size.height,
+                        height: MediaQuery.of(context).size.height /4,
                         child: Container(
                           decoration: BoxDecoration(
                             image: DecorationImage(
@@ -57,8 +57,8 @@ class _AlrayDetailState extends State<AlrayDetail> {
                               end: Alignment
                                   .bottomCenter, // 10% of the width, so there are ten blinds.
                               colors: [
-                                Colors.black.withOpacity(0.5),
-                                Colors.black.withOpacity(0.1)
+                                Colors.black.withOpacity(0.2),
+                                Colors.black.withOpacity(0)
                               ], // whitish to gray
                             ),
                           )),
@@ -73,27 +73,53 @@ class _AlrayDetailState extends State<AlrayDetail> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: <Widget>[
-                              IconButton(
-                                  icon: Icon(
-                                    SFSymbols.square_arrow_up,
-                                    size: 25,
-                                    color: Colors.white,
+                              Row(
+                                children: <Widget>[
+                                  InkWell(
+                                    onTap: () {
+                                      Navigator.pop(context);
+                                    },
+                                    child: CircleAvatar(
+                                      backgroundColor: Color(0xff17202c),
+                                      radius: 20,
+                                      child: Icon(
+                                        SFSymbols.square_arrow_up,
+                                        size: 20,
+                                        color: Colors.white,
+                                      ),
+                                    ),
                                   ),
-                                  onPressed: () => Navigator.pop(context)),
-                              IconButton(
-                                  icon: Icon(
+                                  SizedBox(
+                                    width: 20,
+                                  ),
+                                  CircleAvatar(
+                                      backgroundImage: NetworkImage(authImgurl),
+                                      radius: 20,
+                                      
+                                    ),
+                                ],
+                              ),
+                              InkWell(
+                                onTap: () {
+                                  Navigator.pop(context);
+                                },
+                                child: CircleAvatar(
+                                  backgroundColor: Color(0xff17202c),
+                                  radius: 20,
+                                  child: Icon(
                                     SFSymbols.arrow_left,
-                                    size: 25,
+                                    size: 20,
                                     color: Colors.white,
                                   ),
-                                  onPressed: () => Navigator.pop(context)),
+                                ),
+                              )
                             ],
                           ),
                         ),
                       ),
                       Positioned(
-                        left: 5,
-                        right: 5,
+                        left: 15,
+                        right: 15,
                         bottom: -100,
                         height: MediaQuery.of(context).size.height - 140,
                         child: Container(
@@ -147,6 +173,9 @@ class _AlrayDetailState extends State<AlrayDetail> {
                                   Directionality(
                                     textDirection: TextDirection.rtl,
                                     child: Html(
+                                       linkStyle: const TextStyle(
+                                          color: Colors.redAccent,
+                                        ),
                                         data: content['data']['details']
                                             ['body'],
                                         onLinkTap: (url) {
@@ -187,21 +216,40 @@ class _AlrayDetailState extends State<AlrayDetail> {
                                   //   textDirection: TextDirection.rtl,
                                   // ),
                                   Footer(),
+                                  SizedBox(
+                                    height: 80,
+                                  )
                                 ],
                               ),
                             ),
                           ),
                         ),
                       ),
-                      Positioned(
-                        top: 120,
-                        left: 160,
-                        right: 160,
-                        child: CircleAvatar(
-                          backgroundImage: NetworkImage(authImgurl),
-                          radius: 45,
-                        ),
-                      ),
+                      // Positioned(
+                      //   top: 100,
+                      //   left: 160,
+                      //   right: 160,
+                       
+                      //   child: 
+                      //   // CircleAvatar(
+                      //   //   backgroundImage: NetworkImage(authImgurl),
+                      //   //   radius: 45,
+                      //   // ),
+                      //         Container(
+                      //     width: 100,
+                      //     height: 100,
+                      //     decoration: BoxDecoration(
+                      //       color: Colors.grey.withOpacity(0.2),
+                      //       shape: BoxShape.circle,
+                      //       border: Border.all(color:Colors.red.shade800,width: 4),
+                      //       image: DecorationImage(image: NetworkImage(authImgurl),
+                      //       fit: BoxFit.cover
+                      //       ),
+                            
+
+                      //     ),
+                      //   ),
+                      // ),
                     ],
                   );
                 } else {

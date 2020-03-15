@@ -48,9 +48,9 @@ _scrollListener() {
 Fluttertoast.showToast(
         msg: "يتم الآن تحميل المزيد من الأخبار ",
         toastLength: Toast.LENGTH_SHORT,
-        gravity: ToastGravity.CENTER,
+        gravity: ToastGravity.BOTTOM,
         timeInSecForIos: 1,
-        backgroundColor: Colors.red,
+        backgroundColor: Color(0xff17202c),
         textColor: Colors.white,
         fontSize: 14.0,
         
@@ -87,7 +87,7 @@ Fluttertoast.showToast(
     ));
 
     return Scaffold(
-            floatingActionButton: _goUP ?FloatingActionButton(backgroundColor:  Color(0xff17202c), onPressed: (){_controller.animateTo(_controller.offset - 700,
+            floatingActionButton: _goUP ?FloatingActionButton(backgroundColor:  Color(0xff17202c), onPressed: (){_controller.animateTo(_controller.offset - 1600,
         curve: Curves.linear, duration: Duration(milliseconds: 500));
 },child: Icon(Icons.arrow_upward),) :null,
 floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
