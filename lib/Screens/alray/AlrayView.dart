@@ -1,3 +1,5 @@
+import 'package:fluttertoast/fluttertoast.dart';
+
 import '../../services/api_service.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
@@ -33,6 +35,11 @@ class _AlrayViewState extends State<AlrayView> {
             _scrollController.position.minScrollExtent;
         if (isEnd) {
           fetchMore(currentPage);
+   print('end');
+   Scaffold.of(context).showSnackBar(SnackBar(
+      content: Text("جاري تحميل المزيد ...."),
+    ));
+
         }
         if (isStart) {
           print('start');
@@ -56,7 +63,7 @@ class _AlrayViewState extends State<AlrayView> {
   }
 
   fetch() {
-    ApiService().getAlray(currentPage).then((value) {
+    ApiService()..getAlray(currentPage).then((value) {
       for (var item in value['data']['posts']['data']) {
         setState(() {
           data.add(Posts(

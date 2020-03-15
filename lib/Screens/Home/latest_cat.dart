@@ -20,10 +20,13 @@ class _LatestState extends State<Latest> {
   int currentPage = 1;
   ScrollPhysics physics;
 
+  
+
   @override
   void initState() {
     super.initState();
     fetchMore(currentPage);
+    
     _scrollController.addListener(() {
       setState(() {
         var isEnd = _scrollController.position.pixels ==
@@ -31,18 +34,24 @@ class _LatestState extends State<Latest> {
         var isStart = _scrollController.position.pixels ==
             _scrollController.position.minScrollExtent;
         if (isEnd) {
+           Scaffold.of(context).showSnackBar(SnackBar(
+      content: Text("جاري تحميل المزيد ...."),
+    ));
           fetchMore(currentPage);
+          
         }
         if (isStart) {
           print('start');
+          
           physics = ScrollPhysics(parent: NeverScrollableScrollPhysics());
-          Future.delayed(const Duration(milliseconds: 2000), () {
+          Future.delayed(const Duration(milliseconds: 3000), () {
             setState(() {
               physics = ScrollPhysics(parent: ClampingScrollPhysics());
             });
           });
         } else {
           physics = ScrollPhysics(parent: ClampingScrollPhysics());
+
         }
       });
     });
@@ -55,7 +64,7 @@ class _LatestState extends State<Latest> {
   }
 
   fetch() {
-    ApiService().getLatest(currentPage).then((value) {
+    ApiService()..getLatest(currentPage).then((value) {
       for (var item in value['data']['latest']['data']) {
         setState(() {
           data.add(Posts(
