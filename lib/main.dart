@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
+import 'Screens/SplashScreen.dart';
 import 'Screens/tabbar.dart';
 
 void main() => runApp(MyApp());
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
         const Locale('ar'), // arabic
       ],
       debugShowCheckedModeBanner: false,
-      home: MyTabBar(),
+      home: SplashScreen(),
     );
   }
 }

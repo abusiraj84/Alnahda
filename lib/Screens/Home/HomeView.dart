@@ -46,7 +46,7 @@ _scrollListener() {
     //   content: Text("يتم الآن تحميل المزيد من الأخبار .. يرجى المتابعة إلى الأسفل",style: TextStyle(fontFamily: "SST-Arabic-Medium"),),
     // ));
 Fluttertoast.showToast(
-        msg: "يتم الآن تحميل المزيد من الأخبار .. يرجى المتابعة إلى الأسفل",
+        msg: "يتم الآن تحميل المزيد من الأخبار ",
         toastLength: Toast.LENGTH_SHORT,
         gravity: ToastGravity.CENTER,
         timeInSecForIos: 1,
