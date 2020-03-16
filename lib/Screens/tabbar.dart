@@ -32,9 +32,11 @@ class _MyTabBarState extends State<MyTabBar> {
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
         type: BottomNavigationBarType.fixed,
-        iconSize: 20,
-        selectedFontSize: 13,
-        unselectedFontSize: 12,
+        iconSize: 18,
+        selectedFontSize: 12,
+        unselectedFontSize: 11,
+        unselectedItemColor: Colors.grey.shade500,
+        
         items: [
           BottomNavigationBarItem(
               icon: Icon(SFSymbols.house),

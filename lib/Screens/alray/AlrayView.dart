@@ -164,7 +164,7 @@ class PostsListBuilder extends StatelessWidget {
                                 height: 40,
                                 child: Padding(
                                   padding: const EdgeInsets.all(8.0),
-                                  child: Text('جاري تحميل المزيد ...'),
+                                  child: Text('جاري تحميل المزيد ...',style: TextStyle(fontSize: 12),),
                                 )),
                           ),
                         ),
