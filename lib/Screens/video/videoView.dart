@@ -29,6 +29,7 @@ class _VideoViewState extends State<VideoView> {
     fetchMore(currentPage);
 
     _scrollController.addListener(() {
+       if (this.mounted){ 
       setState(() {
         var isEnd = _scrollController.position.pixels ==
             _scrollController.position.maxScrollExtent;
@@ -46,27 +47,24 @@ class _VideoViewState extends State<VideoView> {
 
           physics = ScrollPhysics(parent: NeverScrollableScrollPhysics());
           Future.delayed(const Duration(milliseconds: 3000), () {
+             if (this.mounted){ 
             setState(() {
               physics = ScrollPhysics(parent: ClampingScrollPhysics());
             });
-          });
+           } });
         } else {
           physics = ScrollPhysics(parent: ClampingScrollPhysics());
         }
       });
-    });
+     } });
   }
 
-  @override
-  void dispose() {
-    super.dispose();
-    _scrollController.dispose();
-  }
 
   fetch() {
     ApiService()
       ..getVideos(currentPage).then((value) {
         for (var item in value['data']['data']) {
+           if (this.mounted){ 
           setState(() {
             data.add(Posts(
               id: item['id'],
@@ -79,15 +77,18 @@ class _VideoViewState extends State<VideoView> {
             isLoading = false;
           });
         }
-      });
+      }});
   }
 
   fetchMore(int page) {
     if (!isLoading) {
       if (this.data.length > 0) {
-        setState(() {
+        if (this.mounted){ 
+    setState(() {
           isLoading = true;
         });
+        }
+    
       }
     } else {
       return;
@@ -97,9 +98,11 @@ class _VideoViewState extends State<VideoView> {
     currentPage += 1;
   }
 
+
+
   @override
   Widget build(BuildContext context) {
-    return PostsListBuilder(
+     return PostsListBuilder(
       scrollController: _scrollController,
       data: data,
       isLoading: isLoading,
@@ -107,6 +110,12 @@ class _VideoViewState extends State<VideoView> {
       curruntPage: currentPage,
     );
   }
+      @override
+  void dispose() {
+    super.dispose();
+    _scrollController.dispose();
+  }
+
 }
 
 // posts model map
@@ -147,7 +156,11 @@ class PostsListBuilder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
+   return Scaffold(
+              appBar: PreferredSize(
+            preferredSize: Size.fromHeight(10.0), // here the desired height
+            child: AppBar(leading: Container())),
+            body:  ListView.builder(
       controller: _scrollController,
       physics: physics,
       shrinkWrap: false,
@@ -249,7 +262,7 @@ class PostsListBuilder extends StatelessWidget {
                   )),
             );
           }
-          return FadeAnimation(
+           return FadeAnimation(
             0.7,
             Column(
               children: <Widget>[
@@ -325,6 +338,8 @@ class PostsListBuilder extends StatelessWidget {
           );
         }
       },
+    )
     );
+    
   }
 }

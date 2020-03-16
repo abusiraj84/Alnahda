@@ -29,6 +29,7 @@ class _AlrayViewState extends State<AlrayView> {
     super.initState();
     fetchMore(currentPage);
     _scrollController.addListener(() {
+      if (this.mounted){
       setState(() {
         var isEnd = _scrollController.position.pixels ==
             _scrollController.position.maxScrollExtent;
@@ -46,26 +47,23 @@ class _AlrayViewState extends State<AlrayView> {
           print('start');
           physics = ScrollPhysics(parent: NeverScrollableScrollPhysics());
           Future.delayed(const Duration(milliseconds: 2000), () {
+            if (this.mounted){
             setState(() {
               physics = ScrollPhysics(parent: ClampingScrollPhysics());
             });
-          });
+          }});
         } else {
           physics = ScrollPhysics(parent: ClampingScrollPhysics());
         }
       });
-    });
+    }});
   }
 
-  @override
-  void dispose() {
-    super.dispose();
-    _scrollController.dispose();
-  }
 
   fetch() {
     ApiService()..getAlray(currentPage).then((value) {
       for (var item in value['data']['posts']['data']) {
+       if (this.mounted){
         setState(() {
           data.add(Posts(
               imageUrl: 'https://alnahdanews.com/' + item['author']['img'],
@@ -74,23 +72,30 @@ class _AlrayViewState extends State<AlrayView> {
               name: item['author']['name']));
           isLoading = false;
         });
-      }
+      }}
     });
   }
 
   fetchMore(int page) {
     if (!isLoading) {
       if (this.data.length > 0) {
+        if (this.mounted){
         setState(() {
           isLoading = true;
         });
-      }
+      }}
+
     } else {
       return;
     }
     fetch();
     print(currentPage);
     currentPage += 1;
+  }
+  @override
+  void dispose() {
+    super.dispose();
+    _scrollController.dispose();
   }
 
   @override
@@ -109,6 +114,7 @@ class _AlrayViewState extends State<AlrayView> {
     )
     );
   }
+  
 }
 
 // posts model map
