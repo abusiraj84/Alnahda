@@ -27,12 +27,9 @@ class _VideoViewState extends State<VideoView> {
   @override
   void initState() {
     super.initState();
-    ApiService()
-      ..getVideos(1).then((value) {
-        print('last page is ' + value['data']['posts']['last_page']);
-      });
+  
 
-    fetchMore(currentPage, lastPage);
+    fetchMore(currentPage);
 
     _scrollController.addListener(() {
       if (this.mounted) {
@@ -46,7 +43,7 @@ class _VideoViewState extends State<VideoView> {
             //   content: Text("جاري تحميل المزيد ...."),
             // ));
 
-            fetchMore(currentPage, lastPage);
+            fetchMore(currentPage);
           }
           if (isStart) {
             print('start');
@@ -88,8 +85,8 @@ class _VideoViewState extends State<VideoView> {
       });
   }
 
-  fetchMore(int page, int lastPage) {
-    if (!isLoading && page <= lastPage) {
+  fetchMore(int page) {
+    if (!isLoading ) {
       if (this.data.length > 0) {
         if (this.mounted) {
           setState(() {
@@ -172,75 +169,88 @@ class PostsListBuilder extends StatelessWidget {
           itemCount: data.length + 1,
           itemBuilder: (BuildContext context, int index) {
             if (index == 0 && data.length > 0) {
-              return Container(
-                height: 350,
-                color: Colors.white,
-                child: GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      PageTransition(
-                        type: PageTransitionType.downToUp,
-                        child: VideoPlay(
-                          title: data[index].title,
-                          description: data[index].description,
-                          path: data[index].path,
-                          type: data[index].type,
-                        ),
-                      ),
-                    );
-                  },
-                  child: Stack(
-                    children: <Widget>[
-                      Positioned(
-                        child: FadeAnimation(
-                          0.6,
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
+              return Column(
+                children: <Widget>[
+                  Container(
+                    height: 350,
+                    color: Colors.white,
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          PageTransition(
+                            type: PageTransitionType.downToUp,
+                            child: VideoPlay(
+                              title: data[index].title,
+                              description: data[index].description,
+                              path: data[index].path,
+                              type: data[index].type,
+                            ),
+                          ),
+                        );
+                      },
+                      child: Column(
+                        children: <Widget>[
+                          Stack(
                             children: <Widget>[
-                              FadeInImage.assetNetwork(
-                                height: 260,
-                                width: double.infinity,
-                                fit: BoxFit.cover,
-                                placeholder:
-                                    'assets/images/placeholder_big.png',
-                                image: data[index].imageUrl,
+                              FadeAnimation(
+                                                      0.4, Positioned(
+                                  child: 
+                                    Column(
+                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: <Widget>[
+                                        FadeInImage.assetNetwork(
+                                          height: 260,
+                                          width: double.infinity,
+                                          fit: BoxFit.cover,
+                                          placeholder:
+                                              'assets/images/loader.gif',
+                                          image: data[index].imageUrl,
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 20, vertical: 10),
+                                          child: Text(
+                                            data[index].title,
+                                            style: TextStyle(
+                                                fontFamily: "sst-arabic-bold",
+                                                fontSize: 23,
+                                                height: 1.3),
+                                            textAlign: TextAlign.right,
+                                            maxLines: 2,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
                               ),
-                              Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 20, vertical: 10),
-                                child: Text(
-                                  data[index].title,
-                                  style: TextStyle(
-                                      fontFamily: "sst-arabic-bold",
-                                      fontSize: 23,
-                                      height: 1.3),
-                                  textAlign: TextAlign.right,
-                                  maxLines: 2,
+                              
+                              Positioned(
+                                left: 100,
+                                right: 100,
+                                top: 90,
+                                child: FadeAnimation(
+                                                        0.6, CircleAvatar(
+                                    child: Icon(
+                                      Icons.play_arrow,
+                                      size: 55,
+                                      color: Colors.white,
+                                    ),
+                                    radius: 40,
+                                    backgroundColor: Colors.white.withOpacity(0.2),
+                                  ),
                                 ),
-                              ),
+                              )
                             ],
                           ),
-                        ),
+                        ],
                       ),
-                      Positioned(
-                        left: 100,
-                        right: 100,
-                        top: 90,
-                        child: CircleAvatar(
-                          child: Icon(
-                            Icons.play_arrow,
-                            size: 55,
-                            color: Colors.white,
-                          ),
-                          radius: 40,
-                          backgroundColor: Colors.grey.withOpacity(0.9),
-                        ),
-                      )
-                    ],
+                    ),
                   ),
-                ),
+                          SizedBox(height: 10,),
+
+                ],
               );
             } else {
               if (index == data.length) {
@@ -275,6 +285,7 @@ class PostsListBuilder extends StatelessWidget {
                 0.7,
                 Column(
                   children: <Widget>[
+                    
                     Container(
                       padding:
                           EdgeInsets.symmetric(horizontal: 20, vertical: 10),
@@ -305,7 +316,7 @@ class PostsListBuilder extends StatelessWidget {
                                       height: 105,
                                       fit: BoxFit.cover,
                                       placeholder:
-                                          'assets/images/placeholder_small.png',
+                                          'assets/images/loader.gif',
                                       image: data[index].imageUrl,
                                     ),
                                   ),
@@ -321,7 +332,7 @@ class PostsListBuilder extends StatelessWidget {
                                       ),
                                       radius: 20,
                                       backgroundColor:
-                                          Colors.grey.withOpacity(0.9),
+                                          Colors.white.withOpacity(0.2),
                                     ),
                                   )
                                 ],

@@ -192,7 +192,7 @@ class PostsListBuilder extends StatelessWidget {
         } else {
           if (index == data.length) {
             return Container(
-                height: 100,
+                height: 120,
                 child: Visibility(
                     visible: isLoading,
                     child: Column(
