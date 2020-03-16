@@ -139,7 +139,7 @@ class _MoreState extends State<More> {
               itemBuilder: (BuildContext context, int index) {
                 // print(content['data']['menu'][index]['title']);
                 return CatList(
-                  img: 'https://alnahdanews.com/style/assets/icons/tv.svg',
+                  img: content['data']['menu'][index]['custom'],
                   title: content['data']['menu'][index]['title'],
                   catId: content['data']['menu'][index]['id'],
                 );
@@ -181,7 +181,7 @@ class CatList extends StatelessWidget {
             Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                Image.network(img, width: 20.0, height: 20.0),
+                SvgPicture.network(img, width: 20.0, height: 20.0),
                 SizedBox(
                   width: 10,
                 ),
