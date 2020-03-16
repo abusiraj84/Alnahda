@@ -2,7 +2,8 @@ import '../Services/api_service.dart';
 import './categories/CategorieView.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
-
+import 'package:flutter_svg/flutter_svg.dart';
+ 
 class More extends StatefulWidget {
   More({Key key}) : super(key: key);
 
@@ -138,7 +139,7 @@ class _MoreState extends State<More> {
               itemBuilder: (BuildContext context, int index) {
                 // print(content['data']['menu'][index]['title']);
                 return CatList(
-                  img: 'assets/images/file.png',
+                  img: 'https://alnahdanews.com/style/assets/icons/tv.svg',
                   title: content['data']['menu'][index]['title'],
                   catId: content['data']['menu'][index]['id'],
                 );
@@ -180,7 +181,7 @@ class CatList extends StatelessWidget {
             Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                Image.asset(img, width: 20.0, height: 20.0),
+                Image.network(img, width: 20.0, height: 20.0),
                 SizedBox(
                   width: 10,
                 ),
