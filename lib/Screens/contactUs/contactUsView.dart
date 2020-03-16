@@ -74,6 +74,7 @@ class _ContactUsViewState extends State<ContactUsView> {
                 Container(
                   height: 200,
                   child: TextField(
+                    maxLines :6,
                     controller: _controllerContent,
                     keyboardType: TextInputType.multiline,
                     decoration: InputDecoration(

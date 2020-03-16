@@ -167,6 +167,7 @@ class PostsListBuilder extends StatelessWidget {
                       title: data[index].title,
                       description: data[index].description,
                       path: data[index].path,
+                      type: data[index].type,
                     ),
                   ),
                 );
@@ -265,6 +266,7 @@ class PostsListBuilder extends StatelessWidget {
                             title: data[index].title,
                             description: data[index].description,
                             path: data[index].path,
+                            type: data[index].type
                           ),
                         ),
                       );
