@@ -5,6 +5,8 @@ import 'package:page_transition/page_transition.dart';
 
 import 'contactUs/contactUsView.dart';
 
+import 'package:flutter_svg/flutter_svg.dart';
+ 
 class More extends StatefulWidget {
   More({Key key}) : super(key: key);
 
@@ -140,7 +142,7 @@ class _MoreState extends State<More> {
               itemBuilder: (BuildContext context, int index) {
                 // print(content['data']['menu'][index]['title']);
                 return CatList(
-                  img: 'assets/images/file.png',
+                  img: content['data']['menu'][index]['custom'],
                   title: content['data']['menu'][index]['title'],
                   catId: content['data']['menu'][index]['id'],
                 );
@@ -182,7 +184,7 @@ class CatList extends StatelessWidget {
             Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                Image.asset(img, width: 20.0, height: 20.0),
+                SvgPicture.network(img, width: 20.0, height: 20.0),
                 SizedBox(
                   width: 10,
                 ),
