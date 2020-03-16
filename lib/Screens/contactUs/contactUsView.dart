@@ -83,7 +83,7 @@ class _ContactUsViewState extends State<ContactUsView> {
                     decoration: InputDecoration(
                       filled: true,
                       fillColor: Colors.white,
-                      hintText: "نص الرسالة",
+                      hintText: "نص الرسالة", //kkk
                       border: InputBorder.none,
                       hintStyle: TextStyle(fontSize: 12.0),
                     ),
@@ -94,7 +94,7 @@ class _ContactUsViewState extends State<ContactUsView> {
                   child: RaisedButton(
                     onPressed: () {
 
-                      
+
                       ContactUs c = ContactUs(
                           _controllerName.text,
                           _controllerEmail.text,
