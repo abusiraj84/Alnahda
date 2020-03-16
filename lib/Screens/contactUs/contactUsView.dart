@@ -23,12 +23,11 @@ class _ContactUsViewState extends State<ContactUsView> {
       backgroundColor: Color(0xffeef4f8),
       body: SafeArea(
           child: SingleChildScrollView(
-                      child: Padding(
-        padding: const EdgeInsets.all(12),
-        child: Container(
-          width: double.infinity,
-          child: Column(
-            
+        child: Padding(
+          padding: const EdgeInsets.all(12),
+          child: Container(
+            width: double.infinity,
+            child: Column(
               children: <Widget>[
                 TextField(
                   controller: _controllerName,
@@ -78,7 +77,6 @@ class _ContactUsViewState extends State<ContactUsView> {
                     controller: _controllerContent,
                     keyboardType: TextInputType.multiline,
                     decoration: InputDecoration(
-
                       filled: true,
                       fillColor: Colors.white,
                       hintText: "نص الرسالة",
@@ -87,19 +85,18 @@ class _ContactUsViewState extends State<ContactUsView> {
                     ),
                   ),
                 ),
-                Container(          width: double.infinity,
-
+                Container(
+                  width: double.infinity,
                   child: RaisedButton(
-                    
-                    onPressed:(){},
+                    onPressed: () {},
                     child: Text('ارسال رسالة'),
                   ),
                 )
               ],
+            ),
           ),
         ),
-      ),
-          )),
+      )),
     );
   }
 }
