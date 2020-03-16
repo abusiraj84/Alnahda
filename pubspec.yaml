@@ -44,7 +44,8 @@ dependencies:
   webview_flutter: ^0.3.19+9
   share: ^0.6.3+6
   flutter_svg: ^0.17.3+1
-  
+  bot_toast: ^2.3.0
+
 
 
 

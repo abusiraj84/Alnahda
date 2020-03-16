@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:alnahda/model/contactUs.dart';
 import 'package:http/http.dart' show Client;
 import 'package:http/http.dart' as http;
 
@@ -131,16 +132,21 @@ class ApiService {
       return null;
     }
   }
-}
-  Future<bool> contactUs(String name ,String email ,String subject ,String text ) async {
+
+    Future<bool> contactUs(ContactUs body) async {
     final response = await http.post(
       "https://alnahdanews.com/api/v1/contact",
       headers: {"content-type": "application/json"},
-      // body: userToJson(data),
-    );
-    if (response.statusCode == 201 || response.statusCode == 200) {
-      return true;
-    } else {
-      return false;
-    }
-  }
+      body: userToJson(body),
+          );
+          if (response.statusCode == 201 || response.statusCode == 200) {
+            return true;
+          } else {
+            return false;
+          }
+        }
+      String userToJson(ContactUs data) => json.encode(data.toJson());
+
+}
+
+  

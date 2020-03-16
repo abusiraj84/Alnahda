@@ -1,3 +1,6 @@
+import 'package:alnahda/Services/api_service.dart';
+import 'package:alnahda/model/contactUs.dart';
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 
 class ContactUsView extends StatefulWidget {
@@ -74,7 +77,7 @@ class _ContactUsViewState extends State<ContactUsView> {
                 Container(
                   height: 200,
                   child: TextField(
-                    maxLines :6,
+                    maxLines: 6,
                     controller: _controllerContent,
                     keyboardType: TextInputType.multiline,
                     decoration: InputDecoration(
@@ -89,7 +92,21 @@ class _ContactUsViewState extends State<ContactUsView> {
                 Container(
                   width: double.infinity,
                   child: RaisedButton(
-                    onPressed: () {},
+                    onPressed: () {
+
+                      
+                      ContactUs c = ContactUs(
+                          _controllerName.text,
+                          _controllerEmail.text,
+                          _controllerSubject.text,
+                          _controllerContent.text);
+                      ApiService()
+                        ..contactUs(c).then((value) => BotToast.showSimpleNotification(title: "تم ارسال الرسالة بنجاح ❤"));
+                         _controllerName.clear();
+                         _controllerEmail.clear();
+                         _controllerSubject.clear();
+                         _controllerContent.clear();
+                    },
                     child: Text('ارسال رسالة'),
                   ),
                 )

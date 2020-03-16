@@ -1,3 +1,4 @@
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
@@ -10,19 +11,22 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-          fontFamily: "SST-Arabic-Medium", primaryColor: Color(0xff17202c),accentColor:Color(0xff17202c) ),
-      localizationsDelegates: [
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
-      supportedLocales: [
-        const Locale('ar'), // arabic
-      ],
-      debugShowCheckedModeBanner: false,
-      home: SplashScreen(),
+    return BotToastInit(
+          child: MaterialApp(
+        navigatorObservers: [BotToastNavigatorObserver()],
+        theme: ThemeData(
+            fontFamily: "SST-Arabic-Medium", primaryColor: Color(0xff17202c),accentColor:Color(0xff17202c) ),
+        localizationsDelegates: [
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        supportedLocales: [
+          const Locale('ar'), // arabic
+        ],
+        debugShowCheckedModeBanner: false,
+        home: SplashScreen(),
+      ),
     );
   }
 }

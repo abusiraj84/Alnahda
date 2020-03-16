@@ -80,16 +80,17 @@ class _AlrayViewState extends State<AlrayView> {
 
   fetchMore(int page) {
     if (!isLoading) {
-      if (this.data.length > 0) {
+      if (this.data.length > 0)  {
         setState(() {
           isLoading = true;
+          print(page);
+
         });
       }
     } else {
       return;
     }
     fetch();
-    print(currentPage);
     currentPage += 1;
   }
 
