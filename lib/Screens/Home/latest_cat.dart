@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 
 import 'package:page_transition/page_transition.dart';
-import 'package:share/share.dart';
 
 class Latest extends StatefulWidget {
   final int catId;

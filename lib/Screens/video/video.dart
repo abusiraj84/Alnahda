@@ -1,6 +1,5 @@
 import 'package:alnahda/Animations/fadeanimation.dart';
 
-import '../../Screens/details/detailview.dart';
 import 'package:alnahda/Services/api_service.dart';
 
 import 'package:flutter/material.dart';
@@ -50,7 +49,7 @@ class _ShowVideoState extends State<ShowVideo> {
 
   latestNews(context) {
     return FutureBuilder(
-        future: _apiService.getVideos(),
+        future: _apiService.getVideos(1),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           if (snapshot.hasData) {
             Map content = snapshot.data;

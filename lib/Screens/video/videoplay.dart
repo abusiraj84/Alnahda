@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
-import 'package:video_player/video_player.dart';
 
-import 'chewie_list_item.dart';
-import 'package:webview_flutter/webview_flutter.dart';
 
 class VideoPlay extends StatefulWidget {
   const VideoPlay({Key key, this.title, this.description, this.path})

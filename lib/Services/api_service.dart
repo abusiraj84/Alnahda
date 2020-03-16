@@ -121,8 +121,8 @@ class ApiService {
   //   }
   // }
 
-  Future<Map> getVideos() async {
-    String myUrl = 'https://alnahdanews.com/api/v1/videos';
+  Future<Map> getVideos(int pageId) async {
+    String myUrl = 'https://alnahdanews.com/api/v1/videos?page=$pageId';
     http.Response response = await http.get(myUrl);
 
     if (response.statusCode == 200) {

@@ -91,8 +91,6 @@ class _FeaturedViewState extends State<FeaturedView> {
 
   latestNews(context) {
 
-    String _url =
-      "https://images.pexels.com/photos/396547/pexels-photo-396547.jpeg?auto=compress&cs=tinysrgb&h=350";
 
     return FutureBuilder(
         future: _apiService.getFeatured(),

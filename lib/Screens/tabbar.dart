@@ -1,4 +1,6 @@
 
+import 'package:alnahda/Screens/video/videoView.dart';
+
 import 'Home/HomeView.dart';
 import 'alray/AlrayView.dart';
 import 'package:flutter/material.dart';
@@ -6,7 +8,6 @@ import 'package:flutter_sfsymbols/flutter_sfsymbols.dart';
 
 import 'breaknews/breaknews.dart';
 import 'more.dart';
-import 'video/video.dart';
 
 class MyTabBar extends StatefulWidget {
   MyTabBar({Key key}) : super(key: key);
@@ -21,7 +22,7 @@ class _MyTabBarState extends State<MyTabBar> {
     HomeView(),
     BreakNews(),
     AlrayView(),
-    ShowVideo(),
+    VideoView(),
     More(),
   ];
 
