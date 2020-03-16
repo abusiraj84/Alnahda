@@ -2,6 +2,9 @@ import '../Services/api_service.dart';
 import './categories/CategorieView.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
+
+import 'contactUs/contactUsView.dart';
+
 import 'package:flutter_svg/flutter_svg.dart';
  
 class More extends StatefulWidget {
@@ -51,11 +54,11 @@ class _MoreState extends State<More> {
               color: Colors.grey.withOpacity(0.3),
               child: InkWell(
                 onTap: () {
-                  // Navigator.push(
-                  //     context,
-                  //     PageTransition(
-                  //         type: PageTransitionType.downToUp,
-                  //         child: ShowCat(title: title,catId: catId)));
+                  Navigator.push(
+                      context,
+                      PageTransition(
+                          type: PageTransitionType.downToUp,
+                          child: ContactUsView()));
                 },
                 child: Padding(
                   padding: const EdgeInsets.fromLTRB(10, 10, 20, 10),

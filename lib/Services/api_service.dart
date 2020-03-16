@@ -132,3 +132,14 @@ class ApiService {
     }
   }
 }
+  Future<bool> contactUs(String name ,String email ,String subject ,String text ) async {
+    final response = await http.post(
+      "https://alnahdanews.com/api/v1/contact",
+      headers: {"content-type": "application/json"},
+      // body: userToJson(data),
+    );
+    if (response.statusCode == 201 || response.statusCode == 200) {
+      return true;
+    } else {
+      return false;
+    }
