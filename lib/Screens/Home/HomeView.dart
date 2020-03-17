@@ -78,7 +78,7 @@ class _HomeViewState extends State<HomeView> {
 
     return Scaffold(
         appBar: PreferredSize(
-            preferredSize: Size.fromHeight(10.0), // here the desired height
+            preferredSize: Size.fromHeight(0), // here the desired height
             child: AppBar(leading: Container())),
         floatingActionButton: _goUP
             ? FloatingActionButton(

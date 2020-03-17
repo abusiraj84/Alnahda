@@ -160,7 +160,7 @@ class PostsListBuilder extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: PreferredSize(
-            preferredSize: Size.fromHeight(10.0), // here the desired height
+            preferredSize: Size.fromHeight(0), // here the desired height
             child: AppBar(leading: Container())),
         body: ListView.builder(
           controller: _scrollController,
@@ -194,36 +194,33 @@ class PostsListBuilder extends StatelessWidget {
                           Stack(
                             children: <Widget>[
                               FadeAnimation(
-                                                      0.4, Positioned(
-                                  child: 
-                                    Column(
-                                      mainAxisAlignment: MainAxisAlignment.start,
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: <Widget>[
-                                        FadeInImage.assetNetwork(
-                                          height: 260,
-                                          width: double.infinity,
-                                          fit: BoxFit.cover,
-                                          placeholder:
-                                              'assets/images/loader.gif',
-                                          image: data[index].imageUrl,
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                              horizontal: 20, vertical: 10),
-                                          child: Text(
-                                            data[index].title,
-                                            style: TextStyle(
-                                                fontFamily: "sst-arabic-bold",
-                                                fontSize: 23,
-                                                height: 1.3),
-                                            textAlign: TextAlign.right,
-                                            maxLines: 2,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
+                                                      0.4, Column(
+                                                        mainAxisAlignment: MainAxisAlignment.start,
+                                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                                        children: <Widget>[
+                                                          FadeInImage.assetNetwork(
+                                                            height: 260,
+                                                            width: double.infinity,
+                                                            fit: BoxFit.cover,
+                                                            placeholder:
+                                                                'assets/images/loader.gif',
+                                                            image: data[index].imageUrl,
+                                                          ),
+                                                          Padding(
+                                                            padding: const EdgeInsets.symmetric(
+                                                                horizontal: 20, vertical: 10),
+                                                            child: Text(
+                                                              data[index].title,
+                                                              style: TextStyle(
+                                                                  fontFamily: "sst-arabic-bold",
+                                                                  fontSize: 23,
+                                                                  height: 1.3),
+                                                              textAlign: TextAlign.right,
+                                                              maxLines: 2,
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
                               ),
                               
                               Positioned(

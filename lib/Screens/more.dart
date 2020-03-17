@@ -36,7 +36,7 @@ class _MoreState extends State<More> {
     
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(10.0), // here the desired height
+        preferredSize: Size.fromHeight(0.0), // here the desired height
         child: AppBar(leading: Container())),
       body: SafeArea(
           child: SingleChildScrollView(

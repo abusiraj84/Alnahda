@@ -67,7 +67,7 @@ var video;
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Video Player'),
+        title: Text('الفيديو'),
       ),
       body: SingleChildScrollView(
               child: Column(
@@ -83,7 +83,7 @@ var video;
             ),
             Padding(
               padding: const EdgeInsets.all(20.0),
-              child: Text(widget.description,style: TextStyle(),textAlign: TextAlign.right,),
+              child: Text(widget.description,style: TextStyle(fontSize: 17),textAlign: TextAlign.right,),
             ),
           ],
         ),
@@ -92,11 +92,3 @@ var video;
   }
 }
 
-// HtmlWidget(
-//    """
-//    <iframe src="https://www.facebook.com/plugins/post.php?href=https://www.facebook.com/NasDailyArabic/posts/2653397148115727"  ></iframe>
-//    <iframe width="560" height="315" src="https://www.youtube.com/watch?v=G4xhbiJ605o" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-// """,
-//           webView: true,
-//           webViewJs: true,
-//         ),

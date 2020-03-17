@@ -38,7 +38,7 @@ class _DetailViewState extends State<DetailView> {
 
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(10.0), // here the desired height
+        preferredSize: Size.fromHeight(0.0), // here the desired height
         child: AppBar(leading: Container())),
       body: SafeArea(
           bottom: false,

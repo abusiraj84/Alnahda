@@ -49,7 +49,7 @@ class _AlrayDetailState extends State<AlrayDetail> {
                         right: 0,
                         height: MediaQuery.of(context).size.height / 3,
                         child: Opacity(
-                          opacity: 0.6,
+                          opacity: 1,
                           child: FadeAnimation(
                                                    0.5, Container(
                               decoration: BoxDecoration(
