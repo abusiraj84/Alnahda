@@ -4,6 +4,7 @@ import 'package:alnahda/Screens/Home/latest_cat.dart';
 import 'package:alnahda/Screens/Home/thirdnews.dart';
 import 'package:alnahda/Screens/details/detailview.dart';
 import 'package:alnahda/Services/api_service.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 
@@ -11,11 +12,11 @@ class Test extends StatefulWidget {
   Test({
     
     Key key,
-    @required ScrollController scrollController,
-    @required this.data,
-    @required this.isLoading,
-    @required this.physics,
-    @required this.curruntPage,
+     ScrollController scrollController,
+     this.data,
+     this.isLoading,
+     this.physics,
+     this.curruntPage, int atId,
   })  : _scrollController = scrollController,
         super(key: key);
 
@@ -222,7 +223,7 @@ class _TestState extends State<Test> {
                       child: Column(
                         children: <Widget>[
                           SizedBox(height:20),
-                          Container( child: CircularProgressIndicator()),
+                          Container( child: CupertinoActivityIndicator()),
                           SizedBox(
                             height: 40,
                             width: MediaQuery.of(context).size.width,

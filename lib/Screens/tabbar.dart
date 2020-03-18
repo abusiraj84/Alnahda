@@ -1,5 +1,6 @@
 
 import 'package:alnahda/Screens/video/videoView.dart';
+import 'package:alnahda/Tests/test.dart';
 
 import 'Home/HomeView.dart';
 import 'alray/AlrayView.dart';
@@ -19,7 +20,7 @@ class MyTabBar extends StatefulWidget {
 class _MyTabBarState extends State<MyTabBar> {
   int _currentIndex = 0;
   final tabs = [
-    HomeView(),
+    Test(),
     BreakNews(),
     AlrayView(),
     VideoView(),

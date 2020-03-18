@@ -1,3 +1,4 @@
+import 'package:alnahda/Screens/tabbar.dart';
 import 'package:alnahda/Tests/test.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
@@ -32,7 +33,7 @@ class MyApp extends StatelessWidget {
           const Locale('ar'), // arabic
         ],
         debugShowCheckedModeBanner: false,
-        home: Test(),
+        home: MyTabBar(),
       ),
     );
   }
