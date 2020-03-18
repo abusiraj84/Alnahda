@@ -3,8 +3,9 @@ import 'package:alnahda/Tests/test.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:splashscreen/splashscreen.dart';
 
-import 'Screens/SplashScreen.dart';
+// import 'Screens/SplashScreen.dart';
 
 void main() => runApp(MyApp());
 
@@ -14,16 +15,16 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BotToastInit(
-          child: MaterialApp(
+      child: MaterialApp(
         navigatorObservers: [BotToastNavigatorObserver()],
         theme: ThemeData(
-          pageTransitionsTheme: PageTransitionsTheme(
-      builders: {
-        TargetPlatform.android: CupertinoPageTransitionsBuilder(),
-        TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
-      }
-    ) ,
-            fontFamily: "SST-Arabic-Medium", primaryColor: Color(0xff17202c),accentColor:Color(0xff17202c) ),
+            pageTransitionsTheme: PageTransitionsTheme(builders: {
+              TargetPlatform.android: CupertinoPageTransitionsBuilder(),
+              TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
+            }),
+            fontFamily: "SST-Arabic-Medium",
+            primaryColor: Color(0xff17202c),
+            accentColor: Color(0xff17202c)),
         localizationsDelegates: [
           GlobalMaterialLocalizations.delegate,
           GlobalWidgetsLocalizations.delegate,
@@ -33,7 +34,18 @@ class MyApp extends StatelessWidget {
           const Locale('ar'), // arabic
         ],
         debugShowCheckedModeBanner: false,
-        home: MyTabBar(),
+        home: SplashScreen(
+          seconds: 4,
+          navigateAfterSeconds: MyTabBar(),
+          backgroundColor: Color(0xff17202c),
+          photoSize: 150,
+          image: Image.asset(
+            'assets/images/load.gif',
+            width: 200,
+
+          ),
+          
+        ),
       ),
     );
   }
