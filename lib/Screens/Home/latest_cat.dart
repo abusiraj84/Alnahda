@@ -36,9 +36,9 @@ class _LatestState extends State<Latest> {
         var isStart = _scrollController.position.pixels ==
             _scrollController.position.minScrollExtent;
         if (isEnd) {
-    //        Scaffold.of(context).showSnackBar(SnackBar(
-    //   content: Text("جاري تحميل المزيد ...."),
-    // ));
+           Scaffold.of(context).showSnackBar(SnackBar(
+      content: Text("جاري تحميل المزيد ...."),
+    ));
     
           fetchMore(currentPage);
           

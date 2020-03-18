@@ -84,7 +84,7 @@ class _HomeViewState extends State<HomeView> {
             ? FloatingActionButton(
                 backgroundColor: Color(0xff17202c),
                 onPressed: () {
-                  _controller.animateTo(_controller.offset - 1600,
+                  _controller.animateTo(_controller.offset - _controller.offset,
                       curve: Curves.linear,
                       duration: Duration(milliseconds: 500));
                 },

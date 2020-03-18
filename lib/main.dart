@@ -1,3 +1,4 @@
+import 'package:alnahda/Tests/test.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -31,7 +32,7 @@ class MyApp extends StatelessWidget {
           const Locale('ar'), // arabic
         ],
         debugShowCheckedModeBanner: false,
-        home: SplashScreen(),
+        home: Test(),
       ),
     );
   }
