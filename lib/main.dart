@@ -15,6 +15,12 @@ class MyApp extends StatelessWidget {
           child: MaterialApp(
         navigatorObservers: [BotToastNavigatorObserver()],
         theme: ThemeData(
+          pageTransitionsTheme: PageTransitionsTheme(
+      builders: {
+        TargetPlatform.android: CupertinoPageTransitionsBuilder(),
+        TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
+      }
+    ) ,
             fontFamily: "SST-Arabic-Medium", primaryColor: Color(0xff17202c),accentColor:Color(0xff17202c) ),
         localizationsDelegates: [
           GlobalMaterialLocalizations.delegate,
