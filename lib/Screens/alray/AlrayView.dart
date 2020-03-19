@@ -1,5 +1,6 @@
 
 import 'package:alnahda/Animations/fadeanimation.dart';
+import 'package:flutter/cupertino.dart';
 
 import '../../services/api_service.dart';
 import 'package:flutter/material.dart';
@@ -155,30 +156,30 @@ class PostsListBuilder extends StatelessWidget {
       itemCount: data.length + 1,
       itemBuilder: (BuildContext context, int index) {
         if (index == data.length) {
-          return Container(
-                height: 100,
-                child: Visibility(
-                    visible: isLoading,
-                    child: Column(
-                      children: <Widget>[
-                        SizedBox(height:20),
-                        Container( child: CircularProgressIndicator()),
-                        SizedBox(
-                          height: 40,
-                          width: MediaQuery.of(context).size.width,
-                          child: Center(
-                            child: Container(
-                                height: 40,
-                                child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Text('جاري تحميل المزيد ...',style: TextStyle(fontSize: 12),),
-                                )),
-                          ),
-                        ),
-                     
-                      ],
-                    )),
-              );
+           return Container(
+       height: 60,
+       child: Visibility(
+           visible: isLoading,
+           child: Column(
+             children: <Widget>[
+               SizedBox(height:0),
+               Container( child: CupertinoActivityIndicator()),
+               SizedBox(
+                 height: 40,
+                 width: MediaQuery.of(context).size.width,
+                 child: Center(
+                   child: Container(
+                       height: 400,
+                       child: Padding(
+                         padding: const EdgeInsets.all(0.0),
+                         child: Text('جاري تحميل المزيد ...',style: TextStyle(fontSize: 12),),
+                       )),
+                 ),
+               ),
+            
+             ],
+           )),
+     );
         }
         return InkWell(
           onTap: () {
