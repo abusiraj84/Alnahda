@@ -42,23 +42,23 @@ class _MyTabBarState extends State<MyTabBar> {
         items: [
           BottomNavigationBarItem(
               icon: Icon(SFSymbols.house),
-              title: Text("الرئيسية", style: TextStyle(fontFamily: "SST-Arabic-Medium"),),
+              title: Text("الرئيسية", style: TextStyle(fontFamily: "SST-Arabic-Medium",fontSize: 11,fontWeight: FontWeight.w300),),
               backgroundColor: Colors.blue),
           BottomNavigationBarItem(
               icon: Icon(SFSymbols.flame),
-              title: Text("عاجل", style: TextStyle(fontFamily: "SST-Arabic-Medium"),),
+              title: Text("عاجل", style: TextStyle(fontFamily: "SST-Arabic-Medium",fontSize: 11,fontWeight: FontWeight.w300),),
               backgroundColor: Colors.blue),
           BottomNavigationBarItem(
               icon: Icon(SFSymbols.person),
-              title: Text("الرأي", style: TextStyle(fontFamily: "SST-Arabic-Medium"),),
+              title: Text("الرأي", style: TextStyle(fontFamily: "SST-Arabic-Medium",fontSize: 11,fontWeight: FontWeight.w300),),
               backgroundColor: Colors.blue),
           BottomNavigationBarItem(
               icon: Icon(SFSymbols.camera),
-              title: Text("فيديو", style: TextStyle(fontFamily: "SST-Arabic-Medium"),),
+              title: Text("فيديو", style: TextStyle(fontFamily: "SST-Arabic-Medium",fontSize: 11,fontWeight: FontWeight.w300),),
               backgroundColor: Colors.blue),
           BottomNavigationBarItem(
               icon: Icon(SFSymbols.ellipsis),
-              title: Text("المزيد", style: TextStyle(fontFamily: "SST-Arabic-Medium"),),
+              title: Text("المزيد", style: TextStyle(fontFamily: "SST-Arabic-Medium",fontSize: 11,fontWeight: FontWeight.w300),),
               backgroundColor: Colors.blue),
         ],
         onTap: (index) {
