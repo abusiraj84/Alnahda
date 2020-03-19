@@ -27,6 +27,7 @@ class _CategorieViewState extends State<CategorieView> {
     super.initState();
     fetchMore(currentPage);
     _scrollController.addListener(() {
+      if (this.mounted) {
       setState(() {
         var isEnd = _scrollController.position.pixels ==
             _scrollController.position.maxScrollExtent;
@@ -39,14 +40,15 @@ class _CategorieViewState extends State<CategorieView> {
           print('start');
           physics = ScrollPhysics(parent: NeverScrollableScrollPhysics());
           Future.delayed(const Duration(milliseconds: 2000), () {
+            if (this.mounted) {
             setState(() {
               physics = ScrollPhysics(parent: ClampingScrollPhysics());
-            });
+            });}
           });
         } else {
           physics = ScrollPhysics(parent: ClampingScrollPhysics());
         }
-      });
+      });}
     });
   }
 
@@ -59,6 +61,7 @@ class _CategorieViewState extends State<CategorieView> {
   fetch() {
     ApiService().getPosts(widget.catId, currentPage).then((value) {
       for (var item in value['data']['posts']['data']) {
+        if (this.mounted) {
         setState(() {
           data.add(Posts(
               imageUrl: 'https://alnahdanews.com/' + item['img'],
@@ -66,7 +69,7 @@ class _CategorieViewState extends State<CategorieView> {
               title: item['title'],
           ));
           isLoading = false;
-        });
+        });}
       }
     });
   }
@@ -74,9 +77,10 @@ class _CategorieViewState extends State<CategorieView> {
   fetchMore(int page) {
     if (!isLoading) {
       if (this.data.length > 0) {
+        if (this.mounted) {
         setState(() {
           isLoading = true;
-        });
+        });}
       }
     } else {
       return;

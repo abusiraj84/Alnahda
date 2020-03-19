@@ -1,3 +1,4 @@
+import 'package:alnahda/Animations/fadeanimation.dart';
 import 'package:alnahda/Screens/tabbar.dart';
 import 'package:alnahda/Tests/test.dart';
 import 'package:bot_toast/bot_toast.dart';
@@ -34,17 +35,19 @@ class MyApp extends StatelessWidget {
           const Locale('ar'), // arabic
         ],
         debugShowCheckedModeBanner: false,
-        home: SplashScreen(
-          seconds: 4,
-          navigateAfterSeconds: MyTabBar(),
-          backgroundColor: Color(0xff17202c),
-          photoSize: 150,
-          image: Image.asset(
-            'assets/images/load.gif',
-            width: 200,
+        home: FadeAnimation(
+                  0.5, SplashScreen(
+            seconds: 4,
+            navigateAfterSeconds: MyTabBar(),
+            backgroundColor: Color(0xFF17202C),
+            photoSize: 200,
+            image: Image.asset(
+              'assets/images/splashLogo.gif',
+           
 
+            ),
+            
           ),
-          
         ),
       ),
     );

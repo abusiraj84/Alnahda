@@ -1,6 +1,7 @@
 
 import 'package:alnahda/Screens/video/videoView.dart';
 import 'package:alnahda/Tests/test.dart';
+import 'package:flutter/cupertino.dart';
 
 import 'Home/HomeView.dart';
 import 'alray/AlrayView.dart';
@@ -30,34 +31,34 @@ class _MyTabBarState extends State<MyTabBar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: BottomNavigationBar(
+      bottomNavigationBar: CupertinoTabBar(
         currentIndex: _currentIndex,
-        type: BottomNavigationBarType.fixed,
+       // backgroundColor: Color(0xff17202c),
         iconSize: 18,
-        selectedFontSize: 12,
-        unselectedFontSize: 11,
-        unselectedItemColor: Colors.grey.shade500,
+        activeColor:  Color(0xff17202c),
+        inactiveColor: Colors.grey.shade500,
+        
         
         items: [
           BottomNavigationBarItem(
               icon: Icon(SFSymbols.house),
-              title: Text("الرئيسية"),
+              title: Text("الرئيسية", style: TextStyle(fontFamily: "SST-Arabic-Medium"),),
               backgroundColor: Colors.blue),
           BottomNavigationBarItem(
               icon: Icon(SFSymbols.flame),
-              title: Text("عاجل"),
+              title: Text("عاجل", style: TextStyle(fontFamily: "SST-Arabic-Medium"),),
               backgroundColor: Colors.blue),
           BottomNavigationBarItem(
               icon: Icon(SFSymbols.person),
-              title: Text("الرأي"),
+              title: Text("الرأي", style: TextStyle(fontFamily: "SST-Arabic-Medium"),),
               backgroundColor: Colors.blue),
           BottomNavigationBarItem(
               icon: Icon(SFSymbols.camera),
-              title: Text("فيديو"),
+              title: Text("فيديو", style: TextStyle(fontFamily: "SST-Arabic-Medium"),),
               backgroundColor: Colors.blue),
           BottomNavigationBarItem(
               icon: Icon(SFSymbols.ellipsis),
-              title: Text("المزيد"),
+              title: Text("المزيد", style: TextStyle(fontFamily: "SST-Arabic-Medium"),),
               backgroundColor: Colors.blue),
         ],
         onTap: (index) {

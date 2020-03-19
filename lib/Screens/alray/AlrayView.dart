@@ -93,12 +93,12 @@ class _AlrayViewState extends State<AlrayView> {
     fetch();
     currentPage += 1;
   }
-  @override
+ 
+ @override
   void dispose() {
     super.dispose();
     _scrollController.dispose();
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
