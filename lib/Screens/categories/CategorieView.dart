@@ -22,9 +22,18 @@ class _CategorieViewState extends State<CategorieView> {
   bool isLoading = false;
   int currentPage = 1;
   ScrollPhysics physics;
+GlobalKey<RefreshIndicatorState> refreshKey;
+ Future<Null> refreshAll() async {
+    await Future.delayed(Duration(seconds: 1));
+    setState(() {
+     refreshKey = GlobalKey<RefreshIndicatorState>();
+    });
+  }
+
 
   @override
   void initState() {
+      refreshKey = GlobalKey<RefreshIndicatorState>();
     super.initState();
     fetchMore(currentPage);
     _scrollController.addListener(() {
@@ -93,14 +102,17 @@ class _CategorieViewState extends State<CategorieView> {
 
   @override
   Widget build(BuildContext context) {
-    return PostsListBuilder(
+    return RefreshIndicator(
+      key: refreshKey,
+          onRefresh: () async { await refreshAll();},
+          child:  PostsListBuilder(
       scrollController: _scrollController,
       data: data,
       isLoading: isLoading,
       physics: physics,
       curruntPage: currentPage,
       pageTitle: widget.title,
-    );
+    ));
   }
 }
 

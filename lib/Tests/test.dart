@@ -42,9 +42,7 @@ class _TestState extends State<Test> {
   bool isBottom = false;
   ScrollController _controller;
 
-  Future<Null> refreshAll() async {
-    await Future.delayed(Duration(seconds: 1));
-  }
+
 
   _scrollListener() {
     if (_controller.offset >= _controller.position.maxScrollExtent &&
@@ -68,6 +66,8 @@ class _TestState extends State<Test> {
     }
   }
 
+
+
   @override
   void initState() {
     refreshKey = GlobalKey<RefreshIndicatorState>();
@@ -79,6 +79,12 @@ class _TestState extends State<Test> {
     fetchMore(currentPage);
   }
 
+  Future<Null> refreshAll() async {
+    await Future.delayed(Duration(seconds: 1));
+    setState(() {
+     refreshKey = GlobalKey<RefreshIndicatorState>();
+    });
+  }
   @override
   void dispose() {
     super.dispose();

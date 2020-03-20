@@ -7,7 +7,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sfsymbols/flutter_sfsymbols.dart';
 
-import 'alray/alrayTest.dart';
 import 'breaknews/breaknews.dart';
 import 'more.dart';
 
@@ -23,7 +22,7 @@ class _MyTabBarState extends State<MyTabBar> {
   final tabs = [
     Test(),
     BreakNews(),
-    AlrayPostsView(),
+    AlrayView(),
     VideoView(),
     More(),
   ];

@@ -24,11 +24,11 @@ class _VideoViewState extends State<VideoView> {
   int currentPage = 1;
   ScrollPhysics physics;
   int lastPage = 1;
-
+GlobalKey<RefreshIndicatorState> refreshKey;
   @override
   void initState() {
     super.initState();
-  
+    refreshKey = GlobalKey<RefreshIndicatorState>();
 
     fetchMore(currentPage);
 
@@ -64,7 +64,14 @@ class _VideoViewState extends State<VideoView> {
       }
     });
   }
-
+  
+  Future<Null> refreshAll() async {
+    await Future.delayed(Duration(seconds: 1));
+    setState(() {
+     refreshKey = GlobalKey<RefreshIndicatorState>();
+    });
+  }
+  
   fetch() {
     ApiService()
       ..getVideos(currentPage).then((value) {
@@ -105,12 +112,16 @@ class _VideoViewState extends State<VideoView> {
 
   @override
   Widget build(BuildContext context) {
-    return PostsListBuilder(
-      scrollController: _scrollController,
-      data: data,
-      isLoading: isLoading,
-      physics: physics,
-      curruntPage: currentPage,
+    return RefreshIndicator(
+      key: refreshKey,
+          onRefresh: () async { await refreshAll();},
+          child: PostsListBuilder(
+        scrollController: _scrollController,
+        data: data,
+        isLoading: isLoading,
+        physics: physics,
+        curruntPage: currentPage,
+      ),
     );
   }
 
