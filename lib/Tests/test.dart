@@ -122,7 +122,7 @@ class _TestState extends State<Test> {
         if (this.mounted) {
           setState(() {
             isLoading = true;
-          
+          HapticFeedback.mediumImpact();
           });
         }
       }
