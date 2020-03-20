@@ -1,5 +1,6 @@
 import 'package:alnahda/Animations/fadeanimation.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../services/api_service.dart';
 import 'package:flutter/material.dart';
@@ -241,7 +242,7 @@ class PostsListBuilder extends StatelessWidget {
                                         color: Colors.red.shade800, width: 4),
                                     image: DecorationImage(
                                         image:
-                                           data[index].imageUrl=='assets'? AssetImage('assets/images/person.svg'): NetworkImage(data[index].imageUrl),
+                                           data[index].imageUrl=='assets'? AssetImage('assets/images/person.png'): NetworkImage(data[index].imageUrl),
                                         fit: BoxFit.cover),
                                   ),
                                 ),
