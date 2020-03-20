@@ -65,6 +65,7 @@ var video;
 
 
     return Scaffold(
+        backgroundColor: Color(0xffeef4f8),
       appBar: AppBar(
         title: Text('الفيديو'),
       ),

@@ -30,6 +30,7 @@ GlobalKey<RefreshIndicatorState> refreshKey;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: Color(0xffeef4f8),
         appBar: AppBar(
           title: Text('عاجل'),
           leading: Container(),

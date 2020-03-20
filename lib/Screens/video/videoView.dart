@@ -24,11 +24,9 @@ class _VideoViewState extends State<VideoView> {
   int currentPage = 1;
   ScrollPhysics physics;
   int lastPage = 1;
-GlobalKey<RefreshIndicatorState> refreshKey;
   @override
   void initState() {
     super.initState();
-    refreshKey = GlobalKey<RefreshIndicatorState>();
 
     fetchMore(currentPage);
 
@@ -65,13 +63,7 @@ GlobalKey<RefreshIndicatorState> refreshKey;
     });
   }
   
-  Future<Null> refreshAll() async {
-    await Future.delayed(Duration(seconds: 1));
-    setState(() {
-     refreshKey = GlobalKey<RefreshIndicatorState>();
-    });
-  }
-  
+
   fetch() {
     ApiService()
       ..getVideos(currentPage).then((value) {
@@ -112,17 +104,13 @@ GlobalKey<RefreshIndicatorState> refreshKey;
 
   @override
   Widget build(BuildContext context) {
-    return RefreshIndicator(
-      key: refreshKey,
-          onRefresh: () async { await refreshAll();},
-          child: PostsListBuilder(
+    return PostsListBuilder(
         scrollController: _scrollController,
         data: data,
         isLoading: isLoading,
         physics: physics,
         curruntPage: currentPage,
-      ),
-    );
+      );
   }
 
   @override
@@ -151,7 +139,7 @@ class Posts {
 }
 // end posts model map
 
-class PostsListBuilder extends StatelessWidget {
+class PostsListBuilder extends StatefulWidget {
   const PostsListBuilder({
     Key key,
     @required ScrollController scrollController,
@@ -169,204 +157,235 @@ class PostsListBuilder extends StatelessWidget {
   final int curruntPage;
 
   @override
+  _PostsListBuilderState createState() => _PostsListBuilderState();
+}
+
+class _PostsListBuilderState extends State<PostsListBuilder> {
+
+
+  Future<Null> refreshAll() async {
+    await Future.delayed(Duration(seconds: 1));
+    setState(() {
+     refreshKey = GlobalKey<RefreshIndicatorState>();
+    });
+  }
+  
+
+  GlobalKey<RefreshIndicatorState> refreshKey;
+  @override
+  void initState() {
+    super.initState();
+    refreshKey = GlobalKey<RefreshIndicatorState>();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: PreferredSize(
-            preferredSize: Size.fromHeight(0), // here the desired height
-            child: AppBar(leading: Container())),
-        body: ListView.builder(
-          controller: _scrollController,
-          physics: physics,
-          shrinkWrap: false,
-          itemCount: data.length + 1,
-          itemBuilder: (BuildContext context, int index) {
-            if (index == 0 && data.length > 0) {
-              return Column(
-                children: <Widget>[
-                  Container(
-                    height: 350,
-                    color: Colors.white,
-                    child: GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          PageTransition(
-                            type: PageTransitionType.downToUp,
-                            child: VideoPlay(
-                              title: data[index].title,
-                              description: data[index].description,
-                              path: data[index].path,
-                              type: data[index].type,
-                            ),
-                          ),
-                        );
-                      },
-                      child: Column(
-                        children: <Widget>[
-                          Stack(
-                            children: <Widget>[
-                              FadeAnimation(
-                                                      0.4, Column(
-                                                        mainAxisAlignment: MainAxisAlignment.start,
-                                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                                        children: <Widget>[
-                                                          FadeInImage.assetNetwork(
-                                                            height: 260,
-                                                            width: double.infinity,
-                                                            fit: BoxFit.cover,
-                                                            placeholder:
-                                                                'assets/images/loader.gif',
-                                                            image: data[index].imageUrl,
-                                                          ),
-                                                          Padding(
-                                                            padding: const EdgeInsets.symmetric(
-                                                                horizontal: 20, vertical: 10),
-                                                            child: Text(
-                                                              data[index].title,
-                                                              style: TextStyle(
-                                                                  fontFamily: "sst-arabic-bold",
-                                                                  fontSize: 23,
-                                                                  height: 1.3),
-                                                              textAlign: TextAlign.right,
-                                                              maxLines: 2,
-                                                            ),
-                                                          ),
-                                                        ],
-                                                      ),
-                              ),
-                              
-                              Positioned(
-                                left: 100,
-                                right: 100,
-                                top: 90,
-                                child: FadeAnimation(
-                                                        0.6, CircleAvatar(
-                                    child: Icon(
-                                      Icons.play_arrow,
-                                      size: 55,
-                                      color: Colors.white,
-                                    ),
-                                    radius: 40,
-                                    backgroundColor: Colors.white.withOpacity(0.2),
-                                  ),
-                                ),
-                              )
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                          SizedBox(height: 10,),
+            backgroundColor: Color(0xffeef4f8),
 
-                ],
-              );
-            } else {
-              if (index == data.length) {
-                   return Container(
-       height: 60,
-       child: Visibility(
-           visible: isLoading,
-           child: Column(
-             children: <Widget>[
-               SizedBox(height:0),
-               Container( child: CupertinoActivityIndicator()),
-               SizedBox(
-                 height: 40,
-                 width: MediaQuery.of(context).size.width,
-                 child: Center(
-                   child: Container(
-                       height: 400,
-                       child: Padding(
-                         padding: const EdgeInsets.all(0.0),
-                         child: Text('جاري تحميل المزيد ...',style: TextStyle(fontSize: 12),),
-                       )),
-                 ),
-               ),
-            
-             ],
-           )),
-     );
-              }
-              return FadeAnimation(
-                0.7,
-                Column(
-                  children: <Widget>[
-                    
-                    Container(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                      color: Colors.white,
-                      child: GestureDetector(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            PageTransition(
-                              type: PageTransitionType.downToUp,
-                              child: VideoPlay(
-                                  title: data[index].title,
-                                  description: data[index].description,
-                                  path: data[index].path,
-                                  type: data[index].type),
-                            ),
-                          );
-                        },
-                        child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
+        appBar:  AppBar(leading: Container(),title: Text('فيديو'),),
+        body: RefreshIndicator(
+           key: refreshKey,
+          onRefresh: () async { await refreshAll();},
+                  child: SingleChildScrollView(
+                                      child: ListView.builder(
+            controller: widget._scrollController,
+            physics: widget.physics,
+            shrinkWrap: true,
+            itemCount: widget.data.length + 1,
+            itemBuilder: (BuildContext context, int index) {
+              if (index == 0 && widget.data.length > 0) {
+                return Column(
+                    children: <Widget>[
+                      Container(
+                        height: 350,
+                        color: Colors.white,
+                        child: GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              PageTransition(
+                                type: PageTransitionType.downToUp,
+                                child: VideoPlay(
+                                  title: widget.data[index].title,
+                                  description: widget.data[index].description,
+                                  path: widget.data[index].path,
+                                  type: widget.data[index].type,
+                                ),
+                              ),
+                            );
+                          },
+                          child: Column(
                             children: <Widget>[
                               Stack(
                                 children: <Widget>[
-                                  Positioned(
-                                    child: FadeInImage.assetNetwork(
-                                      width: 160,
-                                      height: 105,
-                                      fit: BoxFit.cover,
-                                      placeholder:
-                                          'assets/images/loader.gif',
-                                      image: data[index].imageUrl,
-                                    ),
+                                  FadeAnimation(
+                                                          0.4, Column(
+                                                            mainAxisAlignment: MainAxisAlignment.start,
+                                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                                            children: <Widget>[
+                                                              FadeInImage.assetNetwork(
+                                                                height: 260,
+                                                                width: double.infinity,
+                                                                fit: BoxFit.cover,
+                                                                placeholder:
+                                                                    'assets/images/loader.gif',
+                                                                image: widget.data[index].imageUrl,
+                                                              ),
+                                                              Padding(
+                                                                padding: const EdgeInsets.symmetric(
+                                                                    horizontal: 20, vertical: 10),
+                                                                child: Text(
+                                                                  widget.data[index].title,
+                                                                  style: TextStyle(
+                                                                      fontFamily: "sst-arabic-bold",
+                                                                      fontSize: 23,
+                                                                      height: 1.3),
+                                                                  textAlign: TextAlign.right,
+                                                                  maxLines: 2,
+                                                                ),
+                                                              ),
+                                                            ],
+                                                          ),
                                   ),
+                                  
                                   Positioned(
-                                    left: 20,
-                                    right: 20,
-                                    top: 30,
-                                    child: CircleAvatar(
-                                      child: Icon(
-                                        Icons.play_arrow,
-                                        size: 20,
-                                        color: Colors.white,
+                                    left: 100,
+                                    right: 100,
+                                    top: 90,
+                                    child: FadeAnimation(
+                                                            0.6, CircleAvatar(
+                                        child: Icon(
+                                          Icons.play_arrow,
+                                          size: 55,
+                                          color: Colors.white,
+                                        ),
+                                        radius: 40,
+                                        backgroundColor: Colors.white.withOpacity(0.2),
                                       ),
-                                      radius: 20,
-                                      backgroundColor:
-                                          Colors.white.withOpacity(0.2),
                                     ),
                                   )
                                 ],
                               ),
-                              Spacer(),
-                              Container(
-                                  padding: EdgeInsets.only(right: 10, left: 0),
-                                  width:
-                                      MediaQuery.of(context).size.width - 200,
-                                  child: Text(
-                                    data[index].title,
-                                    style: TextStyle(
-                                        fontFamily: "SST-Arabic-Medium",
-                                        fontSize: 18,
-                                        height: 1.5),
-                                    textAlign: TextAlign.right,
-                                    maxLines: 3,
-                                  )),
-                            ]),
+                            ],
+                          ),
+                        ),
                       ),
+                              SizedBox(height: 10,),
+
+                    ],
+                );
+              } else {
+                if (index == widget.data.length) {
+                        return Container(
+               padding: EdgeInsets.only(top:20),
+                        height: 90,
+                        child: Visibility(
+                            visible: widget.isLoading,
+                            child: Column(
+                              children: <Widget>[
+                                SizedBox(height: 0),
+                                Container( height:20,width: 20,child: CircularProgressIndicator(strokeWidth: 3,)),
+                                SizedBox(
+                                  height: 40,
+                                  width: MediaQuery.of(context).size.width,
+                                  child: Center(
+                                    child: Container(
+                                        height: 400,
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(0.0),
+                                          child: Text(
+                                            'جاري تحميل المزيد ...',
+                                            style: TextStyle(fontSize: 12),
+                                          ),
+                                        )),
+                                  ),
+                                ),
+                              ],
+                            )),
+                      );
+                }
+                return FadeAnimation(
+                    0.7,
+                    Column(
+                      children: <Widget>[
+                        
+                        Container(
+                          padding:
+                              EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                          color: Colors.white,
+                          child: GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                PageTransition(
+                                  type: PageTransitionType.downToUp,
+                                  child: VideoPlay(
+                                      title: widget.data[index].title,
+                                      description: widget.data[index].description,
+                                      path: widget.data[index].path,
+                                      type: widget.data[index].type),
+                                ),
+                              );
+                            },
+                            child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  Stack(
+                                    children: <Widget>[
+                                      Positioned(
+                                        child: FadeInImage.assetNetwork(
+                                          width: 160,
+                                          height: 105,
+                                          fit: BoxFit.cover,
+                                          placeholder:
+                                              'assets/images/loader.gif',
+                                          image: widget.data[index].imageUrl,
+                                        ),
+                                      ),
+                                      Positioned(
+                                        left: 20,
+                                        right: 20,
+                                        top: 30,
+                                        child: CircleAvatar(
+                                          child: Icon(
+                                            Icons.play_arrow,
+                                            size: 20,
+                                            color: Colors.white,
+                                          ),
+                                          radius: 20,
+                                          backgroundColor:
+                                              Colors.white.withOpacity(0.2),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                  Spacer(),
+                                  Container(
+                                      padding: EdgeInsets.only(right: 10, left: 0),
+                                      width:
+                                          MediaQuery.of(context).size.width - 200,
+                                      child: Text(
+                                        widget.data[index].title,
+                                        style: TextStyle(
+                                            fontFamily: "SST-Arabic-Medium",
+                                            fontSize: 18,
+                                            height: 1.5),
+                                        textAlign: TextAlign.right,
+                                        maxLines: 3,
+                                      )),
+                                ]),
+                          ),
+                        ),
+                        SizedBox(height: 10),
+                      ],
                     ),
-                    SizedBox(height: 10),
-                  ],
-                ),
-              );
-            }
-          },
+                );
+              }
+            },
+          ),
+                  ),
         ));
   }
 }

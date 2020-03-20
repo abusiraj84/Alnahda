@@ -29,6 +29,9 @@ class _AlrayDetailState extends State<AlrayDetail> {
     print(widget.id);
 
     return Scaffold(
+            appBar: PreferredSize(
+        preferredSize: Size.fromHeight(0.0), // here the desired height
+        child: AppBar(leading: Container())),
       backgroundColor: Colors.grey.shade100,
       body: SafeArea(
           bottom: false,

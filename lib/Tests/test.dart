@@ -6,7 +6,9 @@ import 'package:alnahda/Screens/details/detailview.dart';
 import 'package:alnahda/Services/api_service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:vibrate/vibrate.dart';
 
 class Test extends StatefulWidget {
   Test({
@@ -63,6 +65,7 @@ class _TestState extends State<Test> {
       }
 
       print('TOP HOME');
+       HapticFeedback.mediumImpact();
     }
   }
 
@@ -70,6 +73,7 @@ class _TestState extends State<Test> {
 
   @override
   void initState() {
+    HapticFeedback.mediumImpact();
     refreshKey = GlobalKey<RefreshIndicatorState>();
     super.initState();
     _goUP = false;
@@ -81,6 +85,9 @@ class _TestState extends State<Test> {
 
   Future<Null> refreshAll() async {
     await Future.delayed(Duration(seconds: 1));
+    //vibrate();
+    HapticFeedback.mediumImpact();
+ 
     setState(() {
      refreshKey = GlobalKey<RefreshIndicatorState>();
     });
@@ -102,6 +109,7 @@ class _TestState extends State<Test> {
                   id: item['id'],
                   title: item['title']));
               isLoading = false;
+                HapticFeedback.mediumImpact();
             });
           }
         }
@@ -114,6 +122,7 @@ class _TestState extends State<Test> {
         if (this.mounted) {
           setState(() {
             isLoading = true;
+          
           });
         }
       }
@@ -246,7 +255,7 @@ class _TestState extends State<Test> {
                           child: Column(
                             children: <Widget>[
                               SizedBox(height: 0),
-                              Container(child: CupertinoActivityIndicator()),
+                              Container( height:20,width: 20,child: CircularProgressIndicator(strokeWidth: 3,)),
                               SizedBox(
                                 height: 40,
                                 width: MediaQuery.of(context).size.width,

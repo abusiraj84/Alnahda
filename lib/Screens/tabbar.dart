@@ -32,10 +32,9 @@ class _MyTabBarState extends State<MyTabBar> {
     return Scaffold(
       bottomNavigationBar: CupertinoTabBar(
         currentIndex: _currentIndex,
-       // backgroundColor: Color(0xff17202c),
+        backgroundColor: Colors.white,
         iconSize: 18,
-        activeColor:  Color(0xff17202c),
-        inactiveColor: Colors.grey.shade500,
+      
         
         
         items: [

@@ -18,11 +18,24 @@ class MyApp extends StatelessWidget {
     return BotToastInit(
       child: MaterialApp(
         navigatorObservers: [BotToastNavigatorObserver()],
+        darkTheme:ThemeData(
+            pageTransitionsTheme: PageTransitionsTheme(builders: {
+              TargetPlatform.android: CupertinoPageTransitionsBuilder(),
+              TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
+            }),
+             brightness: Brightness.light,
+             
+            fontFamily: "SST-Arabic-Medium",
+            
+            primaryColor: Color(0xff17202c),
+            accentColor: Color(0xff17202c)),
         theme: ThemeData(
             pageTransitionsTheme: PageTransitionsTheme(builders: {
               TargetPlatform.android: CupertinoPageTransitionsBuilder(),
               TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
             }),
+             brightness: Brightness.light,
+             
             fontFamily: "SST-Arabic-Medium",
             primaryColor: Color(0xff17202c),
             accentColor: Color(0xff17202c)),

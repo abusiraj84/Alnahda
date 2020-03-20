@@ -1,5 +1,6 @@
 import 'package:alnahda/Animations/fadeanimation.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../services/api_service.dart';
@@ -31,7 +32,8 @@ class _AlrayViewState extends State<AlrayView> {
     super.initState();
 
     fetchMore(page: currentPage, isRefresh: false);
-
+    HapticFeedback.mediumImpact();
+    
     _scrollController.addListener(() {
       if (this.mounted) {
         setState(() {
@@ -45,6 +47,7 @@ class _AlrayViewState extends State<AlrayView> {
             // ));
 
             fetchMore(page: currentPage, isRefresh: false);
+           
           }
           if (isStart) {
             print('start');
@@ -80,6 +83,7 @@ class _AlrayViewState extends State<AlrayView> {
               name: item['author']['name'],
             ));
             isLoading = false;
+             HapticFeedback.mediumImpact();
           });
         }
       }
@@ -169,9 +173,8 @@ class PostsListBuilder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: PreferredSize(
-            preferredSize: Size.fromHeight(0), // here the desired height
-            child: AppBar(leading: Container())),
+        backgroundColor: Color(0xffeef4f8),
+        appBar: AppBar(leading: Container(),title: Text("الرأي"),),
         body: RefreshIndicator(
           onRefresh: handleRefresh,
           child: ListView.builder(
@@ -180,34 +183,33 @@ class PostsListBuilder extends StatelessWidget {
             itemCount: data.length + 1,
             itemBuilder: (BuildContext context, int index) {
               if (index == data.length) {
-                return Container(
-                  height: 80,
-                  child: Visibility(
-                      visible: isLoading,
-                      child: Column(
-                        children: <Widget>[
-                          SizedBox(height: 0),
-                          Container(
-                              padding: EdgeInsets.only(top: 20),
-                              child: CupertinoActivityIndicator()),
-                          SizedBox(
-                            height: 40,
-                            width: MediaQuery.of(context).size.width,
-                            child: Center(
-                              child: Container(
-                                  height: 400,
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(0.0),
-                                    child: Text(
-                                      'جاري التحميل  ...',
-                                      style: TextStyle(fontSize: 12),
-                                    ),
-                                  )),
-                            ),
-                          ),
-                        ],
-                      )),
-                );
+             return Container(
+               padding: EdgeInsets.only(top:20),
+                      height: 90,
+                      child: Visibility(
+                          visible: isLoading,
+                          child: Column(
+                            children: <Widget>[
+                              SizedBox(height: 0),
+                              Container( height:20,width: 20,child: CircularProgressIndicator(strokeWidth: 3,)),
+                              SizedBox(
+                                height: 40,
+                                width: MediaQuery.of(context).size.width,
+                                child: Center(
+                                  child: Container(
+                                      height: 400,
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(0.0),
+                                        child: Text(
+                                          'جاري التحميل ...',
+                                          style: TextStyle(fontSize: 12),
+                                        ),
+                                      )),
+                                ),
+                              ),
+                            ],
+                          )),
+                    );
               }
               return InkWell(
                 onTap: () {
