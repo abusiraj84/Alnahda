@@ -187,10 +187,9 @@ class _PostsListBuilderState extends State<PostsListBuilder> {
         body: RefreshIndicator(
            key: refreshKey,
           onRefresh: () async { await refreshAll();},
-                  child: SingleChildScrollView(
-                                      child: ListView.builder(
+                  child: ListView.builder(
             controller: widget._scrollController,
-            physics: widget.physics,
+            physics: ClampingScrollPhysics(),
             shrinkWrap: true,
             itemCount: widget.data.length + 1,
             itemBuilder: (BuildContext context, int index) {
@@ -220,33 +219,33 @@ class _PostsListBuilderState extends State<PostsListBuilder> {
                               Stack(
                                 children: <Widget>[
                                   FadeAnimation(
-                                                          0.4, Column(
-                                                            mainAxisAlignment: MainAxisAlignment.start,
-                                                            crossAxisAlignment: CrossAxisAlignment.start,
-                                                            children: <Widget>[
-                                                              FadeInImage.assetNetwork(
-                                                                height: 260,
-                                                                width: double.infinity,
-                                                                fit: BoxFit.cover,
-                                                                placeholder:
-                                                                    'assets/images/loader.gif',
-                                                                image: widget.data[index].imageUrl,
-                                                              ),
-                                                              Padding(
-                                                                padding: const EdgeInsets.symmetric(
-                                                                    horizontal: 20, vertical: 10),
-                                                                child: Text(
-                                                                  widget.data[index].title,
-                                                                  style: TextStyle(
-                                                                      fontFamily: "sst-arabic-bold",
-                                                                      fontSize: 23,
-                                                                      height: 1.3),
-                                                                  textAlign: TextAlign.right,
-                                                                  maxLines: 2,
-                                                                ),
-                                                              ),
-                                                            ],
-                                                          ),
+                                      0.4, Column(
+                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: <Widget>[
+                                          FadeInImage.assetNetwork(
+                                            height: 260,
+                                            width: double.infinity,
+                                            fit: BoxFit.cover,
+                                            placeholder:
+                                                'assets/images/loader.gif',
+                                            image: widget.data[index].imageUrl,
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.symmetric(
+                                                horizontal: 20, vertical: 10),
+                                            child: Text(
+                                              widget.data[index].title,
+                                              style: TextStyle(
+                                                  fontFamily: "sst-arabic-bold",
+                                                  fontSize: 23,
+                                                  height: 1.3),
+                                              textAlign: TextAlign.right,
+                                              maxLines: 2,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
                                   ),
                                   
                                   Positioned(
@@ -254,15 +253,15 @@ class _PostsListBuilderState extends State<PostsListBuilder> {
                                     right: 100,
                                     top: 90,
                                     child: FadeAnimation(
-                                                            0.6, CircleAvatar(
-                                        child: Icon(
-                                          Icons.play_arrow,
-                                          size: 55,
-                                          color: Colors.white,
-                                        ),
-                                        radius: 40,
-                                        backgroundColor: Colors.white.withOpacity(0.2),
-                                      ),
+                                        0.6, CircleAvatar(
+                    child: Icon(
+                      Icons.play_arrow,
+                      size: 55,
+                      color: Colors.white,
+                    ),
+                    radius: 40,
+                    backgroundColor: Colors.white.withOpacity(0.2),
+                  ),
                                     ),
                                   )
                                 ],
@@ -291,14 +290,14 @@ class _PostsListBuilderState extends State<PostsListBuilder> {
                                   width: MediaQuery.of(context).size.width,
                                   child: Center(
                                     child: Container(
-                                        height: 400,
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(0.0),
-                                          child: Text(
-                                            'جاري تحميل المزيد ...',
-                                            style: TextStyle(fontSize: 12),
-                                          ),
-                                        )),
+                    height: 400,
+                    child: Padding(
+                      padding: const EdgeInsets.all(0.0),
+                      child: Text(
+                        'جاري تحميل المزيد ...',
+                        style: TextStyle(fontSize: 12),
+                      ),
+                    )),
                                   ),
                                 ),
                               ],
@@ -321,10 +320,10 @@ class _PostsListBuilderState extends State<PostsListBuilder> {
                                 PageTransition(
                                   type: PageTransitionType.downToUp,
                                   child: VideoPlay(
-                                      title: widget.data[index].title,
-                                      description: widget.data[index].description,
-                                      path: widget.data[index].path,
-                                      type: widget.data[index].type),
+                  title: widget.data[index].title,
+                  description: widget.data[index].description,
+                  path: widget.data[index].path,
+                  type: widget.data[index].type),
                                 ),
                               );
                             },
@@ -334,47 +333,47 @@ class _PostsListBuilderState extends State<PostsListBuilder> {
                                 children: <Widget>[
                                   Stack(
                                     children: <Widget>[
-                                      Positioned(
-                                        child: FadeInImage.assetNetwork(
-                                          width: 160,
-                                          height: 105,
-                                          fit: BoxFit.cover,
-                                          placeholder:
-                                              'assets/images/loader.gif',
-                                          image: widget.data[index].imageUrl,
-                                        ),
-                                      ),
-                                      Positioned(
-                                        left: 20,
-                                        right: 20,
-                                        top: 30,
-                                        child: CircleAvatar(
-                                          child: Icon(
-                                            Icons.play_arrow,
-                                            size: 20,
-                                            color: Colors.white,
-                                          ),
-                                          radius: 20,
-                                          backgroundColor:
-                                              Colors.white.withOpacity(0.2),
-                                        ),
-                                      )
+                  Positioned(
+                    child: FadeInImage.assetNetwork(
+                      width: 160,
+                      height: 105,
+                      fit: BoxFit.cover,
+                      placeholder:
+                          'assets/images/loader.gif',
+                      image: widget.data[index].imageUrl,
+                    ),
+                  ),
+                  Positioned(
+                    left: 20,
+                    right: 20,
+                    top: 30,
+                    child: CircleAvatar(
+                      child: Icon(
+                        Icons.play_arrow,
+                        size: 20,
+                        color: Colors.white,
+                      ),
+                      radius: 20,
+                      backgroundColor:
+                          Colors.white.withOpacity(0.2),
+                    ),
+                  )
                                     ],
                                   ),
                                   Spacer(),
                                   Container(
-                                      padding: EdgeInsets.only(right: 10, left: 0),
-                                      width:
-                                          MediaQuery.of(context).size.width - 200,
-                                      child: Text(
-                                        widget.data[index].title,
-                                        style: TextStyle(
-                                            fontFamily: "SST-Arabic-Medium",
-                                            fontSize: 18,
-                                            height: 1.5),
-                                        textAlign: TextAlign.right,
-                                        maxLines: 3,
-                                      )),
+                  padding: EdgeInsets.only(right: 10, left: 0),
+                  width:
+                      MediaQuery.of(context).size.width - 200,
+                  child: Text(
+                    widget.data[index].title,
+                    style: TextStyle(
+                        fontFamily: "SST-Arabic-Medium",
+                        fontSize: 18,
+                        height: 1.5),
+                    textAlign: TextAlign.right,
+                    maxLines: 3,
+                  )),
                                 ]),
                           ),
                         ),
@@ -385,7 +384,6 @@ class _PostsListBuilderState extends State<PostsListBuilder> {
               }
             },
           ),
-                  ),
         ));
   }
 }

@@ -151,7 +151,7 @@ class Posts {
 }
 // end posts model map
 
-class PostsListBuilder extends StatelessWidget {
+class PostsListBuilder extends StatefulWidget {
   const PostsListBuilder(
       {Key key,
       @required ScrollController scrollController,
@@ -171,23 +171,28 @@ class PostsListBuilder extends StatelessWidget {
   final Function handleRefresh;
 
   @override
+  _PostsListBuilderState createState() => _PostsListBuilderState();
+}
+
+class _PostsListBuilderState extends State<PostsListBuilder> {
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Color(0xffeef4f8),
         appBar: AppBar(leading: Container(),title: Text("الرأي"),),
         body: RefreshIndicator(
-          onRefresh: handleRefresh,
+          onRefresh: widget.handleRefresh,
           child: ListView.builder(
-            controller: _scrollController,
+            controller: widget._scrollController,
             shrinkWrap: false,
-            itemCount: data.length + 1,
+            itemCount: widget.data.length + 1,
             itemBuilder: (BuildContext context, int index) {
-              if (index == data.length) {
+              if (index == widget.data.length) {
              return Container(
                padding: EdgeInsets.only(top:20),
                       height: 90,
                       child: Visibility(
-                          visible: isLoading,
+                          visible: widget.isLoading,
                           child: Column(
                             children: <Widget>[
                               SizedBox(height: 0),
@@ -218,7 +223,7 @@ class PostsListBuilder extends StatelessWidget {
                       PageTransition(
                           type: PageTransitionType.downToUp,
                           child: AlrayDetail(
-                              data[index].id, data[index].imageUrl)));
+                              widget.data[index].id, widget.data[index].imageUrl)));
                 },
                 child: FadeAnimation(
                   0.5,
@@ -245,11 +250,11 @@ class PostsListBuilder extends StatelessWidget {
                                     border: Border.all(
                                         color: Colors.red.shade800, width: 4),
                                     image: DecorationImage(
-                                        image: data[index].imageUrl == 'assets'
+                                        image: widget.data[index].imageUrl == 'assets'
                                             ? AssetImage(
                                                 'assets/images/person.png')
                                             : NetworkImage(
-                                                data[index].imageUrl),
+                                                widget.data[index].imageUrl),
                                         fit: BoxFit.cover),
                                   ),
                                 ),
@@ -263,7 +268,7 @@ class PostsListBuilder extends StatelessWidget {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: <Widget>[
-                                      Text(data[index].title,
+                                      Text(widget.data[index].title,
                                           style: TextStyle(
                                               fontFamily: "sst-arabic-bold",
                                               fontSize: 14,
@@ -274,7 +279,7 @@ class PostsListBuilder extends StatelessWidget {
                                         height: 10,
                                       ),
                                       Text(
-                                        data[index].name,
+                                        widget.data[index].name,
                                         style: TextStyle(
                                             fontFamily: "sst-roman",
                                             fontSize: 13,
