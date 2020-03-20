@@ -1,4 +1,5 @@
 import 'package:alnahda/Animations/fadeanimation.dart';
+import 'package:flutter/services.dart';
 import 'package:share/share.dart';
 
 import '../../services/api_service.dart';
@@ -95,6 +96,7 @@ class _AlrayDetailState extends State<AlrayDetail> {
                                                 widget.id.toString(),
                                             subject: content['data']['details']
                                                 ['title']);
+                                                HapticFeedback.mediumImpact();
                                       },
                                       child: CircleAvatar(
                                         backgroundColor: Color(0xff17202c),
@@ -117,6 +119,7 @@ class _AlrayDetailState extends State<AlrayDetail> {
                                 ),
                                 InkWell(
                                   onTap: () {
+                                    HapticFeedback.mediumImpact();
                                     Navigator.pop(context);
                                   },
                                   child: CircleAvatar(

@@ -1,3 +1,5 @@
+import 'package:flutter/services.dart';
+
 import '../Services/api_service.dart';
 import './categories/CategorieView.dart';
 import 'package:flutter/material.dart';
@@ -22,6 +24,7 @@ class _MoreState extends State<More> {
   void initState() {
     super.initState();
     _apiService = ApiService();
+    HapticFeedback.mediumImpact();
   }
 
   @override
@@ -61,6 +64,7 @@ class _MoreState extends State<More> {
                       PageTransition(
                           type: PageTransitionType.downToUp,
                           child: ContactUsView()));
+                          HapticFeedback.mediumImpact();
                 },
                 child: Padding(
                   padding: const EdgeInsets.fromLTRB(10, 10, 20, 0),
@@ -149,6 +153,7 @@ class CatList extends StatelessWidget {
             PageTransition(
                 type: PageTransitionType.downToUp,
                 child: CategorieView(title: title, catId: catId)));
+                
       },
       child: Padding(
         padding: const EdgeInsets.fromLTRB(10, 10, 20, 0),

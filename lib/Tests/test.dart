@@ -146,6 +146,7 @@ class _TestState extends State<Test> {
           ? FloatingActionButton(
               backgroundColor: Color(0xff17202c),
               onPressed: () {
+                HapticFeedback.mediumImpact();
                 _controller.animateTo(_controller.offset - 1600,
                     curve: Curves.linear,
                     duration: Duration(milliseconds: 500));
@@ -205,11 +206,14 @@ class _TestState extends State<Test> {
                         color: Colors.white,
                         child: GestureDetector(
                           onTap: () {
+                            HapticFeedback.mediumImpact();
+                      
                             Navigator.push(
                                 context,
                                 PageTransition(
                                     type: PageTransitionType.downToUp,
                                     child: DetailView(data[index].id)));
+                                  
                           },
                           child: FadeAnimation(
                             0.5,
@@ -285,11 +289,13 @@ class _TestState extends State<Test> {
                           color: Colors.white,
                           child: GestureDetector(
                             onTap: () {
+                            HapticFeedback.mediumImpact();
                               Navigator.push(
                                   context,
                                   PageTransition(
                                       type: PageTransitionType.downToUp,
                                       child: DetailView(data[index].id)));
+                                     
                             },
                             child: Row(
                                 mainAxisAlignment: MainAxisAlignment.start,

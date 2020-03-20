@@ -2,6 +2,7 @@ import 'package:alnahda/Services/api_service.dart';
 import 'package:alnahda/model/contactUs.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class ContactUsView extends StatefulWidget {
   ContactUsView({Key key}) : super(key: key);
@@ -118,7 +119,7 @@ class _ContactUsViewState extends State<ContactUsView> {
                             _controllerSubject.text,
                             _controllerContent.text);
                         ApiService()
-                          ..contactUs(c).then((value) => BotToast.showSimpleNotification(title: "تم ارسال الرسالة بنجاح ❤"));
+                          ..contactUs(c).then((value) {BotToast.showSimpleNotification(title: "تم ارسال الرسالة بنجاح ❤");HapticFeedback.heavyImpact();});
                            _controllerName.clear();
                            _controllerEmail.clear();
                            _controllerSubject.clear();

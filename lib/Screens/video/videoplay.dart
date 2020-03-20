@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 
 class VideoPlay extends StatefulWidget {
@@ -23,6 +24,7 @@ var video;
 
 @override
   void initState() {
+    HapticFeedback.mediumImpact();
     super.initState();
  RegExp regExp = new RegExp(r'.*(?:(?:youtu\.be\/|youtu\.be\/|v\/|vi\/|u\/\w\/|embed\/)|(?:(?:watch)?\?v(?:i)?=|\&v(?:i)?=))([^#\&\?]*).*',
     caseSensitive: false,

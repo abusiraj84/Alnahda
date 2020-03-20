@@ -1,5 +1,6 @@
 import 'package:alnahda/Animations/fadeanimation.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/services.dart';
 
 import '../../services/api_service.dart';
 import 'package:flutter/material.dart';
@@ -79,6 +80,7 @@ class _VideoViewState extends State<VideoView> {
                 type: item['type'],
               ));
               isLoading = false;
+              HapticFeedback.mediumImpact();
             });
           }
         }
@@ -91,6 +93,7 @@ class _VideoViewState extends State<VideoView> {
         if (this.mounted) {
           setState(() {
             isLoading = true;
+            HapticFeedback.mediumImpact();
           });
         }
       }
@@ -165,6 +168,7 @@ class _PostsListBuilderState extends State<PostsListBuilder> {
 
   Future<Null> refreshAll() async {
     await Future.delayed(Duration(seconds: 1));
+    HapticFeedback.mediumImpact();
     setState(() {
      refreshKey = GlobalKey<RefreshIndicatorState>();
     });
@@ -176,6 +180,7 @@ class _PostsListBuilderState extends State<PostsListBuilder> {
   void initState() {
     super.initState();
     refreshKey = GlobalKey<RefreshIndicatorState>();
+    HapticFeedback.mediumImpact();
   }
 
   @override
@@ -201,6 +206,7 @@ class _PostsListBuilderState extends State<PostsListBuilder> {
                         color: Colors.white,
                         child: GestureDetector(
                           onTap: () {
+                            HapticFeedback.mediumImpact();
                             Navigator.push(
                               context,
                               PageTransition(

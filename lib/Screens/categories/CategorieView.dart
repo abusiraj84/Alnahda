@@ -1,6 +1,7 @@
 import 'package:alnahda/Animations/fadeanimation.dart';
 import 'package:alnahda/Screens/details/detailview.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/services.dart';
 
 import '../../services/api_service.dart';
 import 'package:flutter/material.dart';
@@ -70,6 +71,7 @@ class _CategorieViewState extends State<CategorieView> {
               title: item['title'],
           ));
           isLoading = false;
+          HapticFeedback.mediumImpact();
         });}
       }
     });
@@ -81,6 +83,7 @@ class _CategorieViewState extends State<CategorieView> {
         if (this.mounted) {
         setState(() {
           isLoading = true;
+          HapticFeedback.mediumImpact();
         });}
       }
     } else {
@@ -142,6 +145,7 @@ class _PostsListBuilderState extends State<PostsListBuilder> {
   GlobalKey<RefreshIndicatorState> refreshKey;
  Future<Null> refreshAll() async {
     await Future.delayed(Duration(seconds: 1));
+    HapticFeedback.mediumImpact();
     setState(() {
      refreshKey = GlobalKey<RefreshIndicatorState>();
     });
@@ -153,6 +157,7 @@ class _PostsListBuilderState extends State<PostsListBuilder> {
   void initState() {
     super.initState();
          refreshKey = GlobalKey<RefreshIndicatorState>();
+         HapticFeedback.mediumImpact();
 
   }
   @override
@@ -163,136 +168,136 @@ class _PostsListBuilderState extends State<PostsListBuilder> {
       body:   RefreshIndicator(
          key: refreshKey,
           onRefresh: () async { await refreshAll();},
-              child: SingleChildScrollView(
-          child: ListView.builder(
-              controller: widget._scrollController,
-              physics: widget.physics,
-              shrinkWrap: true,
-              itemCount: widget.data.length + 1,
-              itemBuilder: (BuildContext context, int index) {
+              child: ListView.builder(
+                  controller: widget._scrollController,
+                  physics: widget.physics,
+                  shrinkWrap: true,
+                  itemCount: widget.data.length + 1,
+                  itemBuilder: (BuildContext context, int index) {
         if (index == 0 && widget.data.length > 0) {
-          return Padding(
-           padding: const EdgeInsets.only(bottom: 10,top: 0),
-            child: Container(
-                height: 350,
-                color: Colors.white,
-                child: GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        PageTransition(
-                            type: PageTransitionType.downToUp,
-                            child: DetailView(widget.data[index].id)));
-                  },
-                  child: FadeAnimation(
-                                       0.5, Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        FadeInImage.assetNetwork(
-                          height: 260,
-                          width: double.infinity,
-                          fit: BoxFit.cover,
-                          placeholder: 'assets/images/loader.gif',
-                          image: widget.data[index].imageUrl,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 20, vertical: 10),
-                          child: Text(
-                            widget.data[index].title,
-                            style: TextStyle(
-                                fontFamily: "sst-arabic-bold",
-                                fontSize: 23,
-                                height: 1.3),
-                            textAlign: TextAlign.right,
-                            maxLines: 2,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                )),
-          );
-        } else {
-          if (index == widget.data.length) {
-                 return Container(
-             padding: EdgeInsets.only(top:20),
-                    height: 90,
-                    child: Visibility(
-                        visible: widget.isLoading,
-                        child: Column(
+              return Padding(
+               padding: const EdgeInsets.only(bottom: 10,top: 0),
+                child: Container(
+                    height: 350,
+                    color: Colors.white,
+                    child: GestureDetector(
+                      onTap: () {
+                        HapticFeedback.mediumImpact();
+                        Navigator.push(
+                            context,
+                            PageTransition(
+                                type: PageTransitionType.downToUp,
+                                child: DetailView(widget.data[index].id)));
+                      },
+                      child: FadeAnimation(
+                                           0.5, Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
-                            SizedBox(height: 0),
-                            Container( height:20,width: 20,child: CircularProgressIndicator(strokeWidth: 3,)),
-                            SizedBox(
-                              height: 40,
-                              width: MediaQuery.of(context).size.width,
-                              child: Center(
-                                child: Container(
-                                    height: 400,
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(0.0),
-                                      child: Text(
-                                        'جاري تحميل المزيد ...',
-                                        style: TextStyle(fontSize: 12),
-                                      ),
-                                    )),
-                              ),
+                            FadeInImage.assetNetwork(
+                              height: 260,
+                              width: double.infinity,
+                              fit: BoxFit.cover,
+                              placeholder: 'assets/images/loader.gif',
+                              image: widget.data[index].imageUrl,
                             ),
-                          ],
-                        )),
-                  );
-          }
-          return FadeAnimation(
-                        0.6, Column(
-              children: <Widget>[
-                Container(
-                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                  color: Colors.white,
-                  child: GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          PageTransition(
-                              type: PageTransitionType.downToUp,
-                              child: DetailView(widget.data[index].id)));
-                    },
-                    child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          FadeInImage.assetNetwork(
-                            width: 160,
-                            height: 105,
-                            fit: BoxFit.cover,
-                            placeholder: 'assets/images/loader.gif',
-                            image: widget.data[index].imageUrl,
-                          ),
-                          Spacer(),
-                          Container(
-                              padding: EdgeInsets.only(right: 10, left: 0),
-                              width: MediaQuery.of(context).size.width - 200,
+                            Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 20, vertical: 10),
                               child: Text(
                                 widget.data[index].title,
                                 style: TextStyle(
-                                    fontFamily: "SST-Arabic-Medium",
-                                    fontSize: 18,
-                                    height: 1.5),
+                                    fontFamily: "sst-arabic-bold",
+                                    fontSize: 23,
+                                    height: 1.3),
                                 textAlign: TextAlign.right,
-                                maxLines: 3,
-                              )),
-                        ]),
-                  ),
+                                maxLines: 2,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    )),
+              );
+        } else {
+              if (index == widget.data.length) {
+                     return Container(
+                 padding: EdgeInsets.only(top:20),
+                        height: 90,
+                        child: Visibility(
+                            visible: widget.isLoading,
+                            child: Column(
+                              children: <Widget>[
+                                SizedBox(height: 0),
+                                Container( height:20,width: 20,child: CircularProgressIndicator(strokeWidth: 3,)),
+                                SizedBox(
+                                  height: 40,
+                                  width: MediaQuery.of(context).size.width,
+                                  child: Center(
+                                    child: Container(
+                                        height: 400,
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(0.0),
+                                          child: Text(
+                                            'جاري تحميل المزيد ...',
+                                            style: TextStyle(fontSize: 12),
+                                          ),
+                                        )),
+                                  ),
+                                ),
+                              ],
+                            )),
+                      );
+              }
+              return FadeAnimation(
+                            0.6, Column(
+                  children: <Widget>[
+                    Container(
+                      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                      color: Colors.white,
+                      child: GestureDetector(
+                        onTap: () {
+                          HapticFeedback.mediumImpact();
+                          Navigator.push(
+                              context,
+                              PageTransition(
+                                  type: PageTransitionType.downToUp,
+                                  child: DetailView(widget.data[index].id)));
+                        },
+                        child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              FadeInImage.assetNetwork(
+                                width: 160,
+                                height: 105,
+                                fit: BoxFit.cover,
+                                placeholder: 'assets/images/loader.gif',
+                                image: widget.data[index].imageUrl,
+                              ),
+                              Spacer(),
+                              Container(
+                                  padding: EdgeInsets.only(right: 10, left: 0),
+                                  width: MediaQuery.of(context).size.width - 200,
+                                  child: Text(
+                                    widget.data[index].title,
+                                    style: TextStyle(
+                                        fontFamily: "SST-Arabic-Medium",
+                                        fontSize: 18,
+                                        height: 1.5),
+                                    textAlign: TextAlign.right,
+                                    maxLines: 3,
+                                  )),
+                            ]),
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                  ],
                 ),
-                SizedBox(height: 10),
-              ],
-            ),
-          );
+              );
         }
-              },
-            ),
-          ),
+                  },
+                ),
       ),
     );
         

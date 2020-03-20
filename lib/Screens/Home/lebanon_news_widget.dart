@@ -1,3 +1,5 @@
+import 'package:flutter/services.dart';
+
 import '../../services/api_service.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
@@ -54,6 +56,7 @@ class _LebanonNewsState extends State<LebanonNews> {
                             PageTransition(
                                 type: PageTransitionType.downToUp,
                                 child: DetailView( content['data']['widget_1']['posts'][index]['id'])));
+                                HapticFeedback.mediumImpact();
                       },
                       child: Column(
                         children: <Widget>[

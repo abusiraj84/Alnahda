@@ -1,4 +1,5 @@
 import 'package:alnahda/Animations/fadeanimation.dart';
+import 'package:flutter/services.dart';
 
 import '../../Screens/details/detailview.dart';
 import '../../services/api_service.dart';
@@ -37,12 +38,14 @@ class _FeaturedViewState extends State<FeaturedView> {
                     color: Colors.white,
                     child: GestureDetector(
                       onTap: () {
+
                         Navigator.push(
                             context,
                             PageTransition(
                                 type: PageTransitionType.downToUp,
                                 child: DetailView(
                                     content['data']['featured'][0]['id'])));
+                                    HapticFeedback.mediumImpact();
                       },
                       child: FadeAnimation(
                                              0.5, Column(
@@ -117,6 +120,7 @@ class _FeaturedViewState extends State<FeaturedView> {
                                     type: PageTransitionType.downToUp,
                                     child: DetailView(content['data']['featured']
                                         [index + 1]['id'])));
+                                        HapticFeedback.mediumImpact();
                           },
                           child: Container(
                             padding: EdgeInsets.symmetric(

@@ -218,6 +218,7 @@ class _PostsListBuilderState extends State<PostsListBuilder> {
               }
               return InkWell(
                 onTap: () {
+                  HapticFeedback.mediumImpact();
                   Navigator.push(
                       context,
                       PageTransition(

@@ -50,7 +50,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         home: FadeAnimation(
                   0.5, SplashScreen(
-            seconds: 4,
+            seconds: 2,
             navigateAfterSeconds: MyTabBar(),
             backgroundColor: Color(0xFF17202C),
             photoSize: 200,

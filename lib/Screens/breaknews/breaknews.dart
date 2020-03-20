@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'break_news_widget.dart';
 
@@ -17,12 +18,15 @@ GlobalKey<RefreshIndicatorState> refreshKey;
   void initState() {
     refreshKey = GlobalKey<RefreshIndicatorState>();
     super.initState();
+    HapticFeedback.mediumImpact();
    
   }
   Future<Null> refreshAll() async {
     await Future.delayed(Duration(seconds: 1));
+    
     setState(() {
      refreshKey = GlobalKey<RefreshIndicatorState>();
+     HapticFeedback.mediumImpact();
     });
   }
 
