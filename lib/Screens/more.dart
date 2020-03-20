@@ -50,8 +50,9 @@ class _MoreState extends State<More> {
               child: Image.asset('assets/images/appbarlogo.png',
                   width: 163.0, height: 67.0),
             ),
+             
             Container(
-              color: Colors.grey.withOpacity(0.3),
+          
               child: InkWell(
                 onTap: () {
                   Navigator.push(
@@ -61,7 +62,7 @@ class _MoreState extends State<More> {
                           child: ContactUsView()));
                 },
                 child: Padding(
-                  padding: const EdgeInsets.fromLTRB(10, 10, 20, 10),
+                  padding: const EdgeInsets.fromLTRB(10, 10, 20, 0),
                   child: Column(
                     children: <Widget>[
                       Row(
@@ -78,49 +79,15 @@ class _MoreState extends State<More> {
                           )
                         ],
                       ),
+                      Divider()
                     ],
                   ),
                 ),
               ),
             ),
-            catsBuilder(),
-
-            // CatList(
-            //   img: 'assets/images/file.png',
-            //   title: "أخبار",
-            // ),
-            // CatList(
-            //   img: 'assets/images/leb.png',
-            //   title: "أخبار لبنان",
-            // ),
-            // CatList(
-            //   img: 'assets/images/meeting.png',
-            //   title: "تقارير وحوارات",
-            // ),
-            // CatList(
-            //   img: 'assets/images/jet.png',
-            //   title: "الرصد العسكري",
-            // ),
-            // CatList(
-            //   img: 'assets/images/atom.png',
-            //   title: "علوم",
-            // ),
-            // CatList(
-            //   img: 'assets/images/misc.png',
-            //   title: "منوعات",
-            // ),
-            // CatList(
-            //   img: 'assets/images/music.png',
-            //   title: "فن ومشاهير",
-            // ),
-            // CatList(
-            //   img: 'assets/images/sport.png',
-            //   title: "رياضة",
-            // ),
-            // CatList(
-            //   img: 'assets/images/box.png',
-            //   title: "ثقافة وأدب",
-            // ),
+          
+ catsBuilder(),
+            
         ],
       ),
           )),
@@ -134,20 +101,25 @@ class _MoreState extends State<More> {
         if (snapshot.hasData) {
           Map content = snapshot.data;
 
-          return Container(
-            height: MediaQuery.of(context).size.height - 90 - 193,
-            child: ListView.builder(
-              itemCount: content['data']['menu'].length,
-              scrollDirection: Axis.vertical,
-              itemBuilder: (BuildContext context, int index) {
-                // print(content['data']['menu'][index]['title']);
-                return CatList(
-                  img: content['data']['menu'][index]['custom'],
-                  title: content['data']['menu'][index]['title'],
-                  catId: content['data']['menu'][index]['id'],
-                );
-              },
-            ),
+          return SingleChildScrollView(
+                      child: Column(
+                        children: <Widget>[
+                          ListView.builder(
+                            itemCount: content['data']['menu'].length,
+                            scrollDirection: Axis.vertical,
+                           shrinkWrap: true,
+                            physics: ClampingScrollPhysics(),
+                            itemBuilder: (BuildContext context, int index) {
+                              // print(content['data']['menu'][index]['title']);
+                              return CatList(
+                                img: content['data']['menu'][index]['custom'],
+                                title: content['data']['menu'][index]['title'],
+                                catId: content['data']['menu'][index]['id'],
+                              );
+                            },
+                          ),
+                        ],
+                      ),
           );
         } else {
            return Container(
@@ -184,7 +156,7 @@ class CatList extends StatelessWidget {
             Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                SvgPicture.network(img, width: 20.0, height: 20.0),
+                SvgPicture.network(img, width: 20.0, height: 20.0,headers: null,color: null,),
                 SizedBox(
                   width: 10,
                 ),

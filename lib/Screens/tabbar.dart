@@ -1,13 +1,13 @@
 
+import 'package:alnahda/Screens/alray/AlrayView.dart';
 import 'package:alnahda/Screens/video/videoView.dart';
 import 'package:alnahda/Tests/test.dart';
 import 'package:flutter/cupertino.dart';
 
-import 'Home/HomeView.dart';
-import 'alray/AlrayView.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sfsymbols/flutter_sfsymbols.dart';
 
+import 'alray/alrayTest.dart';
 import 'breaknews/breaknews.dart';
 import 'more.dart';
 
@@ -23,7 +23,7 @@ class _MyTabBarState extends State<MyTabBar> {
   final tabs = [
     Test(),
     BreakNews(),
-    AlrayView(),
+    AlrayPostsView(),
     VideoView(),
     More(),
   ];
