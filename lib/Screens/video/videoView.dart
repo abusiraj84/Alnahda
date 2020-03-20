@@ -189,8 +189,6 @@ class _PostsListBuilderState extends State<PostsListBuilder> {
           onRefresh: () async { await refreshAll();},
                   child: ListView.builder(
             controller: widget._scrollController,
-            physics: ClampingScrollPhysics(),
-            shrinkWrap: true,
             itemCount: widget.data.length + 1,
             itemBuilder: (BuildContext context, int index) {
               if (index == 0 && widget.data.length > 0) {
