@@ -101,7 +101,7 @@ class ApiService {
     http.Response response = await http.get(myUrl);
 
     if (response.statusCode == 200) {
-       print(json.decode(response.body));
+      //  print(json.decode(response.body));
       return json.decode(response.body);
      
     } else {
@@ -120,7 +120,6 @@ class ApiService {
             return false;
           }
         }
-
 
       String userToJson(ContactUs data) => json.encode(data.toJson());
 
