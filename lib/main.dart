@@ -1,6 +1,5 @@
 import 'package:alnahda/Animations/fadeanimation.dart';
 import 'package:alnahda/Screens/tabbar.dart';
-import 'package:alnahda/Tests/test.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';

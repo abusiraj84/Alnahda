@@ -8,10 +8,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:vibrate/vibrate.dart';
 
-class Test extends StatefulWidget {
-  Test({
+class Home extends StatefulWidget {
+  Home({
     Key key,
     ScrollController scrollController,
     this.data,
@@ -28,10 +27,10 @@ class Test extends StatefulWidget {
   final ScrollPhysics physics;
   final int curruntPage;
   @override
-  _TestState createState() => _TestState();
+  _HomeState createState() => _HomeState();
 }
 
-class _TestState extends State<Test> {
+class _HomeState extends State<Home> {
   GlobalKey<RefreshIndicatorState> refreshKey;
   ApiService _apiService;
   ScrollController _scrollController = ScrollController();

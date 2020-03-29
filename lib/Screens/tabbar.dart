@@ -1,12 +1,12 @@
 
 import 'package:alnahda/Screens/alray/AlrayView.dart';
 import 'package:alnahda/Screens/video/videoView.dart';
-import 'package:alnahda/Tests/test.dart';
 import 'package:flutter/cupertino.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_sfsymbols/flutter_sfsymbols.dart';
 
+import 'Home/Home.dart';
 import 'breaknews/breaknews.dart';
 import 'more.dart';
 
@@ -20,7 +20,8 @@ class MyTabBar extends StatefulWidget {
 class _MyTabBarState extends State<MyTabBar> {
   int _currentIndex = 0;
   final tabs = [
-    Test(),
+    
+    Home(),
     BreakNews(),
     AlrayView(),
     VideoView(),
