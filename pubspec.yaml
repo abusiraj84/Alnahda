@@ -46,13 +46,7 @@ dependencies:
   flutter_svg: ^0.17.3+1
   bot_toast: ^2.3.0
   splashscreen: ^1.2.0
-<<<<<<< HEAD
 
-=======
-  vibrate: ^0.0.4 
-  connectivity: ^0.4.8+2
-  flutter_launcher_icons: ^0.7.4
->>>>>>> dbf9b9c26f883591ed89baf012d5bc4b8c313d89
 
 
 
