@@ -48,6 +48,7 @@ dependencies:
   splashscreen: ^1.2.0
   vibrate: ^0.0.4 
   connectivity: ^0.4.8+2
+  flutter_launcher_icons: ^0.7.4
 
 
 
