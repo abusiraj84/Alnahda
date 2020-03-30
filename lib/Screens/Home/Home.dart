@@ -300,12 +300,15 @@ class _HomeState extends State<Home> {
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
-                                  FadeInImage.assetNetwork(
-                                    width: 160,
-                                    height: 105,
-                                    fit: BoxFit.cover,
-                                    placeholder: 'assets/images/loader.gif',
-                                    image: data[index].imageUrl,
+                                  ClipRRect(
+                                     borderRadius: BorderRadius.circular(3.0),
+                                                                      child: FadeInImage.assetNetwork(
+                                      width: 160,
+                                      height: 105,
+                                      fit: BoxFit.cover,
+                                      placeholder: 'assets/images/loader.gif',
+                                      image: data[index].imageUrl,
+                                    ),
                                   ),
                                   Spacer(),
                                   Column(
