@@ -41,8 +41,8 @@ class _AlrayDetailState extends State<AlrayDetail> {
               builder: (BuildContext context, AsyncSnapshot snapshot) {
                 if (snapshot.hasData) {
                   Map content = snapshot.data;
-                  String imgurl = "https://alnahdanews.com/" +
-                      content['data']['img'].toString();
+                  String imgurl =_apiService.getImage(content['data']['img'].toString());
+                
                   String authImgurl = widget.img;
 
                   return Stack(
@@ -205,37 +205,7 @@ class _AlrayDetailState extends State<AlrayDetail> {
                                           customTextAlign: (_) =>
                                               TextAlign.right),
                                     ),
-                                    // Html(data: content['data']['details']['body'] ,customTextAlign: TextAlign.right,),
-                                    // Text(
-                                    //   "شهد سعر الدولار في سوريا مقابل الليرة السورية في السوق السوداء انخفاضا طفيفا اليوم الأحد 8 3 2020 وسجل سعر صرف الليرة السورية مقابل الدولار 1060 1068 ليرة سورية في دمشق ووصل سعر اليورو مقابل الليرة",
-                                    //   style: TextStyle(
-                                    //     fontFamily: "sst-roman",
-                                    //     fontSize: 18,
-                                    //     height: 1.7,
-                                    //   ),
-                                    //   textAlign: TextAlign.right,
-                                    //   textDirection: TextDirection.rtl,
-                                    // ),
-                                    // Text(
-                                    //   "شهد سعر الدولار في سوريا مقابل الليرة السورية في السوق السوداء انخفاضا طفيفا اليوم الأحد 8 3 2020 وسجل سعر صرف الليرة السورية مقابل الدولار 1060 1068 ليرة سورية في دمشق ووصل سعر اليورو مقابل الليرة",
-                                    //   style: TextStyle(
-                                    //     fontFamily: "sst-roman",
-                                    //     fontSize: 18,
-                                    //     height: 1.7,
-                                    //   ),
-                                    //   textAlign: TextAlign.right,
-                                    //   textDirection: TextDirection.rtl,
-                                    // ),
-                                    // Text(
-                                    //   "شهد سعر الدولار في سوريا مقابل الليرة السورية في السوق السوداء انخفاضا طفيفا اليوم الأحد 8 3 2020 وسجل سعر صرف الليرة السورية مقابل الدولار 1060 1068 ليرة سورية في دمشق ووصل سعر اليورو مقابل الليرة",
-                                    //   style: TextStyle(
-                                    //     fontFamily: "sst-roman",
-                                    //     fontSize: 18,
-                                    //     height: 1.7,
-                                    //   ),
-                                    //   textAlign: TextAlign.right,
-                                    //   textDirection: TextDirection.rtl,
-                                    // ),
+                               
                                     Footer(),
                                     SizedBox(
                                       height: 80,
@@ -247,30 +217,7 @@ class _AlrayDetailState extends State<AlrayDetail> {
                           ),
                         ),
                       ),
-                      // Positioned(
-                      //   top: 100,
-                      //   left: 160,
-                      //   right: 160,
-
-                      //   child:
-                      //   // CircleAvatar(
-                      //   //   backgroundImage: NetworkImage(authImgurl),
-                      //   //   radius: 45,
-                      //   // ),
-                      //         Container(
-                      //     width: 100,
-                      //     height: 100,
-                      //     decoration: BoxDecoration(
-                      //       color: Colors.grey.withOpacity(0.2),
-                      //       shape: BoxShape.circle,
-                      //       border: Border.all(color:Colors.red.shade800,width: 4),
-                      //       image: DecorationImage(image: NetworkImage(authImgurl),
-                      //       fit: BoxFit.cover
-                      //       ),
-
-                      //     ),
-                      //   ),
-                      // ),
+                     
                     ],
                   );
                 } else {

@@ -29,14 +29,7 @@ class _MoreState extends State<More> {
 
   @override
   Widget build(BuildContext context) {
-    // return Scaffold(
-    //     appBar: AppBar(
-    //       title: Text('Title'),
-    //     ),
-    //     body: SafeArea(
-    //       child: lebanonBuilder(),
-    //     ));
-    
+
     return Scaffold(
       
       appBar: PreferredSize(

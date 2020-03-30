@@ -9,7 +9,7 @@ class ApiService {
   Client client = Client();
 
   Future<Map> getFeatured() async {
-    String myUrl = 'https://alnahdanews.com/api/v1/home';
+    String myUrl = baseUrl+'/home';
     http.Response response = await http.get(myUrl);
 
     if (response.statusCode == 200) {
@@ -20,7 +20,7 @@ class ApiService {
   }
 
   Future<Map> getBreakNews() async {
-    String myUrl = 'https://alnahdanews.com/api/v1/breaking';
+    String myUrl = baseUrl+'/breaking';
     http.Response response = await http.get(myUrl);
 
     if (response.statusCode == 200) {
@@ -32,7 +32,7 @@ class ApiService {
 
 
   Future<Map> getdetail(int id) async {
-    String myUrl = 'https://alnahdanews.com/api/v1/post/$id';
+    String myUrl = baseUrl+'/post/$id';
     http.Response response = await http.get(myUrl);
 
     if (response.statusCode == 200) {
@@ -43,7 +43,7 @@ class ApiService {
   }
 
   Future<Map> getCats() async {
-    String myUrl = 'https://alnahdanews.com/api/v1/nav';
+    String myUrl = baseUrl+'/nav';
     http.Response response = await http.get(myUrl);
 
     if (response.statusCode == 200) {
@@ -56,7 +56,7 @@ class ApiService {
   Future<Map> getPosts(int catId,int page) async {
      String myUrl;
    
-      myUrl = 'https://alnahdanews.com/api/v1/category/$catId?page=$page';
+      myUrl = baseUrl+'/category/$catId?page=$page';
     
 
     http.Response response = await http.get(myUrl);
@@ -72,7 +72,7 @@ class ApiService {
   Future<Map> getLatest(int page) async {
      String myUrl =
      
-        'https://alnahdanews.com/api/v1/latest?page=$page';
+        baseUrl+'/latest?page=$page';
     http.Response response = await http.get(myUrl);
 
     if (response.statusCode == 200) {
@@ -87,7 +87,7 @@ class ApiService {
 
 
   Future<Map> getVideos(int pageId) async {
-    String myUrl = 'https://alnahdanews.com/api/v1/videos?page=$pageId';
+    String myUrl = baseUrl+'/videos?page=$pageId';
     http.Response response = await http.get(myUrl);
 
     if (response.statusCode == 200) {
@@ -97,7 +97,7 @@ class ApiService {
     }
   }
    Future<Map> getOP(int pageId) async {
-    String myUrl = 'https://alnahdanews.com/api/v1/category/2?page=$pageId';
+    String myUrl = baseUrl+'/category/2?page=$pageId';
     http.Response response = await http.get(myUrl);
 
     if (response.statusCode == 200) {
@@ -110,7 +110,7 @@ class ApiService {
   }
     Future<bool> contactUs(ContactUs body) async {
     final response = await http.post(
-      "https://alnahdanews.com/api/v1/contact",
+      baseUrl+"/contact",
       headers: {"content-type": "application/json"},
       body: userToJson(body),
           );
@@ -122,6 +122,12 @@ class ApiService {
         }
 
       String userToJson(ContactUs data) => json.encode(data.toJson());
+
+      // return imge url 
+
+      String getImage(String img){
+        return "https://alnahdanews.com/"+img;
+      }
 
 }
 

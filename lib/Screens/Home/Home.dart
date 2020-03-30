@@ -1,6 +1,5 @@
 import 'package:alnahda/Animations/fadeanimation.dart';
 import 'package:alnahda/Screens/Home/FeaturedView.dart';
-import 'package:alnahda/Screens/Home/latest_cat.dart';
 import 'package:alnahda/Screens/Home/thirdnews.dart';
 import 'package:alnahda/Screens/details/detailview.dart';
 import 'package:alnahda/Services/api_service.dart';
@@ -101,8 +100,9 @@ class _HomeState extends State<Home> {
           if (this.mounted) {
             setState(() {
               data.add(Posts(
-                  imageUrl: 'https://alnahdanews.com/' + item['img'],
+                  imageUrl: ApiService().getImage(item['img']),
                   id: item['id'],
+                  categoryTitle: 'أخبار',
                   title: item['title']));
               isLoading = false;
               HapticFeedback.mediumImpact();
@@ -111,6 +111,8 @@ class _HomeState extends State<Home> {
         }
       });
   }
+
+
 
   fetchMore(int page) {
     if (!isLoading) {
@@ -328,7 +330,7 @@ class _HomeState extends State<Home> {
                                               width: 5,
                                             ),
                                             Text(
-                                              'الأخبار',
+                                              data[index].categoryTitle,
                                               style: TextStyle(
                                                   fontSize: 12,
                                                   color: Colors.grey.shade500),
@@ -353,13 +355,14 @@ class _HomeState extends State<Home> {
                                         ),
                                       ),
                                       Padding(
-                                       padding:   EdgeInsets.only(top:15,right: 10, left: 0),
+                                        padding: EdgeInsets.only(
+                                            top: 15, right: 10, left: 0),
                                         child: Text(
-                                               '2020-03-30 16:38:00',
-                                                style: TextStyle(
-                                                    fontSize: 12,
-                                                    color: Colors.grey.shade600),
-                                              ),
+                                          '2020-03-30 16:38:00',
+                                          style: TextStyle(
+                                              fontSize: 12,
+                                              color: Colors.grey.shade600),
+                                        ),
                                       )
                                     ],
                                   ),
@@ -377,3 +380,13 @@ class _HomeState extends State<Home> {
         ));
   }
 }
+// posts model map
+class Posts {
+  String title;
+  String imageUrl;
+  String categoryTitle;
+  int id;
+
+  Posts({this.id, this.imageUrl, this.title, this.categoryTitle});
+}
+// end posts model map

@@ -37,9 +37,7 @@ class _LebanonNewsState extends State<LebanonNews> {
             itemCount: content['data']['widget_1']['posts'].length,
             scrollDirection: Axis.horizontal,
             itemBuilder: (BuildContext context, int index) {
-              String imgurl = "https://alnahdanews.com/" +
-                  content['data']['widget_1']['posts'][index]['img'].toString();
-
+              String imgurl = ApiService().getImage( content['data']['widget_1']['posts'][index]['img'].toString());
               return Container(
                   width: 170,
                   height: 200,
