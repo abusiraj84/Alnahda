@@ -43,8 +43,6 @@ class _HomeState extends State<Home> {
   bool isBottom = false;
   ScrollController _controller;
 
-
-
   _scrollListener() {
     if (_controller.offset >= _controller.position.maxScrollExtent &&
         !_controller.position.outOfRange) {
@@ -64,11 +62,9 @@ class _HomeState extends State<Home> {
       }
 
       print('TOP HOME');
-       HapticFeedback.mediumImpact();
+      HapticFeedback.mediumImpact();
     }
   }
-
-
 
   @override
   void initState() {
@@ -86,11 +82,12 @@ class _HomeState extends State<Home> {
     await Future.delayed(Duration(seconds: 1));
     //vibrate();
     HapticFeedback.mediumImpact();
- 
+
     setState(() {
-     refreshKey = GlobalKey<RefreshIndicatorState>();
+      refreshKey = GlobalKey<RefreshIndicatorState>();
     });
   }
+
   @override
   void dispose() {
     super.dispose();
@@ -108,7 +105,7 @@ class _HomeState extends State<Home> {
                   id: item['id'],
                   title: item['title']));
               isLoading = false;
-                HapticFeedback.mediumImpact();
+              HapticFeedback.mediumImpact();
             });
           }
         }
@@ -121,7 +118,7 @@ class _HomeState extends State<Home> {
         if (this.mounted) {
           setState(() {
             isLoading = true;
-          HapticFeedback.mediumImpact();
+            HapticFeedback.mediumImpact();
           });
         }
       }
@@ -206,13 +203,12 @@ class _HomeState extends State<Home> {
                         child: GestureDetector(
                           onTap: () {
                             HapticFeedback.mediumImpact();
-                      
+
                             Navigator.push(
                                 context,
                                 PageTransition(
                                     type: PageTransitionType.downToUp,
                                     child: DetailView(data[index].id)));
-                                  
                           },
                           child: FadeAnimation(
                             0.5,
@@ -258,7 +254,12 @@ class _HomeState extends State<Home> {
                           child: Column(
                             children: <Widget>[
                               SizedBox(height: 0),
-                              Container( height:20,width: 20,child: CircularProgressIndicator(strokeWidth: 3,)),
+                              Container(
+                                  height: 20,
+                                  width: 20,
+                                  child: CircularProgressIndicator(
+                                    strokeWidth: 3,
+                                  )),
                               SizedBox(
                                 height: 40,
                                 width: MediaQuery.of(context).size.width,
@@ -288,13 +289,12 @@ class _HomeState extends State<Home> {
                           color: Colors.white,
                           child: GestureDetector(
                             onTap: () {
-                            HapticFeedback.mediumImpact();
+                              HapticFeedback.mediumImpact();
                               Navigator.push(
                                   context,
                                   PageTransition(
                                       type: PageTransitionType.downToUp,
                                       child: DetailView(data[index].id)));
-                                     
                             },
                             child: Row(
                                 mainAxisAlignment: MainAxisAlignment.start,
@@ -308,20 +308,61 @@ class _HomeState extends State<Home> {
                                     image: data[index].imageUrl,
                                   ),
                                   Spacer(),
-                                  Container(
-                                      padding:
-                                          EdgeInsets.only(right: 10, left: 0),
-                                      width: MediaQuery.of(context).size.width -
-                                          200,
-                                      child: Text(
-                                        data[index].title,
-                                        style: TextStyle(
-                                            fontFamily: "SST-Arabic-Medium",
-                                            fontSize: 18,
-                                            height: 1.5),
-                                        textAlign: TextAlign.right,
-                                        maxLines: 3,
-                                      )),
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      Padding(
+                                        padding: EdgeInsets.only(right: 10),
+                                        child: Row(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: <Widget>[
+                                            Container(
+                                              color: Colors.red.shade900,
+                                              width: 2,
+                                              height: 13,
+                                            ),
+                                            SizedBox(
+                                              width: 5,
+                                            ),
+                                            Text(
+                                              'الأخبار',
+                                              style: TextStyle(
+                                                  fontSize: 12,
+                                                  color: Colors.grey.shade500),
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                      Container(
+                                        padding:
+                                            EdgeInsets.only(right: 10, left: 0),
+                                        width:
+                                            MediaQuery.of(context).size.width -
+                                                200,
+                                        child: Text(
+                                          data[index].title,
+                                          style: TextStyle(
+                                              fontFamily: "SST-Arabic-Medium",
+                                              fontSize: 14,
+                                              height: 1.5),
+                                          textAlign: TextAlign.right,
+                                          maxLines: 2,
+                                        ),
+                                      ),
+                                      Padding(
+                                       padding:   EdgeInsets.only(top:15,right: 10, left: 0),
+                                        child: Text(
+                                               '2020-03-30 16:38:00',
+                                                style: TextStyle(
+                                                    fontSize: 12,
+                                                    color: Colors.grey.shade600),
+                                              ),
+                                      )
+                                    ],
+                                  ),
                                 ]),
                           ),
                         ),
