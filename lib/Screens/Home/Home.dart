@@ -102,7 +102,8 @@ class _HomeState extends State<Home> {
               data.add(Posts(
                   imageUrl: ApiService().getImage(item['img']),
                   id: item['id'],
-                  categoryTitle: 'أخبار',
+                  time: item['time'],
+                  categoryTitle: item['category']['title'],
                   title: item['title']));
               isLoading = false;
               HapticFeedback.mediumImpact();
@@ -358,7 +359,7 @@ class _HomeState extends State<Home> {
                                         padding: EdgeInsets.only(
                                             top: 15, right: 10, left: 0),
                                         child: Text(
-                                          '2020-03-30 16:38:00',
+                                          data[index].time,
                                           style: TextStyle(
                                               fontSize: 12,
                                               color: Colors.grey.shade600),
@@ -385,8 +386,9 @@ class Posts {
   String title;
   String imageUrl;
   String categoryTitle;
+  String time;
   int id;
 
-  Posts({this.id, this.imageUrl, this.title, this.categoryTitle});
+  Posts({this.id, this.imageUrl, this.title, this.categoryTitle, this.time});
 }
 // end posts model map
