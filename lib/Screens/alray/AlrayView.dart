@@ -79,7 +79,7 @@ class _AlrayViewState extends State<AlrayView> {
               title: item['title'],
               imageUrl: item['author']['img'] == null
                   ? 'assets'
-                  : 'https://alnahdanews.com/' + item['author']['img'],
+                  : ApiService().getImage (item['author']['img']),
               name: item['author']['name'],
             ));
             isLoading = false;

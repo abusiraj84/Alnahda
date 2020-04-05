@@ -31,8 +31,7 @@ class _FeaturedViewState extends State<FeaturedView> {
             builder: (BuildContext context, AsyncSnapshot snapshot) {
               if (snapshot.hasData) {
                 Map content = snapshot.data;
-                String imgurl = "https://alnahdanews.com/" +
-                    content['data']['featured'][0]['img'].toString();
+                String imgurl = ApiService().getImage( content['data']['featured'][0]['img'].toString());
                 return Container(
                     height: 360,
                     color: Colors.white,
@@ -106,8 +105,7 @@ class _FeaturedViewState extends State<FeaturedView> {
                 physics: ScrollPhysics(parent: NeverScrollableScrollPhysics()),
                 itemCount: 3,
                 itemBuilder: (BuildContext context, int index) {
-                  String imgurl = "https://alnahdanews.com/" +
-                      content['data']['featured'][index + 1]['img'].toString();
+                  String imgurl = ApiService().getImage(  content['data']['featured'][index + 1]['img'].toString());
 
                   return FadeAnimation(
                                       0.6, Column(

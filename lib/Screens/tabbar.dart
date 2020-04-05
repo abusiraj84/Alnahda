@@ -1,6 +1,7 @@
 
 import 'package:alnahda/Screens/alray/AlrayView.dart';
 import 'package:alnahda/Screens/video/videoView.dart';
+import 'package:alnahda/Tests/cachedTest.dart';
 import 'package:flutter/cupertino.dart';
 
 import 'package:flutter/material.dart';
@@ -25,7 +26,8 @@ class _MyTabBarState extends State<MyTabBar> {
     BreakNews(),
     AlrayView(),
     VideoView(),
-    More(),
+    // CustomScrollViewTestRoute(),
+    More()
   ];
 
   @override

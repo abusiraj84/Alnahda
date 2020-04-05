@@ -48,8 +48,7 @@ class _DetailViewState extends State<DetailView> {
               builder: (BuildContext context, AsyncSnapshot snapshot) {
                 if (snapshot.hasData) {
                   Map content = snapshot.data;
-                  String imgurl = "https://alnahdanews.com/" +
-                      content['data']['img'].toString();
+                  String imgurl = ApiService().getImage( content['data']['img'].toString());
                   return Stack(
                     children: <Widget>[
                       Positioned(
@@ -119,13 +118,7 @@ class _DetailViewState extends State<DetailView> {
                                     ),
                                   ),
                                 )
-                                // IconButton(
-                                //     icon: Icon(
-                                //       SFSymbols.arrow_left,
-                                //       size: 25,
-                                //       color: Colors.white,
-                                //     ),
-                                //     onPressed: () => Navigator.pop(context)),
+                      
                               ],
                             ),
                           ),
