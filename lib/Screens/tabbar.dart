@@ -14,11 +14,13 @@ import 'more.dart';
 class MyTabBar extends StatefulWidget {
   MyTabBar({Key key}) : super(key: key);
 
+
   @override
   _MyTabBarState createState() => _MyTabBarState();
 }
 
 class _MyTabBarState extends State<MyTabBar> {
+     List<Widget> pageList = List<Widget>();
   int _currentIndex = 0;
   final tabs = [
     
@@ -31,9 +33,20 @@ class _MyTabBarState extends State<MyTabBar> {
   ];
 
   @override
+  void initState() {
+      pageList.add(Home());
+    pageList.add(BreakNews(),);
+    pageList.add(AlrayView(),);
+    pageList.add(VideoView(),);
+    pageList.add(More());
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: CupertinoTabBar(
+        activeColor:Color(0xff17202c),
         currentIndex: _currentIndex,
         backgroundColor: Colors.white,
         iconSize: 18,
@@ -68,7 +81,10 @@ class _MyTabBarState extends State<MyTabBar> {
           });
         },
       ),
-      body: tabs[_currentIndex],
+        body: IndexedStack(
+           children: pageList,
+            index: _currentIndex,
+          ), 
     );
   }
 }

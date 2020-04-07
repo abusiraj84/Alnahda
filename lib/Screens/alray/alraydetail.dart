@@ -183,9 +183,10 @@ class _AlrayDetailState extends State<AlrayDetail> {
                                     ),
                                     SizedBox(height: 20),
                                     Text(
-                                      content['data']['published_at'],
+                                      content['data']['time'],
                                       style: TextStyle(
                                           fontFamily: "sst-roman",
+                                          fontWeight: FontWeight.bold,
                                           fontSize: 10,
                                           height: 1.3),
                                       textAlign: TextAlign.right,

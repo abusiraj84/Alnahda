@@ -47,7 +47,8 @@ class _MoreState extends State<More> {
               child: Image.asset('assets/images/appbarlogo.png',
                   width: 163.0, height: 67.0),
             ),
-             
+                       
+ catsBuilder(),
             Container(
           
               child: InkWell(
@@ -83,8 +84,7 @@ class _MoreState extends State<More> {
                 ),
               ),
             ),
-          
- catsBuilder(),
+
             
         ],
       ),

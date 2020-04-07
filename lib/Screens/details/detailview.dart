@@ -172,12 +172,14 @@ class _DetailViewState extends State<DetailView> {
                                     SizedBox(height: 20),
                                     FadeAnimation(
                                                                         0.5, Text(
-                                        content['data']['published_at'],
+                                        content['data']['time'],
                                         style: TextStyle(
                                             fontFamily: "sst-roman",
                                             fontSize: 10,
+                                            fontWeight: FontWeight.bold,
                                             height: 1.3),
                                         textAlign: TextAlign.right,
+                                        
                                       ),
                                     ),
                                     SizedBox(height: 10),

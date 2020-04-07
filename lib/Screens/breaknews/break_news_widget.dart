@@ -4,6 +4,8 @@ import '../../services/api_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sfsymbols/flutter_sfsymbols.dart';
 
+import '../Tools/globals.dart' as g;
+
 class BreakNewsWidget extends StatefulWidget {
   BreakNewsWidget({Key key}) : super(key: key);
 
@@ -39,7 +41,20 @@ class _BreakNewsState extends State<BreakNewsWidget> {
               return Padding(
                 padding: const EdgeInsets.only(top: 10),
                 child: Container(
-                  color: Colors.white,
+                   decoration: BoxDecoration(
+                    color: Colors.white,
+                      boxShadow: [
+                  BoxShadow(
+                    color: g.dark.withOpacity(0.2),
+                    blurRadius: 1.0,
+                    spreadRadius: 0.1,
+                    offset: Offset(
+                      0.0,
+                      0.2,
+                    ),
+                  )
+                ],
+                  ),
                  
                   child: Padding(
                     padding: const EdgeInsets.all(20.0),

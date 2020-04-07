@@ -2,6 +2,8 @@ import 'package:alnahda/Screens/details/detailview.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 
+import '../Tools/globals.dart' as g;
+
 class SecondNews extends StatelessWidget {
   const SecondNews({Key key}) : super(key: key);
 

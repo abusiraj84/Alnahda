@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 
 import 'package:page_transition/page_transition.dart';
+import '../Tools/globals.dart' as g;
 
 class CategorieView extends StatefulWidget {
   CategorieView({Key key, this.title, this.catId}) : super(key: key);
@@ -177,7 +178,20 @@ class _PostsListBuilderState extends State<PostsListBuilder> {
                padding: const EdgeInsets.only(bottom: 10,top: 0),
                 child: Container(
                     height: 350,
+                    decoration: BoxDecoration(
                     color: Colors.white,
+                      boxShadow: [
+                  BoxShadow(
+                    color: g.dark.withOpacity(0.2),
+                    blurRadius: 1.0,
+                    spreadRadius: 0.1,
+                    offset: Offset(
+                      0.0,
+                      0.2,
+                    ),
+                  )
+                ],
+                  ),
                     child: GestureDetector(
                       onTap: () {
                         HapticFeedback.mediumImpact();
@@ -252,7 +266,20 @@ class _PostsListBuilderState extends State<PostsListBuilder> {
                   children: <Widget>[
                     Container(
                       padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                      color: Colors.white,
+                      decoration: BoxDecoration(
+                    color: Colors.white,
+                      boxShadow: [
+                  BoxShadow(
+                    color: g.dark.withOpacity(0.2),
+                    blurRadius: 1.0,
+                    spreadRadius: 0.1,
+                    offset: Offset(
+                      0.0,
+                      0.2,
+                    ),
+                  )
+                ],
+                  ),
                       child: GestureDetector(
                         onTap: () {
                           HapticFeedback.mediumImpact();

@@ -8,6 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:page_transition/page_transition.dart';
 
+import '../Tools/globals.dart' as g;
+
 class Home extends StatefulWidget {
   Home({
     Key key,
@@ -113,8 +115,6 @@ class _HomeState extends State<Home> {
       });
   }
 
-
-
   fetchMore(int page) {
     if (!isLoading) {
       if (this.data.length > 0) {
@@ -202,7 +202,20 @@ class _HomeState extends State<Home> {
                     padding: const EdgeInsets.only(bottom: 20, top: 10),
                     child: Container(
                         height: 370,
-                        color: Colors.white,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          boxShadow: [
+                            BoxShadow(
+                              color: g.dark.withOpacity(0.2),
+                              blurRadius: 1.0,
+                              spreadRadius: 0.1,
+                              offset: Offset(
+                                0.0,
+                                0.2,
+                              ),
+                            )
+                          ],
+                        ),
                         child: GestureDetector(
                           onTap: () {
                             HapticFeedback.mediumImpact();
@@ -289,7 +302,20 @@ class _HomeState extends State<Home> {
                         Container(
                           padding: EdgeInsets.symmetric(
                               horizontal: 20, vertical: 10),
-                          color: Colors.white,
+                          decoration: BoxDecoration(
+                    color: Colors.white,
+                      boxShadow: [
+                  BoxShadow(
+                    color: g.dark.withOpacity(0.2),
+                    blurRadius: 1.0,
+                    spreadRadius: 0.1,
+                    offset: Offset(
+                      0.0,
+                      0.2,
+                    ),
+                  )
+                ],
+                  ),
                           child: GestureDetector(
                             onTap: () {
                               HapticFeedback.mediumImpact();
@@ -304,8 +330,8 @@ class _HomeState extends State<Home> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
                                   ClipRRect(
-                                     borderRadius: BorderRadius.circular(3.0),
-                                                                      child: FadeInImage.assetNetwork(
+                                    borderRadius: BorderRadius.circular(3.0),
+                                    child: FadeInImage.assetNetwork(
                                       width: 160,
                                       height: 105,
                                       fit: BoxFit.cover,
@@ -384,6 +410,7 @@ class _HomeState extends State<Home> {
         ));
   }
 }
+
 // posts model map
 class Posts {
   String title;

@@ -10,6 +10,9 @@ import 'package:page_transition/page_transition.dart';
 
 import 'videoplay.dart';
 
+import '../Tools/globals.dart' as g;
+
+
 class VideoView extends StatefulWidget {
   const VideoView({
     Key key,
@@ -201,7 +204,20 @@ class _PostsListBuilderState extends State<PostsListBuilder> {
                     children: <Widget>[
                       Container(
                         height: 350,
-                        color: Colors.white,
+                       decoration: BoxDecoration(
+                    color: Colors.white,
+                      boxShadow: [
+                  BoxShadow(
+                    color: g.dark.withOpacity(0.2),
+                    blurRadius: 1.0,
+                    spreadRadius: 0.1,
+                    offset: Offset(
+                      0.0,
+                      0.2,
+                    ),
+                  )
+                ],
+                  ),
                         child: GestureDetector(
                           onTap: () {
                             HapticFeedback.mediumImpact();
@@ -316,7 +332,20 @@ class _PostsListBuilderState extends State<PostsListBuilder> {
                         Container(
                           padding:
                               EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                          color: Colors.white,
+                          decoration: BoxDecoration(
+                    color: Colors.white,
+                      boxShadow: [
+                  BoxShadow(
+                    color: g.dark.withOpacity(0.2),
+                    blurRadius: 1.0,
+                    spreadRadius: 0.1,
+                    offset: Offset(
+                      0.0,
+                      0.2,
+                    ),
+                  )
+                ],
+                  ),
                           child: GestureDetector(
                             onTap: () {
                               Navigator.push(

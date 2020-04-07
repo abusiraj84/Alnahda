@@ -6,6 +6,8 @@ import '../../services/api_service.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 
+import '../Tools/globals.dart' as g;
+
 class FeaturedView extends StatefulWidget {
   FeaturedView({Key key}) : super(key: key);
 
@@ -31,34 +33,47 @@ class _FeaturedViewState extends State<FeaturedView> {
             builder: (BuildContext context, AsyncSnapshot snapshot) {
               if (snapshot.hasData) {
                 Map content = snapshot.data;
-                String imgurl = ApiService().getImage( content['data']['featured'][0]['img'].toString());
+                String imgurl = ApiService()
+                    .getImage(content['data']['featured'][0]['img'].toString());
                 return Container(
                     height: 360,
-                    color: Colors.white,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      boxShadow: [
+                        BoxShadow(
+                          color: g.dark.withOpacity(0.2),
+                          blurRadius: 1.0,
+                          spreadRadius: 0.1,
+                          offset: Offset(
+                            0.0,
+                            0.2,
+                          ),
+                        )
+                      ],
+                    ),
                     child: GestureDetector(
                       onTap: () {
-
                         Navigator.push(
                             context,
                             PageTransition(
                                 type: PageTransitionType.downToUp,
                                 child: DetailView(
                                     content['data']['featured'][0]['id'])));
-                                    HapticFeedback.mediumImpact();
+                        HapticFeedback.mediumImpact();
                       },
                       child: FadeAnimation(
-                                             0.5, Column(
+                        0.5,
+                        Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
-                             FadeInImage.assetNetwork(
-                                 
-                                    height: 260,
-                                    width: double.infinity ,
-                                    fit: BoxFit.cover,
-                                 
-                                    placeholder: 'assets/images/loader.gif', image: imgurl,
-                                  ),
+                            FadeInImage.assetNetwork(
+                              height: 260,
+                              width: double.infinity,
+                              fit: BoxFit.cover,
+                              placeholder: 'assets/images/loader.gif',
+                              image: imgurl,
+                            ),
                             Padding(
                               padding: const EdgeInsets.all(20.0),
                               child: Text(
@@ -80,8 +95,8 @@ class _FeaturedViewState extends State<FeaturedView> {
                 return Container(
                   height: MediaQuery.of(context).size.height,
                   child: Center(
-                    child: Image.asset('assets/images/loading.gif',width: 200)
-                  ),
+                      child:
+                          Image.asset('assets/images/loading.gif', width: 200)),
                 );
               }
             }),
@@ -92,8 +107,6 @@ class _FeaturedViewState extends State<FeaturedView> {
   }
 
   latestNews(context) {
-
-
     return FutureBuilder(
         future: _apiService.getFeatured(),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
@@ -105,10 +118,12 @@ class _FeaturedViewState extends State<FeaturedView> {
                 physics: ScrollPhysics(parent: NeverScrollableScrollPhysics()),
                 itemCount: 3,
                 itemBuilder: (BuildContext context, int index) {
-                  String imgurl = ApiService().getImage(  content['data']['featured'][index + 1]['img'].toString());
+                  String imgurl = ApiService().getImage(
+                      content['data']['featured'][index + 1]['img'].toString());
 
                   return FadeAnimation(
-                                      0.6, Column(
+                    0.6,
+                    Column(
                       children: <Widget>[
                         InkWell(
                           onTap: () {
@@ -116,14 +131,27 @@ class _FeaturedViewState extends State<FeaturedView> {
                                 context,
                                 PageTransition(
                                     type: PageTransitionType.downToUp,
-                                    child: DetailView(content['data']['featured']
-                                        [index + 1]['id'])));
-                                        HapticFeedback.mediumImpact();
+                                    child: DetailView(content['data']
+                                        ['featured'][index + 1]['id'])));
+                            HapticFeedback.mediumImpact();
                           },
                           child: Container(
                             padding: EdgeInsets.symmetric(
                                 horizontal: 20, vertical: 10),
-                            color: Colors.white,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              boxShadow: [
+                                BoxShadow(
+                                  color: g.dark.withOpacity(0.2),
+                                  blurRadius: 1.0,
+                                  spreadRadius: 0.1,
+                                  offset: Offset(
+                                    0.0,
+                                    0.2,
+                                  ),
+                                )
+                              ],
+                            ),
                             child: Row(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -132,15 +160,15 @@ class _FeaturedViewState extends State<FeaturedView> {
                                     width: 160,
                                     height: 105,
                                     fit: BoxFit.cover,
-                                 
-                                    placeholder: 'assets/images/loader.gif', image: imgurl,
+                                    placeholder: 'assets/images/loader.gif',
+                                    image: imgurl,
                                   ),
                                   Spacer(),
                                   Container(
                                       padding:
                                           EdgeInsets.only(right: 10, left: 0),
-                                      width:
-                                          MediaQuery.of(context).size.width - 200,
+                                      width: MediaQuery.of(context).size.width -
+                                          200,
                                       child: Text(
                                         content['data']['featured'][index + 1]
                                             ['title'],
@@ -166,8 +194,7 @@ class _FeaturedViewState extends State<FeaturedView> {
             return Container(
               height: MediaQuery.of(context).size.height,
               child: Center(
-                child:Image.asset('assets/images/loading.gif',width: 100)
-              ),
+                  child: Image.asset('assets/images/loading.gif', width: 100)),
             );
           }
         });
